@@ -1,0 +1,45 @@
+{
+  "fecha_sincronizacion": "2025-10-16T17:30:59.116211",
+  "vendedores": {
+    "DARKEYES": {
+      "codigo": "DARKEYES",
+      "nombre": "Administrador Principal",
+      "device_id": "",
+      "activo": 1,
+      "es_admin": 1,
+      "fecha_creacion": "2025-10-12T23:40:20.930395",
+      "ultimo_acceso": "2025-10-13T17:00:11.075684",
+      "accesos_totales": 36
+    },
+    "NIXON": {
+      "codigo": "NIXON",
+      "nombre": "NIXON LEYVA",
+      "device_id": "",
+      "activo": 1,
+      "es_admin": 0,
+      "fecha_creacion": "2025-10-13T10:08:37.342720",
+      "ultimo_acceso": "2025-10-13T10:09:05.543558",
+      "accesos_totales": 1
+    },
+    "JOSELIN": {
+      "codigo": "JOSELIN",
+      "nombre": "JOSELIN PAZ",
+      "device_id": "",
+      "activo": 1,
+      "es_admin": 0,
+      "fecha_creacion": "2025-10-13T10:08:47.749550",
+      "ultimo_acceso": "2025-10-13T15:40:49.746232",
+      "accesos_totales": 6
+    },
+    "NIXON1": {
+      "codigo": "NIXON1",
+      "nombre": "NIXON LEYVA",
+      "device_id": "",
+      "activo": 1,
+      "es_admin": 0,
+      "fecha_creacion": "2025-10-13T17:00:26.479726",
+      "ultimo_acceso": null,
+      "accesos_totales": 1
+    }
+  }
+}

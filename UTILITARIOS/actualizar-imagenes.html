@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reemplazar extensiones por .webp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #e0eafc, #cfdef3);
+      margin: 0;
+      padding: 40px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.2rem;
+      color: #007BFF;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      color: #444;
+    }
+
+    textarea {
+      width: 100%;
+      height: 280px;
+      padding: 15px;
+      font-size: 0.95rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      resize: vertical;
+      font-family: monospace;
+      background: #f9f9f9;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .button-group {
+      margin-top: 20px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      background: #007BFF;
+      color: #fff;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .output {
+      margin-top: 40px;
+    }
+
+    .icon {
+      margin-right: 8px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .copied {
+      font-size: 0.9rem;
+      color: green;
+      margin-top: 8px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔧 Reemplazar extensiones de imagen por .webp</h1>
+  <div class="container">
+    <label for="inputHTML">🔤 Pega aquí tu código HTML original:</label>
+    <textarea id="inputHTML" placeholder="Ejemplo: &lt;img src='producto1.jpg'&gt;"></textarea>
+
+    <div class="button-group">
+      <button onclick="convertToWebP()"><span class="icon">🔄</span>Reemplazar extensiones</button>
+      <button onclick="copyOutput()"><span class="icon">📋</span>Copiar código actualizado</button>
+      <button onclick="clearFields()"><span class="icon">🧹</span>Borrar todo</button>
+    </div>
+
+    <div class="copied" id="copiedMsg">✅ Copiado al portapapeles</div>
+
+    <div class="output">
+      <label for="outputHTML">✅ Código actualizado:</label>
+      <textarea id="outputHTML" readonly></textarea>
+    </div>
+  </div>
+
+  <div class="footer">
+    DISTRIBUIDORA MUNDO ESCOLAR • Herramienta de optimización web
+  </div>
+
+  <script>
+    function convertToWebP() {
+      const input = document.getElementById('inputHTML').value;
+      const updated = input.replace(/\.(jpg|jpeg|png|gif|bmp)(?=["'])/gi, '.webp');
+      document.getElementById('outputHTML').value = updated;
+      document.getElementById('copiedMsg').style.display = 'none';
+    }
+
+    function copyOutput() {
+      const output = document.getElementById('outputHTML');
+      output.select();
+      output.setSelectionRange(0, 99999);
+      document.execCommand('copy');
+
+      const msg = document.getElementById('copiedMsg');
+      msg.style.display = 'block';
+      setTimeout(() => msg.style.display = 'none', 2000);
+    }
+
+    function clearFields() {
+      document.getElementById('inputHTML').value = '';
+      document.getElementById('outputHTML').value = '';
+      document.getElementById('copiedMsg').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

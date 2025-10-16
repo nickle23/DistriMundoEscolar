@@ -1,0 +1,17 @@
+[
+  {
+    "codigo": "6479",
+    "precioOferta": 25.00,
+    "tipo": "blister"
+  },
+  {
+    "codigo": "6289",
+    "precioOferta": 15.00,
+    "tipo": "DOCENA"
+  },
+  {
+    "codigo": "6290",
+    "precioOferta": 8.50,
+    "tipo": "unidad"
+  }
+]

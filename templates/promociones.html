@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Promociones - Distribuidora Mundo Escolar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css?v=<?= time() ?>">
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
+    <!-- Precarga de recursos críticos -->
+<link rel="preload" href="assets/css/styles.css" as="style">
+<link rel="preload" href="assets/js/main.js" as="script">
+<link rel="preload" href="assets/js/promociones.js" as="script">
+<link rel="preload" href="img/Logo.webp" as="image">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2" as="font" type="font/woff2" crossorigin>
+  </head>
+  <body>
+    <!-- Hero / Encabezado -->
+    <header class="hero text-center py-5 bg-light">
+      <div class="container">
+        <h1 class="fw-bold">Distribuidora Mundo Escolar</h1>
+        <p class="lead">Promociones especiales por tiempo limitado</p>
+        <a href="distrimundoescolar" class="btn btn-primary btn-lg mt-3">Ver Catálogo Completo</a>
+      </div>
+    </header>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="distrimundoescolar">
+          <img src="img/Logo.webp" alt="Distribuidora Mundo Escolar">
+        </a>
+        <button id="btnHamburguesa" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="distrimundoescolar#productos">Productos</a></li>
+            <li class="nav-item"><a class="nav-link active" href="promociones">Promociones</a></li>
+            <li class="nav-item"><a class="nav-link" href="nosotros">Nosotros</a></li>
+            <li class="nav-item"><a class="nav-link" href="contacto">Contacto</a></li>
+          </ul>
+          <button id="btnTema" class="btn btn-sm btn-outline-secondary ms-2">
+            <i class="bi bi-moon"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- BLOQUE PROMOCIONES (sólo esto cambia) -->
+    <main class="container my-5" id="promociones">
+      <h2 class="mb-4">Promociones Activas</h2>
+      <div id="loader" class="text-center my-5">
+        <div class="spinner-border text-primary" role="status"></div>
+        <p class="mt-2 text-muted">Cargando promociones...</p>
+      </div>
+      <div id="promos-container" class="row gy-4"></div>
+    </main>
+
+    <!-- Modal Detalle Producto -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTitle">Producto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-5 text-center">
+                <img id="modalImage" src="" alt="" class="img-fluid" />
+              </div>
+              <div class="col-md-7">
+                <p id="modalDesc"></p>
+                <div id="variants" class="list-group"></div>
+                <div class="mt-3">
+                  <a class="btn btn-success w-100" id="btnWhatsApp" target="_blank">
+                    <i class="bi bi-whatsapp me-2"></i>Pídelo por WhatsApp
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ICONOS BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- FOOTER ORIGINAL -->
+    <footer class="bg-dark text-light pt-5 pb-3 mt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <h5 class="fw-bold">Distribuidora Mundo Escolar</h5>
+            <p style="font-size: 14px;">
+              Proveemos útiles escolares y material educativo al por mayor y menor.
+              Calidad y confianza para tu negocio. Somos Distribuidores.
+            </p>
+          </div>
+          <div class="col-md-4 mb-3">
+            <h6 class="fw-bold">Enlaces rápidos</h6>
+            <ul class="list-unstyled" style="font-size: 14px;">
+              <li><a href="distrimundoescolar#productos" class="text-light text-decoration-none">Productos</a></li>
+              <li><a href="promociones" class="text-light text-decoration-none">Promociones</a></li>
+              <li><a href="nosotros" class="text-light text-decoration-none">Nosotros</a></li>
+              <li><a href="contacto" class="text-light text-decoration-none">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4 mb-3">
+            <h6 class="fw-bold">Contacto</h6>
+            <p style="font-size: 14px; margin:0;">Email: mundoescolardistribuidora@gmail.com</p>
+            <p style="font-size: 14px; margin:0;">Telef: +51 922 390 279</p>
+            <p style="font-size: 14px; margin:0;">Dirección: Trujillo - Perú</p>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mb-3">
+        <a href="https://www.facebook.com/DistribMundo2506" target="_blank" class="btn btn-outline-light btn-sm rounded-circle me-2">
+          <i class="bi bi-facebook"></i>
+        </a>
+        <a href="https://wa.link/lzrtf4" target="_blank" class="btn btn-outline-light btn-sm rounded-circle">
+          <i class="bi bi-whatsapp"></i>
+        </a>
+      </div>
+      <div class="text-center mt-3 border-top border-secondary pt-3">
+        <small>© 2025 Nixon Design. Todos los derechos reservados.</small>
+      </div>
+    </footer>
+
+    <!-- BOTONES FLOTANTES -->
+    <div class="flotantes">
+      <a href="https://www.facebook.com/DistribMundo2506" target="_blank" aria-label="Facebook">
+        <i class="bi bi-facebook"></i>
+      </a>
+      <a href="https://wa.link/lzrtf4" target="_blank" aria-label="WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+      </a>
+    </div>
+
+    <!-- SCRIPTS ORIGINALES -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- NO cargamos main.js aquí -->
+<!-- <script src="assets/js/main.js?v=<?= time() ?>"></script> -->
+<script src="assets/js/promociones.js?v=<?= time() ?>"></script>
+
+    <!-- Botón subir + tema + hamburguesa + ventana flotante -->
+    <script>
+      // Botón subir
+      document.addEventListener('DOMContentLoaded', () => {
+        const btnSubir = document.getElementById('btnSubir');
+        if (!btnSubir) return;
+        window.addEventListener('scroll', () => {
+          btnSubir.style.display = window.scrollY > 100 ? 'block' : 'none';
+        });
+        btnSubir.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+
+      // Modo oscuro
+      const btnTema = document.getElementById('btnTema');
+      const icono = btnTema.querySelector('i');
+      if (localStorage.getItem('tema') === 'dark') {
+        document.body.classList.add('dark');
+        icono.className = 'bi bi-sun';
+      }
+      btnTema.onclick = () => {
+        document.body.classList.toggle('dark');
+        const esDark = document.body.classList.contains('dark');
+        localStorage.setItem('tema', esDark ? 'dark' : 'light');
+        icono.className = esDark ? 'bi bi-sun' : 'bi bi-moon';
+      };
+
+      // Hamburguesa
+      const btnHamburguesa = document.getElementById('btnHamburguesa');
+      const navMenu = document.getElementById('navMenu');
+      btnHamburguesa.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const bsCollapse = bootstrap.Collapse.getInstance(navMenu);
+        if (bsCollapse) bsCollapse.toggle();
+      });
+      document.addEventListener('click', (e) => {
+        const dentroMenu = navMenu.contains(e.target);
+        const esBotón = btnHamburguesa.contains(e.target);
+        if (!dentroMenu && !esBotón && navMenu.classList.contains('show')) {
+          const bsCollapse = bootstrap.Collapse.getInstance(navMenu);
+          bsCollapse.hide();
+        }
+      });
+
+      // Ventana flotante inicial
+      window.addEventListener('DOMContentLoaded', () => {
+    const modal = new bootstrap.Modal(document.getElementById('ventanaFlotante'));
+    // Abre solo si NO hay otro modal visible
+    if (!document.querySelector('.modal.show')) {
+      modal.show();
+    }
+  });
+    </script>
+    <!-- Lazy loading universal -->
+<script>
+  document.querySelectorAll('img:not([loading])').forEach(img => {
+    img.setAttribute('loading', 'lazy');
+    if (!img.hasAttribute('width'))  img.setAttribute('width',  img.naturalWidth  || 600);
+    if (!img.hasAttribute('height')) img.setAttribute('height', img.naturalHeight || 400);
+  });
+</script>
+  </body>
+</html>

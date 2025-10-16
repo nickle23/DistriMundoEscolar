@@ -1,0 +1,424 @@
+{
+  "ADMIN_15991fcf8a6182e1a4323dc86bc93ffa_1760335820.044569": {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T01:10:20.044586",
+    "activa": false,
+    "fecha_fin": "2025-10-13T08:49:28.983625"
+  },
+  "ADMIN_15991fcf8a6182e1a4323dc86bc93ffa_1760335829.291882": {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T01:10:29.291889",
+    "activa": false,
+    "fecha_fin": "2025-10-13T08:49:28.983630"
+  },
+  "ADMIN_15991fcf8a6182e1a4323dc86bc93ffa_1760335886.682444": {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T01:11:26.682450",
+    "activa": false,
+    "fecha_fin": "2025-10-13T08:49:28.983632"
+  },
+  "ADMIN_15991fcf8a6182e1a4323dc86bc93ffa_1760336194.734822": {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T01:16:34.734841",
+    "activa": false,
+    "fecha_fin": "2025-10-13T08:49:28.983634"
+  },
+  "ADMIN_15991fcf8a6182e1a4323dc86bc93ffa_1760336210.72036": {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T01:16:50.720368",
+    "activa": false,
+    "fecha_fin": "2025-10-13T08:49:28.983635"
+  },
+  "ADMNIXON_15991fcf8a6182e1a4323dc86bc93ffa_1760336251.527526": {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T01:17:31.527533",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:08:15.847029"
+  },
+  "ADMNIXON_15991fcf8a6182e1a4323dc86bc93ffa_1760336257.319101": {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T01:17:37.319106",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:08:15.847033"
+  },
+  "ADMNIXON_15991fcf8a6182e1a4323dc86bc93ffa_1760336564.911929": {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T01:22:44.911942",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:08:15.847035"
+  },
+  "ADMNIXON_15991fcf8a6182e1a4323dc86bc93ffa_1760336580.665009": {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T01:23:00.665034",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:08:15.847036"
+  },
+  "ADMIN_15991fcf8a6182e1a4323dc86bc93ffa_1760336610.615867": {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T01:23:30.615875",
+    "activa": false,
+    "fecha_fin": "2025-10-13T08:49:28.983636"
+  },
+  "PRUEBA1_33a7e6aa1faa5289fdb6d74a8b7609b9_1760336648.393278": {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "33a7e6aa1faa5289fdb6d74a8b7609b9",
+    "ip": "192.168.100.85",
+    "fecha_inicio": "2025-10-13T01:24:08.393285",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:06:46.833378"
+  },
+  "PRUEBA1_33a7e6aa1faa5289fdb6d74a8b7609b9_1760336656.995509": {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "33a7e6aa1faa5289fdb6d74a8b7609b9",
+    "ip": "192.168.100.85",
+    "fecha_inicio": "2025-10-13T01:24:16.995517",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:06:46.833387"
+  },
+  "ADMIN_33a7e6aa1faa5289fdb6d74a8b7609b9_1760336724.807937": {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "33a7e6aa1faa5289fdb6d74a8b7609b9",
+    "ip": "192.168.100.85",
+    "fecha_inicio": "2025-10-13T01:25:24.807943",
+    "activa": false,
+    "fecha_fin": "2025-10-13T08:49:28.983638"
+  },
+  "PRUEBA1_15991fcf8a6182e1a4323dc86bc93ffa_1760336787.301953": {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T01:26:27.301960",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:06:46.833389"
+  },
+  "PRUEBA1_15991fcf8a6182e1a4323dc86bc93ffa_1760363348.090223": {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T08:49:08.090243",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:06:46.833391"
+  },
+  "ADMIN_15991fcf8a6182e1a4323dc86bc93ffa_1760363354.381162": {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T08:49:14.381171",
+    "activa": false,
+    "fecha_fin": "2025-10-13T08:49:28.983639"
+  },
+  "ADMIN123_15991fcf8a6182e1a4323dc86bc93ffa_1760363377.524901": {
+    "vendedor_id": "ADMIN123",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T08:49:37.524923",
+    "activa": false,
+    "fecha_fin": "2025-10-13T09:09:39.231189"
+  },
+  "ADMIN123_15991fcf8a6182e1a4323dc86bc93ffa_1760364186.200945": {
+    "vendedor_id": "ADMIN123",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:03:06.200978",
+    "activa": false,
+    "fecha_fin": "2025-10-13T09:09:39.231194"
+  },
+  "PRUEBA1_15991fcf8a6182e1a4323dc86bc93ffa_1760364235.062666": {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:03:55.062675",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:06:46.833393"
+  },
+  "ADMIN123_15991fcf8a6182e1a4323dc86bc93ffa_1760364539.880716": {
+    "vendedor_id": "ADMIN123",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:08:59.880737",
+    "activa": false,
+    "fecha_fin": "2025-10-13T09:09:39.231197"
+  },
+  "PRUEBA1_15991fcf8a6182e1a4323dc86bc93ffa_1760364552.398003": {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:09:12.398016",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:06:46.833395"
+  },
+  "ADMIN123_15991fcf8a6182e1a4323dc86bc93ffa_1760364568.567712": {
+    "vendedor_id": "ADMIN123",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:09:28.567721",
+    "activa": false,
+    "fecha_fin": "2025-10-13T09:09:39.231200"
+  },
+  "ADMNIXON_15991fcf8a6182e1a4323dc86bc93ffa_1760364587.906898": {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:09:47.906914",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:08:15.847038"
+  },
+  "PRUEBA1_15991fcf8a6182e1a4323dc86bc93ffa_1760365466.048868": {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:24:26.048882",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:06:46.833397"
+  },
+  "ADMNIXON_15991fcf8a6182e1a4323dc86bc93ffa_1760365481.305396": {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:24:41.305406",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:08:15.847039"
+  },
+  "PRUEBA1_15991fcf8a6182e1a4323dc86bc93ffa_1760365517.657163": {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:25:17.657175",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:06:46.833399"
+  },
+  "ADMNIXON_15991fcf8a6182e1a4323dc86bc93ffa_1760365632.541182": {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:27:12.541193",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:08:15.847040"
+  },
+  "JOSELIN_15991fcf8a6182e1a4323dc86bc93ffa_1760366364.115513": {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:39:24.115532",
+    "activa": false,
+    "fecha_fin": "2025-10-13T11:38:34.280836"
+  },
+  "JOSELIN_15991fcf8a6182e1a4323dc86bc93ffa_1760366378.26169": {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:39:38.261699",
+    "activa": false,
+    "fecha_fin": "2025-10-13T11:38:34.280843"
+  },
+  "ADMNIXON_15991fcf8a6182e1a4323dc86bc93ffa_1760366385.468588": {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:39:45.468597",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:08:15.847041"
+  },
+  "JOSELIN_15991fcf8a6182e1a4323dc86bc93ffa_1760366639.482278": {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:43:59.482285",
+    "activa": false,
+    "fecha_fin": "2025-10-13T11:38:34.280845"
+  },
+  "ADMNIXON_15991fcf8a6182e1a4323dc86bc93ffa_1760366650.771932": {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:44:10.771940",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:08:15.847043"
+  },
+  "ADMNIXON_15991fcf8a6182e1a4323dc86bc93ffa_1760366676.779909": {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:44:36.779918",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:08:15.847044"
+  },
+  "JOSELIN_15991fcf8a6182e1a4323dc86bc93ffa_1760366756.928526": {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:45:56.928557",
+    "activa": false,
+    "fecha_fin": "2025-10-13T11:38:34.280847"
+  },
+  "JOSELIN_15991fcf8a6182e1a4323dc86bc93ffa_1760367091.120839": {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:51:31.120857",
+    "activa": false,
+    "fecha_fin": "2025-10-13T11:38:34.280848"
+  },
+  "JOSELIN_15991fcf8a6182e1a4323dc86bc93ffa_1760367104.63305": {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:51:44.633063",
+    "activa": false,
+    "fecha_fin": "2025-10-13T11:38:34.280849"
+  },
+  "JOSELIN_15991fcf8a6182e1a4323dc86bc93ffa_1760367145.858521": {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:52:25.858545",
+    "activa": false,
+    "fecha_fin": "2025-10-13T11:38:34.280850"
+  },
+  "JOSELIN_15991fcf8a6182e1a4323dc86bc93ffa_1760367465.19434": {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:57:45.194354",
+    "activa": false,
+    "fecha_fin": "2025-10-13T11:38:34.280851"
+  },
+  "ADMNIXON_15991fcf8a6182e1a4323dc86bc93ffa_1760367484.071245": {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:58:04.071253",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:08:15.847045"
+  },
+  "PRUEBA1_15991fcf8a6182e1a4323dc86bc93ffa_1760367502.205653": {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:58:22.205660",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:06:46.833402"
+  },
+  "ADMNIXON_cdc6ec1e40216fcdfb847de55ab543da_1760367586.631164": {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "cdc6ec1e40216fcdfb847de55ab543da",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T09:59:46.631171",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:08:15.847047"
+  },
+  "PRUEBA1_15991fcf8a6182e1a4323dc86bc93ffa_1760367605.982643": {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T10:00:05.982649",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:06:46.833404"
+  },
+  "ADMNIXON_15991fcf8a6182e1a4323dc86bc93ffa_1760367910.612887": {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T10:05:10.612901",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:08:15.847048"
+  },
+  "PRUEBA1_15991fcf8a6182e1a4323dc86bc93ffa_1760367946.582861": {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T10:05:46.582868",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:06:46.833406"
+  },
+  "PRUEBA1_15991fcf8a6182e1a4323dc86bc93ffa_1760367975.640357": {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T10:06:15.640364",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:06:46.833408"
+  },
+  "DARKEYES_420f246ebd9cd5b1d667cdbf0e4637f3_1760368102.877399": {
+    "vendedor_id": "DARKEYES",
+    "dispositivo": "420f246ebd9cd5b1d667cdbf0e4637f3",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T10:08:22.877406",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:08:53.229949"
+  },
+  "JOSELIN_97fa04018dd20b8972be5dfde2bb3845_1760368137.308354": {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "97fa04018dd20b8972be5dfde2bb3845",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T10:08:57.308363",
+    "activa": false,
+    "fecha_fin": "2025-10-13T11:38:34.280852"
+  },
+  "NIXON_9883fbfd6bc49972d677f20bc4acaddc_1760368145.542145": {
+    "vendedor_id": "NIXON",
+    "dispositivo": "9883fbfd6bc49972d677f20bc4acaddc",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T10:09:05.542151",
+    "activa": false,
+    "fecha_fin": "2025-10-13T10:09:12.702569"
+  },
+  "DARKEYES_0176a3eeddaeb3a641abe129ee615c14_1760368158.246311": {
+    "vendedor_id": "DARKEYES",
+    "dispositivo": "0176a3eeddaeb3a641abe129ee615c14",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T10:09:18.246317",
+    "activa": true
+  },
+  "JOSELIN_15991fcf8a6182e1a4323dc86bc93ffa_1760368223.088177": {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T10:10:23.088183",
+    "activa": false,
+    "fecha_fin": "2025-10-13T11:38:34.280854"
+  },
+  "JOSELIN_15991fcf8a6182e1a4323dc86bc93ffa_1760370156.611201": {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T10:42:36.611313",
+    "activa": false,
+    "fecha_fin": "2025-10-13T11:38:34.280855"
+  },
+  "JOSELIN_15991fcf8a6182e1a4323dc86bc93ffa_1760370362.816587": {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T10:46:02.816595",
+    "activa": false,
+    "fecha_fin": "2025-10-13T11:38:34.280856"
+  },
+  "JOSELIN_15991fcf8a6182e1a4323dc86bc93ffa_1760373530.908436": {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "ip": "127.0.0.1",
+    "fecha_inicio": "2025-10-13T11:38:50.908442",
+    "activa": true
+  }
+}

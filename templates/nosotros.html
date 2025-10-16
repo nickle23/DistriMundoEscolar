@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nosotros - Distribuidora Mundo Escolar</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css?v=<?= time() ?>">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Precarga de recursos críticos -->
+<link rel="preload" href="assets/css/styles.css" as="style">
+<link rel="preload" href="assets/js/main.js" as="script">
+<link rel="preload" href="assets/js/promociones.js" as="script">
+<link rel="preload" href="img/Logo.webp" as="image">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+<!-- Hero / Encabezado (igual que index) -->
+<header class="hero text-center py-5 bg-light">
+  <div class="container">
+    <h1 class="fw-bold">Distribuidora Mundo Escolar</h1>
+    <p class="lead">!Todo lo que necesitas, en un solo lugar¡</p>
+    <a href="distrimundoescolar#productos" class="btn btn-primary btn-lg mt-3">Ver Productos</a>
+  </div>
+</header>
+
+<!-- Navbar (idéntico a index) -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="distrimundoescolar">
+      <img src="img/Logo.webp" alt="Distribuidora Mundo Escolar" height="40">
+    </a>
+    <button id="btnHamburguesa" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="distrimundoescolar#productos">Productos</a></li>
+        <li class="nav-item"><a class="nav-link" href="promociones">Promociones</a></li>
+        <li class="nav-item"><a class="nav-link active" href="nosotros">Nosotros</a></li>
+        <li class="nav-item"><a class="nav-link" href="contacto">Contacto</a></li>
+      </ul>
+      <!-- Switch modo oscuro -->
+      <button id="btnTema" class="btn btn-sm btn-outline-secondary ms-2">
+        <i class="bi bi-moon"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ========================================================= -->
+<!-- CONTENEDOR “NOSOTROS”  –  ÚNICO BLOQUE NUEVO              -->
+<!-- ========================================================= -->
+<main class="container my-5" id="nosotros">
+
+  <!-- Hero interno -->
+  <div class="text-center mb-5">
+    <h1 class="fw-bold">Conócenos</h1>
+    <p class="lead">Más de 4 años trabajando por la educación con compromiso y calidad!</p>
+  </div>
+
+  <!-- Nuestra Historia -->
+  <section class="row align-items-center mb-5">
+    <div class="col-md-6">
+      <h2 class="fw-bold mb-3">Nuestra Historia</h2>
+      <p class="justificado">
+  Fundada en 2020, <strong>Distribuidora Mundo Escolar</strong> nació con la misión de acercar a las instituciones estatales y privadas,
+  negocios y familias con productos de calidad a precios justos. Lo que comenzó como un pequeño emprendimiento familiar 
+  hoy es un referente en la región, atendiendo a más de 1000 clientes mayoristas y miles de estudiantes cada año. Creemos
+  que la educación transforma vidas, y queremos ser parte de ese cambio.
+</p>
+      <p>Creemos que la educación transforma vidas, y queremos ser parte de ese cambio.</p>
+    </div>
+    <div class="col-md-6">
+      <img src="img/nosotros/nuestra_historia.webp" alt="Nuestra Historia" class="img-fluid pro-foto">
+    </div>
+  </section>
+
+  <!-- A qué nos dedicamos -->
+  <section class="text-center mb-5">
+    <h2 class="fw-bold mb-4">A qué nos dedicamos</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body">
+            <i class="bi bi-briefcase-fill text-primary fs-1 mb-3"></i>
+            <h5 class="card-title">Venta al por mayor</h5>
+            <p class="card-text">Suministramos útiles escolares y material educativo a instituciones, librerías y mayoristas.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body">
+            <i class="bi bi-shop text-primary fs-1 mb-3"></i>
+            <h5 class="card-title">Venta al por menor</h5>
+            <p class="card-text">Atendemos directamente a familias y estudiantes con productos de primera calidad.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <i class="bi bi-truck text-primary fs-1 mb-3"></i>
+              <h5 class="card-title">Logística integrada</h5>
+              <p class="card-text">Entregas a domicilio en la ciudad y envíos a nivel nacional con tiempos reducidos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- Nuestros Clientes - Showcase Moderno -->
+<section class="mb-5" id="showcase-clientes">
+  <h2 class="text-center fw-bold mb-4">Nuestros Clientes</h2>
+
+  <!-- Contenedor del showcase -->
+  <div class="showcase-modern-wrapper">
+    <!-- Flecha izquierda -->
+    <button class="showcase-arrow showcase-prev" aria-label="Anterior">
+      <i class="bi bi-chevron-left"></i>
+    </button>
+
+    <!-- Track del carrusel -->
+    <div class="showcase-modern-track" id="showcaseTrack">
+      <div class="showcase-slide"><img src="img/nosotros/clientes1.webp" alt="Cliente 1"></div>
+      <div class="showcase-slide"><img src="img/nosotros/clientes2.webp" alt="Cliente 2"></div>
+      <div class="showcase-slide"><img src="img/nosotros/clientes3.webp" alt="Cliente 3"></div>
+      <div class="showcase-slide"><img src="img/nosotros/clientes4.webp" alt="Cliente 4"></div>
+      <div class="showcase-slide"><img src="img/nosotros/clientes5.webp" alt="Cliente 5"></div>
+      <div class="showcase-slide"><img src="img/nosotros/clientes6.webp" alt="Cliente 6"></div>
+    </div>
+
+    <!-- Flecha derecha -->
+    <button class="showcase-arrow showcase-next" aria-label="Siguiente">
+      <i class="bi bi-chevron-right"></i>
+    </button>
+  </div>
+</section>
+
+  <!-- Valores -->
+  <section class="bg-light p-4 rounded shadow-sm">
+    <h3 class="text-center fw-bold mb-4">Nuestros Valores</h3>
+    <div class="row text-center">
+      <div class="col-md-3 mb-3">
+        <i class="bi bi-heart-fill text-danger fs-2"></i>
+        <h6>Compromiso</h6>
+        <small>Con nuestros clientes y la comunidad educativa.</small>
+      </div>
+      <div class="col-md-3 mb-3">
+        <i class="bi bi-award-fill text-warning fs-2"></i>
+        <h6>Calidad</h6>
+        <small>Productos seleccionados y garantizados.</small>
+      </div>
+      <div class="col-md-3 mb-3">
+        <i class="bi bi-clock-fill text-info fs-2"></i>
+        <h6>Puntualidad</h6>
+        <small>Entregas siempre a tiempo.</small>
+      </div>
+      <div class="col-md-3 mb-3">
+        <i class="bi bi-people-fill text-success fs-2"></i>
+        <h6>Trabajo en equipo</h6>
+        <small>Colaboración constante con instituciones.</small>
+      </div>
+    </div>
+  </section>
+
+</main>
+<!-- /fin contenedor Nosotros -->
+
+<!-- Footer (idéntico a index) -->
+<footer class="bg-dark text-light pt-5 pb-3 mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <h5 class="fw-bold">Distribuidora Mundo Escolar</h5>
+        <p style="font-size: 14px;">
+          Proveemos útiles escolares y material educativo al por mayor y menor.
+          Calidad y confianza para tu negocio. Somos Distribuidores.
+        </p>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h6 class="fw-bold">Enlaces rápidos</h6>
+        <ul class="list-unstyled" style="font-size: 14px;">
+          <li><a href="distrimundoescolar#productos" class="text-light text-decoration-none">Productos</a></li>
+          <li><a href="promociones" class="text-light text-decoration-none">Promociones</a></li>
+          <li><a href="nosotros" class="text-light text-decoration-none">Nosotros</a></li>
+          <li><a href="contacto" class="text-light text-decoration-none">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h6 class="fw-bold">Contacto</h6>
+        <p style="font-size: 14px; margin:0;">Email: mundoescolardistribuidora@gmail.com</p>
+        <p style="font-size: 14px; margin:0;">Telef: +51 922 390 279</p>
+        <p style="font-size: 14px; margin:0;">Dirección: Trujillo - Perú</p>
+      </div>
+    </div>
+  </div>
+  <div class="text-center mb-3">
+    <a href="https://www.facebook.com/DistribMundo2506" target="_blank" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-facebook"></i></a>
+    <a href="https://wa.link/lzrtf4" target="_blank" class="btn btn-outline-light btn-sm rounded-circle"><i class="bi bi-whatsapp"></i></a>
+  </div>
+  <div class="text-center mt-3 border-top border-secondary pt-3">
+    <small>© 2025 Nixon Design. Todos los derechos reservados.</small>
+  </div>
+</footer>
+
+<!-- Botones flotantes (igual que index) -->
+<div class="flotantes">
+  <a href="https://www.facebook.com/DistribMundo2506" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+  <a href="https://wa.link/lzrtf4" target="_blank" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+</div>
+
+<!-- Scripts (sin tocar nada) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js?v=<?= time() ?>"></script>
+<!-- Modo noche/claro -->
+<script>
+  const btnTema = document.getElementById('btnTema');
+  const icono = btnTema.querySelector('i');
+  if (localStorage.getItem('tema') === 'dark') {
+    document.body.classList.add('dark');
+    icono.className = 'bi bi-sun';
+  }
+  btnTema.onclick = () => {
+    document.body.classList.toggle('dark');
+    const esDark = document.body.classList.contains('dark');
+    localStorage.setItem('tema', esDark ? 'dark' : 'light');
+    icono.className = esDark ? 'bi bi-sun' : 'bi bi-moon';
+  };
+</script>
+<!-- Cierre menú hamburguesa al hacer clic fuera -->
+<script>
+  const btnHamburguesa = document.getElementById('btnHamburguesa');
+  const navMenu = document.getElementById('navMenu');
+  document.addEventListener('click', (e) => {
+    const dentroMenu = navMenu.contains(e.target);
+    const esBotón = btnHamburguesa.contains(e.target);
+    if (!dentroMenu && !esBotón && navMenu.classList.contains('show')) {
+      bootstrap.Collapse.getInstance(navMenu).hide();
+    }
+  });
+</script>
+<script>
+/* -----------------------------------------
+   SHOWCASE CÍCLICO + AUTO-GIRO CADA 4 SEGUNDOS
+   ----------------------------------------- */
+(function () {
+  const track   = document.getElementById('showcaseTrack');
+  const prevBtn = document.querySelector('.showcase-prev');
+  const nextBtn = document.querySelector('.showcase-next');
+  if (!track || !prevBtn || !nextBtn) return;
+
+  const slides  = Array.from(track.children);
+  const total   = slides.length;
+  let current   = Math.floor(total / 2);
+
+  /* ---------- ACTUALIZA VISUALES ---------- */
+  function updateShowcase() {
+    slides.forEach((s, i) => s.classList.toggle('center', i === current));
+
+    const centralImg = slides[current].querySelector('img');
+    const imgWidth   = centralImg.offsetWidth;
+    const wrapperWidth = track.parentElement.offsetWidth;
+    const offset = (wrapperWidth - imgWidth) / 2 - current * (imgWidth + 20);
+    track.style.transform = `translateX(${offset}px)`;
+  }
+
+  /* ---------- NAVEGACIÓN CÍCLICA ---------- */
+  function goPrev() {
+    current = (current - 1 + total) % total;
+    updateShowcase();
+  }
+  function goNext() {
+    current = (current + 1) % total;
+    updateShowcase();
+  }
+
+  /* ---------- AUTO-GIRO CADA 4 SEGUNDOS ---------- */
+  let autoSlide = setInterval(goNext, 4000);
+
+  function resetAutoSlide() {
+    clearInterval(autoSlide);
+    autoSlide = setInterval(goNext, 4000);
+  }
+
+  /* ---------- EVENTOS: FLECHAS, CLICK Y RESET ---------- */
+  prevBtn.addEventListener('click', () => {
+    goPrev();
+    resetAutoSlide();
+  });
+  nextBtn.addEventListener('click', () => {
+    goNext();
+    resetAutoSlide();
+  });
+  slides.forEach((slide, i) => {
+    slide.addEventListener('click', () => {
+      current = i;
+      updateShowcase();
+      resetAutoSlide();
+    });
+  });
+
+  /* ---------- INICIALIZA ---------- */
+  updateShowcase();
+  window.addEventListener('resize', updateShowcase);
+})();
+</script>
+<script>
+/* -----------------------------------------
+   SHOWCASE CÍCLICO + CENTRADO PERFECTO + AUTO-GIRO 4s
+   ----------------------------------------- */
+(function () {
+  const track   = document.getElementById('showcaseTrack');
+  const prevBtn = document.querySelector('.showcase-prev');
+  const nextBtn = document.querySelector('.showcase-next');
+  if (!track || !prevBtn || !nextBtn) return;
+
+  const slides  = Array.from(track.children);
+  const total   = slides.length;
+  let current   = Math.floor(total / 2);
+
+  /* ---------- ACTUALIZA VISUALES ---------- */
+  function updateShowcase() {
+    slides.forEach((s, i) => s.classList.toggle('center', i === current));
+
+    const centralImg = slides[current].querySelector('img');
+    const imgWidth   = centralImg.offsetWidth;
+    const wrapperWidth = track.parentElement.offsetWidth;
+    const offset = (wrapperWidth - imgWidth) / 2 - current * (imgWidth + 20); // 20px = gap
+    track.style.transform = `translateX(${offset}px)`;
+  }
+
+  /* ---------- NAVEGACIÓN CÍCLICA ---------- */
+  function goPrev() {
+    current = (current - 1 + total) % total;
+    updateShowcase();
+  }
+  function goNext() {
+    current = (current + 1) % total;
+    updateShowcase();
+  }
+
+  /* ---------- AUTO-GIRO CADA 4 SEGUNDOS ---------- */
+  let autoSlide = setInterval(goNext, 4000);
+
+  function resetAutoSlide() {
+    clearInterval(autoSlide);
+    autoSlide = setInterval(goNext, 4000);
+  }
+
+  /* ---------- EVENTOS: FLECHAS, CLICK Y RESET ---------- */
+  prevBtn.addEventListener('click', () => {
+    goPrev();
+    resetAutoSlide();
+  });
+  nextBtn.addEventListener('click', () => {
+    goNext();
+    resetAutoSlide();
+  });
+  slides.forEach((slide, i) => {
+    slide.addEventListener('click', () => {
+      current = i;
+      updateShowcase();
+      resetAutoSlide();
+    });
+  });
+
+  /* ---------- INICIALIZA Y RE-CENTRA AL CAMBIAR TAMAÑO ---------- */
+  updateShowcase();
+  window.addEventListener('resize', updateShowcase);
+})();
+</script>
+<!-- Lazy loading universal -->
+<script>
+  document.querySelectorAll('img:not([loading])').forEach(img => {
+    img.setAttribute('loading', 'lazy');
+    if (!img.hasAttribute('width'))  img.setAttribute('width',  img.naturalWidth  || 600);
+    if (!img.hasAttribute('height')) img.setAttribute('height', img.naturalHeight || 400);
+  });
+</script>
+</body>
+</html>

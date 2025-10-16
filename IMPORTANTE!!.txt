@@ -1,0 +1,39 @@
+EN RENDER YA NO ES NECESARIO EL "CNAME" PORQUE SE ACTIVA DIRECTAMENTE DESDE CONFIGURACION DEL DOMINIO Y LA SEGURIDAD HTTTPS
+GRATUITO Y ATUOMATICO
+
+GitHub Pages:
+Necesita archivo CNAME en el repositorio
+
+Configuración manual
+
+HTTPS limitado
+
+Render:
+NO necesita archivo CNAME
+
+Configuración desde el panel web
+
+HTTPS automático y gratuito
+
+Manejo profesional de dominios
+/////////////////////////////////////////////////////////////////
+
+📋 Pasos FINALES:
+Elimina el archivo CNAME de tu repositorio
+
+Elimina el dominio de GitHub Pages Settings
+
+Agrega el dominio en Render.com
+
+Configura los DNS correctos (A y CNAME)
+
+✅ Render hará:
+✅ HTTPS automático
+
+✅ Certificado SSL gratuito
+
+✅ Redirección www automática
+
+✅ Renovación automática de SSL
+
+¡Elimina el CNAME y deja que Render maneje tu dominio profesionalmente! 🚀

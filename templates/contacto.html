@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contacto - Distribuidora Mundo Escolar</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css?v=<?= time() ?>">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Precarga de recursos críticos -->
+<link rel="preload" href="assets/css/styles.css" as="style">
+<link rel="preload" href="assets/js/main.js" as="script">
+<link rel="preload" href="assets/js/promociones.js" as="script">
+<link rel="preload" href="img/Logo.webp" as="image">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+<!-- Hero / Encabezado (igual que index) -->
+<header class="hero text-center py-5 bg-light">
+  <div class="container">
+    <h1 class="fw-bold">Distribuidora Mundo Escolar</h1>
+    <p class="lead">¡Todo lo que necesitas, en un solo lugar!</p>
+    <a href="distrimundoescolar#productos" class="btn btn-primary btn-lg mt-3">Ver Productos</a>
+  </div>
+</header>
+
+<!-- Navbar (idéntico a index) -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="distrimundoescolar">
+      <img src="img/Logo.webp" alt="Distribuidora Mundo Escolar" height="40">
+    </a>
+    <button id="btnHamburguesa" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="distrimundoescolar#productos">Productos</a></li>
+        <li class="nav-item"><a class="nav-link" href="promociones">Promociones</a></li>
+        <li class="nav-item"><a class="nav-link" href="nosotros">Nosotros</a></li>
+        <li class="nav-item"><a class="nav-link active" href="contacto">Contacto</a></li>
+      </ul>
+      <!-- Switch modo oscuro -->
+      <button id="btnTema" class="btn btn-sm btn-outline-secondary ms-2">
+        <i class="bi bi-moon"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ========================================================= -->
+<!-- CONTENEDOR “CONTACTO”  –  ÚNICO BLOQUE NUEVO             -->
+<!-- ========================================================= -->
+<main class="container my-5" id="contacto">
+
+  <!-- Título principal -->
+  <div class="text-center mb-5">
+    <h1 class="fw-bold">Contáctanos</h1>
+    <p class="lead">Estamos aquí para ayudarte. Escríbenos y te responderemos en menos de 24 h.</p>
+  </div>
+
+  <!-- Tarjetas de información -->
+  <section class="row g-4 mb-5">
+    <div class="col-md-4 text-center">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body">
+          <i class="bi bi-geo-alt-fill text-danger fs-1 mb-3"></i>
+          <h5 class="card-title">Dirección</h5>
+          <p class="card-text">CENTRO COMERCIAL PLAZA DE TOROS BLOCK S1, <br>Trujillo – La Libertad<br>Perú</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 text-center">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body">
+          <i class="bi bi-telephone-fill text-success fs-1 mb-3"></i>
+          <h5 class="card-title">Teléfono</h5>
+          <p class="card-text">
+            <a href="tel:+51922390279" class="text-decoration-none">+51 922 390 279</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 text-center">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body">
+          <i class="bi bi-envelope-fill text-primary fs-1 mb-3"></i>
+          <h5 class="card-title">Correo</h5>
+          <p class="card-text">
+            <a href="mailto:mundoescolardistribuidora@gmail.com" class="text-decoration-none">mundoescolardistribuidora@gmail.com</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulario de contacto -->
+  <section class="row g-4 justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <h4 class="mb-4">Envíanos un mensaje</h4>
+          <form action="https://formsubmit.co/mundoescolardistribuidora@gmail.com" method="POST">
+            <!-- Campo oculto para redirigir después del envío -->
+            <input type="hidden" name="_next" value="http://127.0.0.1:5000/contacto?enviado=true">
+            <input type="hidden" name="_subject" value="Nuevo mensaje desde la web">
+            <input type="hidden" name="_captcha" value="false">
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="nombre" class="form-label">Nombre completo <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+              </div>
+              <div class="col-md-6">
+                <label for="telefono" class="form-label">Teléfono <span class="text-danger">*</span></label>
+                <input type="tel" class="form-control" id="telefono" name="telefono" required>
+              </div>
+              <div class="col-md-6">
+                <label for="email" class="form-label">Correo electrónico <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" id="email" name="email" required>
+              </div>
+              <div class="col-md-6">
+                <label for="asunto" class="form-label">Asunto <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="asunto" name="asunto" required>
+              </div>
+              <div class="col-12">
+                <label for="mensaje" class="form-label">Mensaje <span class="text-danger">*</span></label>
+                <textarea class="form-control" id="mensaje" name="mensaje" rows="5" required></textarea>
+              </div>
+              <div class="col-12 text-center">
+                <button type="submit" class="btn btn-primary btn-lg px-5">Enviar mensaje</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Horario de atención -->
+  <section class="row mt-5 justify-content-center">
+    <div class="col-lg-8">
+      <div class="alert alert-info d-flex align-items-center mb-0" role="alert">
+        <i class="bi bi-clock-history fs-4 me-3"></i>
+        <div>
+          <strong>Horario de atención:</strong><br>
+          Lunes a Viernes: 9:00 – 20:00 | Sábados: 9:00 – 20:00 | Domingos: 9:00 – 18:00
+        </div>
+      </div>
+    </div>
+      <!-- Dirección + Mapa -->
+  <section class="row mt-5 justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <h5 class="fw-bold mb-3"><i class="bi bi-geo-alt-fill text-danger"></i> Nuestra tienda</h5>
+          <p class="mb-3">
+            Sinchi Roca 1280, Centro Comercial Plaza de Toros, Block S1<br>
+            Trujillo, Perú
+          </p>
+
+          <!-- Google Maps embebido -->
+          <div class="ratio ratio-16x9 rounded overflow-hidden">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3947.370381429005!2d-79.0467489247221!3d-8.336600691696017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91ad3d7c3e9a5b1b%3A0x2b3e5d5c5d5c5d5c!2sCentro%20Comercial%20Plaza%20de%20Toros!5e0!3m2!1ses!2spe!4v1699999999999"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+
+          <!-- Botón para abrir en Google Maps -->
+<div class="text-center mt-3">
+  <a
+    href="https://www.google.com/maps?q=S%C3%A1nchez+Roca+1280,+Centro+Comercial+Plaza+de+Toros,+Block+S1,+Trujillo,+Per%C3%BA"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="btn btn-outline-primary btn-sm">
+    <i class="bi bi-box-arrow-up-right"></i> Abrir en Google Maps
+  </a>
+</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </section>
+
+</main>
+<!-- /fin contenedor Contacto -->
+
+<!-- Footer (idéntico a index) -->
+<footer class="bg-dark text-light pt-5 pb-3 mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <h5 class="fw-bold">Distribuidora Mundo Escolar</h5>
+        <p style="font-size: 14px;">
+          Proveemos útiles escolares y material educativo al por mayor y menor.
+          Calidad y confianza para tu negocio. Somos Distribuidores.
+        </p>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h6 class="fw-bold">Enlaces rápidos</h6>
+        <ul class="list-unstyled" style="font-size: 14px;">
+          <li><a href="distrimundoescolar#productos" class="text-light text-decoration-none">Productos</a></li>
+          <li><a href="promociones" class="text-light text-decoration-none">Promociones</a></li>
+          <li><a href="nosotros" class="text-light text-decoration-none">Nosotros</a></li>
+          <li><a href="contacto" class="text-light text-decoration-none">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h6 class="fw-bold">Contacto</h6>
+        <p style="font-size: 14px; margin:0;">Email: mundoescolardistribuidora@gmail.com</p>
+        <p style="font-size: 14px; margin:0;">Telef: +51 922 390 279</p>
+        <p style="font-size: 14px; margin:0;">Dirección: Trujillo - Perú</p>
+      </div>
+    </div>
+  </div>
+  <div class="text-center mb-3">
+    <a href="https://www.facebook.com/DistribMundo2506" target="_blank" class="btn btn-outline-light btn-sm rounded-circle me-2"><i class="bi bi-facebook"></i></a>
+    <a href="https://wa.link/lzrtf4" target="_blank" class="btn btn-outline-light btn-sm rounded-circle"><i class="bi bi-whatsapp"></i></a>
+  </div>
+  <div class="text-center mt-3 border-top border-secondary pt-3">
+    <small>© 2025 Nixon Design. Todos los derechos reservados.</small>
+  </div>
+</footer>
+
+<!-- Botones flotantes (igual que index) -->
+<div class="flotantes">
+  <a href="https://www.facebook.com/DistribMundo2506" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+  <a href="https://wa.link/lzrtf4" target="_blank" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+</div>
+
+<!-- Scripts (sin tocar nada) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js?v=<?= time() ?>"></script>
+<!-- Modo noche/claro -->
+<script>
+  const btnTema = document.getElementById('btnTema');
+  const icono = btnTema.querySelector('i');
+  if (localStorage.getItem('tema') === 'dark') {
+    document.body.classList.add('dark');
+    icono.className = 'bi bi-sun';
+  }
+  btnTema.onclick = () => {
+    document.body.classList.toggle('dark');
+    const esDark = document.body.classList.contains('dark');
+    localStorage.setItem('tema', esDark ? 'dark' : 'light');
+    icono.className = esDark ? 'bi bi-sun' : 'bi bi-moon';
+  };
+</script>
+<!-- Cierre menú hamburguesa al hacer clic fuera -->
+<script>
+  const btnHamburguesa = document.getElementById('btnHamburguesa');
+  const navMenu = document.getElementById('navMenu');
+  document.addEventListener('click', (e) => {
+    const dentroMenu = navMenu.contains(e.target);
+    const esBotón = btnHamburguesa.contains(e.target);
+    if (!dentroMenu && !esBotón && navMenu.classList.contains('show')) {
+      bootstrap.Collapse.getInstance(navMenu).hide();
+    }
+  });
+</script>
+<!-- Lazy loading universal -->
+<script>
+  document.querySelectorAll('img:not([loading])').forEach(img => {
+    img.setAttribute('loading', 'lazy');
+    if (!img.hasAttribute('width'))  img.setAttribute('width',  img.naturalWidth  || 600);
+    if (!img.hasAttribute('height')) img.setAttribute('height', img.naturalHeight || 400);
+  });
+</script>
+
+<!-- Mensaje de éxito después de enviar formulario -->
+<script>
+  // Verificar si el formulario se envió exitosamente
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('enviado') === 'true') {
+    // Crear alerta de éxito
+    const alerta = document.createElement('div');
+    alerta.className = 'alert alert-success alert-dismissible fade show';
+    alerta.innerHTML = `
+      <strong>¡Mensaje enviado exitosamente!</strong> Te contactaremos dentro de 24 horas.
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    
+    // Insertar la alerta antes del formulario
+    const formulario = document.querySelector('form');
+    const cardBody = formulario.closest('.card-body');
+    cardBody.insertBefore(alerta, formulario);
+    
+    // Limpiar el formulario
+    formulario.reset();
+    
+    // Hacer scroll suave hacia el mensaje
+    alerta.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>
+
+</body>
+</html>

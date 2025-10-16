@@ -1,0 +1,786 @@
+[
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "6f4e0b266303383d1cc8fadd7c1a002c",
+    "exitoso": true,
+    "fecha_hora": "2025-10-12T23:40:38.514387",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "PRUEBA01",
+    "dispositivo": "2b119fe0fa4ed418cfe842a689da3bef",
+    "exitoso": false,
+    "fecha_hora": "2025-10-12T23:42:54.500178",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "PRUEBA01",
+    "dispositivo": "2cd236f429c17846f7c76365e1722581",
+    "exitoso": false,
+    "fecha_hora": "2025-10-12T23:43:01.167898",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "078c924441cd7f8c0367553e9d007aed",
+    "exitoso": true,
+    "fecha_hora": "2025-10-12T23:43:25.160817",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "PRUEBA2",
+    "dispositivo": "ec57aa6f318eec27a03c6713bb58f613",
+    "exitoso": true,
+    "fecha_hora": "2025-10-12T23:44:25.070764",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "6da414e664df1709d399cae5093ce893",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T00:00:26.369427",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "94dec1cc232345d0983bcc4a35287467",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T00:08:39.659325",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "aa0a1814419282efd88ef7668424d185",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T00:24:40.120759",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T00:30:25.778779",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "33a7e6aa1faa5289fdb6d74a8b7609b9",
+    "exitoso": false,
+    "fecha_hora": "2025-10-13T00:41:34.155401",
+    "ip": "192.168.100.85"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "33a7e6aa1faa5289fdb6d74a8b7609b9",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T00:41:50.716403",
+    "ip": "192.168.100.85"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "33a7e6aa1faa5289fdb6d74a8b7609b9",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T00:42:31.448898",
+    "ip": "192.168.100.85"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "33a7e6aa1faa5289fdb6d74a8b7609b9",
+    "exitoso": false,
+    "fecha_hora": "2025-10-13T01:02:24.639223",
+    "ip": "192.168.100.85"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Cambio código: JOSELIN -> JOSELIN",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:02:32.979684",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "33a7e6aa1faa5289fdb6d74a8b7609b9",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:02:40.354465",
+    "ip": "192.168.100.85"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Deslogueo forzado: JOSELIN",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:03:00.287706",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Deslogueo forzado: JOSELIN",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:03:28.125592",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Cambio código: JOSELIN -> JOSELIN",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:07:02.104430",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "33a7e6aa1faa5289fdb6d74a8b7609b9",
+    "exitoso": false,
+    "fecha_hora": "2025-10-13T01:07:30.566619",
+    "ip": "192.168.100.85"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Cambio código: JOSELIN -> JOSELIN",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:07:48.688917",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "33a7e6aa1faa5289fdb6d74a8b7609b9",
+    "exitoso": false,
+    "fecha_hora": "2025-10-13T01:08:01.303748",
+    "ip": "192.168.100.85"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": false,
+    "fecha_hora": "2025-10-13T01:10:15.254186",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:10:20.046393",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:10:29.293133",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:11:26.684653",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:16:34.736286",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": false,
+    "fecha_hora": "2025-10-13T01:16:46.717525",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:16:50.722057",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Cambio código: ADMIN -> ADMNIXON",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:17:15.088633",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": false,
+    "fecha_hora": "2025-10-13T01:17:21.775360",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": false,
+    "fecha_hora": "2025-10-13T01:17:27.150403",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:17:31.529160",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:17:37.320458",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:22:44.913455",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": false,
+    "fecha_hora": "2025-10-13T01:22:50.161516",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:23:00.666649",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": false,
+    "fecha_hora": "2025-10-13T01:23:04.678997",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": false,
+    "fecha_hora": "2025-10-13T01:23:25.653574",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:23:30.617463",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "33a7e6aa1faa5289fdb6d74a8b7609b9",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:24:08.395188",
+    "ip": "192.168.100.85"
+  },
+  {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "33a7e6aa1faa5289fdb6d74a8b7609b9",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:24:16.997588",
+    "ip": "192.168.100.85"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "33a7e6aa1faa5289fdb6d74a8b7609b9",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:25:24.809943",
+    "ip": "192.168.100.85"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Deslogueo forzado: ADMIN - 7 sesiones cerradas",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:25:47.115956",
+    "ip": "192.168.100.85"
+  },
+  {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T01:26:27.303931",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T08:49:08.092664",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T08:49:14.383427",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Cambio código: ADMIN -> ADMIN123",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T08:49:28.986072",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN123",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T08:49:37.527352",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN123",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:03:06.204239",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": false,
+    "fecha_hora": "2025-10-13T09:03:10.082635",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:03:55.065030",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN123",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:08:59.883603",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:09:12.400698",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN123",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:09:28.570018",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Cambio código: ADMIN123 -> ADMNIXON",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:09:39.234110",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:09:47.910233",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:24:26.051119",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:24:41.308673",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Cambio código: PRUEBA1 -> PRUEBA1",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:25:09.871501",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:25:17.660308",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": false,
+    "fecha_hora": "2025-10-13T09:26:35.221050",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMNI",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": false,
+    "fecha_hora": "2025-10-13T09:27:06.936547",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:27:12.544120",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:39:24.118377",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "DASDAS",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": false,
+    "fecha_hora": "2025-10-13T09:39:31.514457",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:39:38.264329",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:39:45.471421",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Cambio código: JOSELIN -> JOSELIN",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:43:52.125977",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:43:59.484997",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:44:10.774619",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Deslogueo forzado: ADMNIXON - 9 sesiones cerradas",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:44:18.143483",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELINEWQ",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": false,
+    "fecha_hora": "2025-10-13T09:44:33.342046",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:44:36.782284",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Cambio código: JOSELIN -> JOSELIN",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:44:45.710856",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:45:56.931183",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:51:31.123460",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:51:44.637723",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:52:25.862008",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:57:45.196453",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:58:04.073434",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Cambio código: JOSELIN -> PRUEBA1",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:58:13.953254",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:58:22.207922",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "cdc6ec1e40216fcdfb847de55ab543da",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:59:46.633329",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Deslogueo forzado: PRUEBA1 - 9 sesiones cerradas",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T09:59:49.508545",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:00:05.984658",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Cambio código: PRUEBA1 -> PRUEBA1",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:00:14.465052",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": false,
+    "fecha_hora": "2025-10-13T10:00:38.269529",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": false,
+    "fecha_hora": "2025-10-13T10:05:00.144466",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": false,
+    "fecha_hora": "2025-10-13T10:05:06.757769",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMNIXON",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:05:10.615264",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Cambio código: PRUEBA1 -> PRUEBA1",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:05:39.975410",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:05:46.586476",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Cambio código: PRUEBA1 -> PRUEBA1",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:05:53.054850",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Desactivación: PRUEBA1 - 11 sesiones cerradas",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:05:53.058447",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Cambio código: PRUEBA1 -> PRUEBA1",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:06:06.198940",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "PRUEBA1",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:06:15.642464",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Deslogueo forzado: PRUEBA1 - 12 sesiones cerradas",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:06:20.263330",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Cambio código: ADMNIXON -> DARKEYES",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:08:15.850360",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "DARKEYES",
+    "dispositivo": "420f246ebd9cd5b1d667cdbf0e4637f3",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:08:22.879912",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "97fa04018dd20b8972be5dfde2bb3845",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:08:57.310592",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "NIXON",
+    "dispositivo": "9883fbfd6bc49972d677f20bc4acaddc",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:09:05.544615",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "DARKEYES",
+    "dispositivo": "0176a3eeddaeb3a641abe129ee615c14",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:09:18.248987",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Cambio código: JOSELIN -> JOSELIN",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:09:35.622990",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Cambio código: JOSELIN -> JOSELIN",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:09:50.768762",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": false,
+    "fecha_hora": "2025-10-13T10:10:01.847698",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Cambio código: JOSELIN -> JOSELIN",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:10:17.558329",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:10:23.090373",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Cambio código: JOSELIN -> JOSELIN",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:10:40.515035",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:42:36.614409",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T10:46:02.819356",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "ADMIN",
+    "dispositivo": "Deslogueo forzado: JOSELIN - 12 sesiones cerradas",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T11:38:34.282527",
+    "ip": "127.0.0.1"
+  },
+  {
+    "vendedor_id": "JOSELIN",
+    "dispositivo": "15991fcf8a6182e1a4323dc86bc93ffa",
+    "exitoso": true,
+    "fecha_hora": "2025-10-13T11:38:50.910363",
+    "ip": "127.0.0.1"
+  }
+]

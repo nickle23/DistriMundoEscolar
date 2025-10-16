@@ -1,0 +1,2850 @@
+:root{
+  --primary: #0075c9;
+  --accent: #ff6a00;
+}
+body{font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+.hero{background: linear-gradient(180deg, rgba(0,117,201,0.05), rgba(255,106,0,0.03));}
+.logo{max-width:220px}
+.card-magazine{border:none}
+.card-magazine .img-wrap{height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center}
+.card-magazine img{width:100%; height:100%; object-fit:cover}
+.card-title-small{font-size:1rem; font-weight:700}
+.card-sub{color:#555; font-size:0.9rem}
+.list-group-item{border:none; padding:0.6rem 0}
+.variant-price{font-weight:700; color:var(--primary)}
+/* ---------- PALETA MUNDO ESCOLAR ---------- */
+:root {
+  --color-primario: #00529B;   /* azul corporativo (header, botones, enlaces) */
+  --color-secundario: #FFC700; /* amarillo acento (botones hover, badges, bordes) */
+  --color-oscuro: #002C5C;     /* azul marino (footer, textos sobre fondos claros) */
+  --color-claro: #F5F9FF;      /* azul muy tenue (fondos de secciones) */
+  --color-texto: #333333;      /* gris casi negro (legibilidad) */
+  --color-blanco: #FFFFFF;
+}
+
+/* ---------- REGLAS GLOBALES ---------- */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--color-texto);
+  background-color: var(--color-blanco);
+}
+
+a {
+  color: var(--color-primario);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--color-secundario);
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  background-color: var(--color-claro) !important;
+  color: var(--color-oscuro);
+}
+.hero h1 {
+  color: var(--color-primario);
+}
+.hero .btn-primary {
+  background-color: var(--color-primario);
+  border-color: var(--color-primario);
+}
+.hero .btn-primary:hover {
+  background-color: var(--color-secundario);
+  border-color: var(--color-secundario);
+  color: var(--color-oscuro);
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar-brand {
+  color: var(--color-primario) !important;
+}
+.navbar-nav .nav-link {
+  color: var(--color-texto) !important;
+}
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: var(--color-secundario) !important;
+}
+
+/* ---------- BUSCADOR ---------- */
+#searchInput {
+  border: 2px solid var(--color-primario);
+}
+#searchInput:focus {
+  border-color: var(--color-secundario);
+  box-shadow: 0 0 0 0.2rem rgba(255, 199, 0, 0.25);
+}
+
+/* ---------- CARDS DE PRODUCTOS ---------- */
+.card {
+  border: 1px solid var(--color-primario);
+  transition: transform 0.2s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-secundario);
+}
+.btn-outline-primary {
+  color: var(--color-primario);
+  border-color: var(--color-primario);
+}
+.btn-outline-primary:hover {
+  background-color: var(--color-primario);
+  border-color: var(--color-primario);
+  color: var(--color-blanco);
+}
+
+/* ---------- MODAL ---------- */
+.modal-header {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+}
+#modalTitle {
+  color: var(--color-blanco);
+}
+
+/* ---------- PAGINACIÓN ---------- */
+.page-link {
+  color: var(--color-primario);
+}
+.page-item.active .page-link {
+  background-color: var(--color-primario);
+  border-color: var(--color-primario);
+  color: var(--color-blanco);
+}
+.page-link:hover {
+  color: var(--color-secundario);
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  background-color: var(--color-oscuro) !important;
+}
+footer h5,
+footer h6 {
+  color: var(--color-secundario);
+}
+footer a.text-light:hover {
+  color: var(--color-secundario) !important;
+}
+footer .btn-outline-light:hover {
+  background-color: var(--color-secundario);
+  border-color: var(--color-secundario);
+  color: var(--color-oscuro);
+}
+/* ---------- COLORES SACADOS DE TU LOGO ---------- */
+:root{
+  --azul-logo: #0f538f;   /* cambialo por el que anotaste */
+  --amarillo-logo: #e43e20; /* cambialo por el que anotaste */
+  --gris-texto: #333333;
+  --fondo-claro: #F8FBFF;
+  --blanco: #FFFFFF;
+}
+
+/* ---------- FUENTE LIMPIA ---------- */
+body{
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: var(--fondo-claro);
+  color: var(--gris-texto);
+}
+
+/* ---------- HEADER / HERO ---------- */
+.hero{
+  background-color: var(--blanco) !important;
+}
+.hero h1{
+  color: var(--azul-logo);
+}
+.hero .btn-primary{
+  background-color: var(--azul-logo);
+  border: none;
+  padding: 12px 30px;
+  font-size: 18px;
+}
+.hero .btn-primary:hover{
+  background-color: var(--amarillo-logo);
+  color: var(--azul-logo);
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar-brand{
+  color: var(--azul-logo) !important;
+  font-weight: bold;
+}
+.nav-link{
+  color: var(--gris-texto) !important;
+}
+.nav-link:hover{
+  color: var(--amarillo-logo) !important;
+}
+
+/* ---------- BUSCADOR ---------- */
+#searchInput{
+  width: 60%;
+  max-width: 500px;
+  border: 2px solid var(--azul-logo);
+  padding: 12px;
+  border-radius: 30px;
+  outline: none;
+}
+#searchInput:focus{
+  border-color: var(--amarillo-logo);
+}
+
+/* ---------- CARDS DE PRODUCTOS ---------- */
+.card{
+  border: 1px solid #DDD;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform .2s;
+}
+.card:hover{
+  transform: translateY(-5px);
+  border-color: var(--amarillo-logo);
+}
+.btn-outline-primary{
+  color: var(--azul-logo);
+  border-color: var(--azul-logo);
+}
+.btn-outline-primary:hover{
+  background-color: var(--azul-logo);
+  color: var(--blanco);
+}
+
+/* ---------- MODAL ---------- */
+.modal-header{
+  background-color: var(--azul-logo);
+  color: var(--blanco);
+}
+
+/* ---------- PAGINACIÓN ---------- */
+.page-link{
+  color: var(--azul-logo);
+}
+.page-item.active .page-link{
+  background-color: var(--azul-logo);
+  border-color: var(--azul-logo);
+  color: var(--blanco);
+}
+
+/* ---------- FOOTER ---------- */
+footer{
+  background-color: var(--azul-logo) !important;
+}
+footer h5, footer h6{
+  color: var(--amarillo-logo);
+}
+footer a:hover{
+  color: var(--amarillo-logo) !important;
+}
+/* ---------- HEADER PROFESIONAL ---------- */
+:root{
+  --azul-logo: #004C99;      /* color que ya sacaste */
+  --azul-oscuro: #002C5F;    /* azul marino */
+  --gris-negro: #1F1F1F;     /* casi negro, muy serio */
+}
+
+/* -- navbar con logo a la izquierda -- */
+.navbar { 
+  background-color: var(--blanco) !important; 
+  box-shadow: 0 2px 6px rgba(0,0,0,.10); 
+}
+.navbar-brand{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--azul-oscuro) !important;
+}
+.navbar-brand img{           /* logo chico y nítido */
+  height: 52px;              /* tamaño fijo */
+  width: auto;
+}
+
+/* -- hero sin logo, solo texto y botón -- */
+.hero{
+  background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--gris-negro) 100%);
+  color: #FFFFFF !important;
+  text-align: center;
+  padding: 90px 15px 80px 15px;
+}
+.hero h1{ 
+  font-size: 2.5rem; 
+  font-weight: 700; 
+  margin-bottom: 12px; 
+}
+.hero .lead{ 
+  font-size: 1.25rem; 
+  opacity: .88; 
+  margin-bottom: 28px; 
+}
+.hero .btn-primary{
+  background-color: var(--azul-logo);
+  border: none;
+  padding: 14px 36px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  transition: .3s;
+}
+.hero .btn-primary:hover{
+  background-color: var(--amarillo-logo);
+  color: var(--azul-oscuro);
+}
+/* ---------- HACER QUE EL LOGO SEA GRANDE Y BRILLE ---------- */
+.navbar-brand img{
+  height: 64px;          /* más grande */
+  filter: drop-shadow(0 0 4px rgba(255,255,255,.60)); /* resplandor sutil */
+}
+
+/* ---------- TÍTULO GRANDE CON VIDA ---------- */
+.hero h1{
+  font-size: 3rem;                     /* más grande */
+  background: linear-gradient(90deg, #FFFFFF 0%, #d0eff9 100%); /* blanco → amarillo */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;               /* para que el fondo solo cubra el texto */
+  text-shadow: 0 2px 8px rgba(0,0,0,.35); /* sombra suave */
+  letter-spacing: 1px;                 /* espaciado elegante */
+}
+
+/* ---------- Botón más llamativo ---------- */
+.hero .btn-primary{
+  background-color: #d0eff9;  /* amarillo logo */
+  color: #002C5F;            /* azul oscuro */
+  font-weight: bold;
+  border: none;
+  padding: 14px 36px;
+  border-radius: 30px;
+  transition: .3s;
+}
+.hero .btn-primary:hover{
+  background-color: #FFFFFF;
+  color: #002C5F;
+  transform: scale(1.05);     /* crece un poquito */
+}
+/* ---------- FOOTER PROFESIONAL ---------- */
+footer{
+  background: #002C5F !important;   /* mismo azul que el hero */
+  color: #FFFFFF !important;
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+
+/* Títulos del footer → amarillo-logo */
+footer h5,
+footer h6{
+  color: #FFC700;            /* amarillo que ya usás */
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* Textos normales → blanco */
+footer p,
+footer a{
+  color: #FFFFFF !important;
+  font-size: 14px;
+}
+
+/* Enlaces al pasar el mouse → amarillo */
+footer a:hover{
+  color: #FFC700 !important;
+}
+
+/* Iconos de redes → blanco con borde amarillo */
+footer .btn-outline-light{
+  border-color: #FFC700;
+  color: #FFC700;
+}
+footer .btn-outline-light:hover{
+  background-color: #FFC700;
+  color: #002C5F;
+}
+
+/* Línea inferior del copyright */
+footer .border-secondary{
+  border-color: #FFC700 !important;
+  opacity: .6;
+}
+/* ---------- BOTONCITOS FLOTANTES ---------- */
+:root{
+  --azul-boton: #0f538f;
+  --naranja-boton: #ff9866;
+}
+
+.flotantes{
+  position: fixed;   /* siempre visible */
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.flotantes a{
+  display: inline-block;
+  background: var(--azul-boton);
+  color: #FFFFFF !important;
+  padding: 12px 22px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,.25);
+  transition: .3s;
+}
+
+.flotantes a:hover{
+  background: var(--naranja-boton);
+  transform: scale(1.08);
+}
+/* ---------- BOTONES FLOTANTES FB & WA ---------- */
+.flotantes{
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.flotantes a{
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,.30);
+  transition: .3s;
+}
+
+.flotantes a:nth-child(1){ background: #1877F2; } /* Facebook */
+.flotantes a:nth-child(2){ background: #25D366; } /* WhatsApp */
+
+.flotantes a:hover{
+  transform: scale(1.12);
+  filter: brightness(1.1);
+}
+/* ---------- CARDS DE PRODUCTOS LLAMATIVOS ---------- */
+:root{
+  --azul-fondo: #0f538f;
+  --naranja-hover: #ff9866;
+}
+
+.product-card .card{
+  background: var(--azul-fondo);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,.25);
+  transition: .3s;
+}
+
+.product-card .card-title,
+.product-card .card-text{
+  font-weight: 700;   /* negrita */
+  color: #FFFFFF !important;
+}
+
+.product-card .card:hover{
+  transform: translateY(-5px);
+  background: var(--naranja-hover);
+  box-shadow: 0 6px 20px rgba(0,0,0,.35);
+}
+
+/* Botón "Ver detalle" blanco con texto azul */
+.product-card .btn-outline-primary{
+  background: #FFFFFF;
+  color: var(--azul-fondo);
+  border: none;
+  font-weight: 600;
+  border-radius: 20px;
+  padding: 6px 16px;
+  transition: .3s;
+}
+
+.product-card .btn-outline-primary:hover{
+  background: var(--azul-fondo);
+  color: #FFFFFF;
+}
+/* ---------- DESCRIPCIÓN CON FONDO PROPIO ---------- */
+:root{
+  --azul-fondo: #0f538f;
+  --naranja-hover: #ff9866;
+  --fondo-desc: #ffffff;   /* fondito de la descripción */
+  --texto-desc: #0f538f;   /* color de letra adentro */
+}
+
+/* Tarjeta general */
+.product-card .card{
+  background: var(--azul-fondo);
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,.25);
+  transition: .3s;
+}
+
+/* Título del producto */
+.product-card .card-title{
+  font-weight: 700;
+  color: #FFFFFF !important;
+}
+
+/* Caja de la descripción */
+.product-card .card-text{
+  background: var(--fondo-desc);
+  color: var(--texto-desc);
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  display: inline-block;   /* que ocupe solo el ancho del texto */
+}
+
+/* Hover: fondo de la tarjeta cambia, la caja blanca se mantiene */
+.product-card .card:hover{
+  transform: translateY(-5px);
+  background: var(--naranja-hover);
+}
+
+/* Botón “Ver detalle” */
+.product-card .btn-outline-primary{
+  background: #FFFFFF;
+  color: var(--azul-fondo);
+  border: none;
+  font-weight: 600;
+  border-radius: 20px;
+  padding: 6px 16px;
+  transition: .3s;
+}
+
+.product-card .btn-outline-primary:hover{
+  background: var(--azul-fondo);
+  color: #FFFFFF;
+}
+/* ---------- DESCRIPCIÓN DENTRO DE LA TARJETA AZUL ---------- */
+.product-card .card-text {
+  background: #ffffff !important;   /* fondito blanco */
+  color: #0f538f !important;        /* letras azules */
+  font-weight: 700 !important;      /* negrita */
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  display: inline-block !important; /* que ocupe solo el ancho del texto */
+  box-shadow: 0 1px 3px rgba(0,0,0,.15); /* suavidad */
+}
+/* ---------- 2 COLUMNAS EN MÓVIL (≤ 576 px) ---------- */
+@media (max-width: 576px) {
+  .product-card {
+    flex: 0 0 50% !important;   /* 50 % = 2 columnas */
+    max-width: 50% !important;
+    padding: 0 4px;             /* reduce espacio lateral */
+    margin-bottom: 8px;         /* reduce espacio vertical */
+  }
+
+  /* Opcional: achicar un poco la fuente para que entre mejor */
+  .product-card .card-text {
+    font-size: 0.85rem;
+  }
+
+  /* Opcional: achicar imagen */
+  .product-card .img-wrap {
+    height: 160px !important;
+  }
+}
+/* Resaltar coincidencias de búsqueda */
+mark.resaltado {
+  background: var(--color-secundario);
+  color: #000;
+  padding: 0 2px;
+  border-radius: 3px;
+}
+/* ---------- MODO OSCURO ELEGANTE Y LEGIBLE ---------- */
+body.dark {
+  background: #0D1117 !important;
+  color: #C9D1D9 !important;
+}
+
+/* Fondos de secciones - mismo tono */
+body.dark .navbar,
+body.dark .hero,
+body.dark .card,
+body.dark .modal-content,
+body.dark footer,
+body.dark #searchInput,
+body.dark .modal-header {
+  background: #161B22 !important;
+  color: #C9D1D9 !important;
+  border: 1px solid #30363D !important;
+}
+
+/* Títulos - blanco brillante */
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark h4,
+body.dark h5,
+body.dark h6,
+body.dark .card-title,
+body.dark .lead,
+body.dark .nav-link,
+body.dark .modal-title {
+  color: #FFFFFF !important;
+  font-weight: 600;
+}
+
+/* Descripciones - gris claro que se lee */
+body.dark .card-text,
+body.dark .modal-body {
+  color: #BDC3C7 !important;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Botones - amarillo neón para contraste */
+body.dark .btn-primary {
+  background: #FFD600 !important;
+  color: #0D1117 !important;
+  border: none !important;
+  font-weight: 700;
+}
+
+body.dark .btn-outline-primary {
+  background: transparent !important;
+  color: #FFD600 !important;
+  border: 2px solid #FFD600 !important;
+  font-weight: 600;
+}
+
+body.dark .btn-outline-primary:hover {
+  background: #FFD600 !important;
+  color: #0D1117 !important;
+}
+
+/* Resaltado de búsqueda - amarillo brillante */
+body.dark mark.resaltado {
+  background: #FFD600 !important;
+  color: #0D1117 !important;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-weight: 700;
+}
+
+/* Sombras sutiles para profundidad */
+body.dark .card,
+body.dark .modal-content {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Switch visible */
+body.dark #btnTema {
+  background: #FFD600 !important;
+  color: #0D1117 !important;
+  border: none !important;
+}
+/* ---------- MODO OSCURO: RECUADRO DE DESCRIPCIÓN MÁS OSCURO ---------- */
+body.dark .card-text {
+  background: #2A2A2A !important; /* gris oscuro suave */
+  color: #E0E0E0 !important;       /* letras claras que ya tenés */
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: inline-block; /* que ocupe solo el ancho del texto */
+}
+/* ---------- MODO OSCURO: VENTANA MODAL COMPLETA ---------- */
+body.dark .modal-content {
+  background: #1E1E1E !important;        /* fondo oscuro */
+  color: #E0E0E0 !important;            /* texto general */
+  border: 1px solid #333333 !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,.45) !important;
+}
+
+/* Títulos del modal - blanco brillante */
+body.dark .modal-header {
+  background: #2A2A2A !important;
+  border-bottom: 1px solid #444444 !important;
+}
+body.dark .modal-title {
+  color: #FFFFFF !important;
+  font-weight: 700;
+}
+
+/* Textos dentro del modal - gris claro legible */
+body.dark .modal-body {
+  color: #BDBDBD !important;
+  font-weight: 500;
+}
+
+/* Precios y etiquetas - centrados y con contraste */
+body.dark .list-group-item {
+  background: transparent !important;
+  border: none !important;
+  color: #E0E0E0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 8px 0 !important;
+  margin: 0 !important;
+}
+
+/* Precios en amarillo suave para que resalten */
+body.dark .variant-price,
+body.dark .list-group-item strong:last-child {
+  color: #FFD600 !important;
+  font-weight: 700;
+
+}
+/* ---------- MODO CLARO: MISMO ORDEN Y CENTRADO QUE OSCURO ---------- */
+
+/* Centra y espacia igual que en modo oscuro */
+.list-group-item {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 8px 0 !important;
+  margin: 0 !important;
+  border: none !important;
+}
+
+/* Alinea precios a la derecha y espacia */
+.variant-price,
+.list-group-item strong:last-child {
+  margin-left: auto;
+  padding-left: 10px;
+}
+
+/* Espaciado interno del modal (igual que oscuro) */
+.modal-body {
+  padding: 1.5rem !important;
+}
+
+/* Borde suave y sombra (mismo que oscuro) */
+.modal-content {
+  border-radius: 12px !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+}
+/* ---------- CENTRAR BOTÓN "CERRAR" DEL MODAL ---------- */
+
+/* Centra el pie del modal */
+.modal-footer {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  border-top: none !important; /* elimina línea si queda rara */
+  padding: 1rem 0 !important;
+}
+
+/* Botón "Cerrar" centrado y del mismo ancho que WhatsApp */
+.modal-footer .btn-secondary {
+  margin: 0 !important;
+  min-width: 200px; /* igual que el botón de WhatsApp */
+  border-radius: 30px !important;
+}
+/* ---------- HAMBURGUESA VISIBLE EN MODO OSCURO ---------- */
+
+/* Fondo del botón - gris oscuro con borde blanco */
+body.dark .navbar-toggler {
+  background: #2A2A2A !important;
+  border: 2px solid #FFFFFF !important;
+}
+
+/* Iconos internos (líneas) - blanco brillante */
+body.dark .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23FFFFFF' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* Hover: amarillo suave */
+body.dark .navbar-toggler:hover {
+  background: #FFD600 !important;
+  border-color: #FFD600 !important;
+}
+/* ---------- ADAPTACIÓN PERFECTA A CUALQUIER PANTALLA ---------- */
+
+/* Fuerza que NADA se desborde */
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Móvil pequeño: 320 px → 576 px */
+@media (max-width: 576px) {
+  .container,
+  .container-fluid {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem !important;
+  }
+
+  .hero .lead {
+    font-size: 1rem !important;
+  }
+
+  .card-magazine {
+    margin-bottom: 12px !important;
+  }
+
+  .navbar-brand img {
+    max-width: 140px !important;
+  }
+
+  .navbar-toggler {
+    font-size: 1.1rem !important;
+  }
+
+  #searchInput {
+    width: 90% !important;
+    max-width: 400px !important;
+  }
+
+  .modal-dialog {
+    margin: 8px !important;
+  }
+
+  .modal-content {
+    border-radius: 12px !important;
+  }
+
+  .btn {
+    min-width: 120px !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+/* Tablet: 577 px → 992 px */
+@media (min-width: 577px) and (max-width: 992px) {
+  .container {
+    max-width: 90% !important;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem !important;
+  }
+
+  .card-magazine {
+    margin-bottom: 16px !important;
+  }
+
+  .navbar-brand img {
+    max-width: 160px !important;
+  }
+}
+
+/* Desktop grande: 1200 px → ∞ */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px !important;
+  }
+
+  .hero h1 {
+    font-size: 3rem !important;
+  }
+
+  .navbar-brand img {
+    max-width: 200px !important;
+  }
+}
+
+/* Muy pequeño: 320 px → 374 px (iPhone SE, Galaxy J2, etc.) */
+@media (max-width: 374px) {
+  .hero h1 {
+    font-size: 1.5rem !important;
+  }
+
+  .hero .lead {
+    font-size: 0.9rem !important;
+  }
+
+  .card-text {
+    font-size: 0.85rem !important;
+  }
+
+  .btn {
+    min-width: 100px !important;
+    font-size: 0.8rem !important;
+  }
+
+  .modal-dialog {
+    margin: 6px !important;
+  }
+
+  .modal-content {
+    border-radius: 10px !important;
+  }
+}
+/* ---------- AJUSTES FINOS: ICONOS, NEGRITAS Y FORMAS ---------- */
+
+/* 1. EVITA QUE EL ICONO DEL MODO OSCURO SE ALARGUE */
+#btnTema {
+  width: 40px !important;
+  height: 40px !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  font-size: 1.1rem !important;
+}
+
+/* 2. EVITA QUE LOS CÍRCULOS DE FACEBOOK/WHATSAPP SE DEFORMEN */
+.flotantes a {
+  width: 46px !important;
+  height: 46px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  font-size: 1.1rem !important;
+  padding: 0 !important;
+}
+
+/* 3. NEGRITAS EN MODO CLARO (mismo grosor que oscuro) */
+
+/* Frase del hero */
+body:not(.dark) .hero .lead {
+  font-weight: 700 !important;
+}
+
+/* Textos del menú hamburguesa */
+body:not(.dark) .navbar-nav .nav-link {
+  font-weight: 600 !important;
+}
+
+/* 4. NEGRITAS EN MODO OSCURO (ya tenías, pero lo forzamos por si acaso) */
+body.dark .hero .lead,
+body.dark .navbar-nav .nav-link {
+  font-weight: 700 !important;
+}
+/* ---------- TAMAÑOS FIJOS: BOTÓN MODO Y CÍRCULOS DEL PIE ---------- */
+
+/* Botón modo claro/oscuro: CÍRCULO PERFECTO */
+#btnTema {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  font-size: 1.1rem !important;
+  line-height: 1 !important;
+  flex-shrink: 0 !important; /* evita que se estire */
+}
+
+/* Círculos de Facebook/WhatsApp: CÍRCULO PERFECTO */
+.flotantes a {
+  width: 46px !important;
+  height: 46px !important;
+  min-width: 46px !important;
+  min-height: 46px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  font-size: 1.1rem !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  flex-shrink: 0 !important; /* evita que se estire */
+}
+
+/* Forzamos el ícono interno para que no deforme */
+.flotantes a i {
+  line-height: 1 !important;
+  font-size: 1.1rem !important;
+}
+/* ---------- BOTONES FLOTANTES: CÍRCULOS PERFECTOS Y VISIBLES ---------- */
+
+/* Forzamos el tamaño exacto y evitamos deformación */
+.flotantes a {
+  width: 46px !important;
+  height: 46px !important;
+  min-width: 46px !important;
+  min-height: 46px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  font-size: 1.1rem !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  flex-shrink: 0 !important; /* evita que se estire */
+  background: #1877F2 !important; /* Facebook */
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,.30) !important;
+  transition: .3s !important;
+}
+
+.flotantes a:nth-child(2) {
+  background: #25D366 !important; /* WhatsApp */
+}
+
+.flotantes a:hover {
+  transform: scale(1.12) !important;
+  filter: brightness(1.1) !important;
+}
+
+/* Forzamos el ícono interno para que no deforme */
+.flotantes a i {
+  line-height: 1 !important;
+  font-size: 1.1rem !important;
+}
+/* ---------- CÍRCULOS PERFECTOS EN EL FOOTER ---------- */
+footer .btn-outline-light {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  font-size: 1.1rem !important;
+  line-height: 1 !important;
+  flex-shrink: 0 !important; /* evita que se estire */
+}
+footer .btn-outline-light i {
+  line-height: 1 !important;
+  font-size: 1.1rem !important;
+}
+/* ---------- CÍRCULOS PERFECTOS EN EL FOOTER (FOOTER ONLY) ---------- */
+
+/* Aplica solo a los botones del footer */
+footer .btn-outline-light {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  font-size: 1.1rem !important;
+  line-height: 1 !important;
+  flex-shrink: 0 !important; /* evita que Bootstrap los estire */
+  border: 1px solid #FFC700 !important; /* amarillo suave */
+  color: #FFC700 !important;
+  transition: .3s !important;
+}
+
+footer .btn-outline-light:hover {
+  background: #FFC700 !important;
+  color: #002C5F !important;
+}
+
+/* Forzamos el ícono interno para que no deforme */
+footer .btn-outline-light i {
+  line-height: 1 !important;
+  font-size: 1.1rem !important;
+}
+/* ---------- CÍRCULOS PERFECTOS: FOOTER Y FLOTANTES ---------- */
+
+/* 1. FOOTER: círculos perfectos y centrados */
+footer .btn-outline-light {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  font-size: 1.1rem !important;
+  line-height: 1 !important;
+  flex-shrink: 0 !important; /* evita que Bootstrap los estire */
+  border: 1px solid #FFC700 !important; /* amarillo suave */
+  color: #FFC700 !important;
+  transition: .3s !important;
+}
+
+footer .btn-outline-light:hover {
+  background: #FFC700 !important;
+  color: #002C5F !important;
+}
+
+footer .btn-outline-light i {
+  line-height: 1 !important;
+  font-size: 1.1rem !important;
+}
+
+/* 2. FLOTANTES: círculos perfectos y flotantes */
+.flotantes a {
+  width: 46px !important;
+  height: 46px !important;
+  min-width: 46px !important;
+  min-height: 46px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  font-size: 1.1rem !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  flex-shrink: 0 !important; /* evita que se estire */
+  background: #1877F2 !important; /* Facebook */
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,.30) !important;
+  transition: .3s !important;
+}
+
+.flotantes a:nth-child(2) {
+  background: #25D366 !important; /* WhatsApp */
+}
+
+.flotantes a:hover {
+  transform: scale(1.12) !important;
+  filter: brightness(1.1) !important;
+}
+
+.flotantes a i {
+  line-height: 1 !important;
+  font-size: 1.1rem !important;
+}
+/* ---------- BOTONES FLOTANTES: CÍRCULOS PERFECTOS Y VISIBLES ---------- */
+
+.flotantes {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.flotantes a {
+  width: 46px !important;
+  height: 46px !important;
+  min-width: 46px !important;
+  min-height: 46px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  font-size: 1.1rem !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  flex-shrink: 0 !important;
+  background: #1877F2 !important; /* Facebook */
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,.30) !important;
+  transition: .3s !important;
+}
+
+.flotantes a:nth-child(2) {
+  background: #25D366 !important; /* WhatsApp */
+}
+
+.flotantes a:hover {
+  transform: scale(1.12) !important;
+  filter: brightness(1.1) !important;
+}
+
+.flotantes a i {
+  line-height: 1 !important;
+  font-size: 1.1rem !important;
+}
+/* ---------- REALCE DEL TÍTULO "PRODUCTOS" ---------- */
+
+/* Modo claro: más grueso */
+body:not(.dark) #productos h2 {
+  font-weight: 800 !important;
+  font-size: 2.2rem !important;
+  color: #00529B !important; /* azul corporativo */
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  margin-bottom: 1.5rem !important;
+}
+
+/* Modo oscuro: mismo realce */
+body.dark #productos h2 {
+  font-weight: 800 !important;
+  font-size: 2.2rem !important;
+  color: #FFD600 !important; /* amarillo acento */
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  margin-bottom: 1.5rem !important;
+}
+/* ---------- VENTANA FLOTANTE ELEGANTE ---------- */
+
+#ventanaFlotante .modal-content {
+  background: linear-gradient(135deg, #00529B 0%, #002C5F 100%);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.35);
+}
+
+#ventanaFlotante .modal-header {
+  background: transparent;
+  border: none;
+}
+
+#ventanaFlotante h4 {
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+}
+
+#ventanaFlotante p {
+  font-size: 1rem;
+  opacity: .9;
+}
+
+#ventanaFlotante .btn-primary {
+  background: #FFC700;
+  color: #002C5F;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 24px;
+  font-weight: 700;
+  transition: .3s;
+}
+
+#ventanaFlotante .btn-primary:hover {
+  background: #FFFFFF;
+  color: #002C5F;
+  transform: scale(1.05);
+}
+
+#ventanaFlotante .btn-close {
+  filter: invert(1) brightness(2);
+}
+/* ---------- ESPACIO PREPARADO PARA IMAGEN (editable sin código) ---------- */
+
+#imgPromo {
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.35);
+  max-height: 400px; /* ajustá el alto que quieras */
+  object-fit: cover; /* evita que se deforme */
+  width: 100%;
+}
+
+#ventanaFlotante .modal-content {
+  background: transparent; /* para que la imagen resalte */
+  border: none;
+  box-shadow: none;
+}
+
+#ventanaFlotante .modal-footer {
+  border: none;
+}
+
+#ventanaFlotante .btn-primary {
+  background: #FFC700;
+  color: #002C5F;
+  border-radius: 30px;
+  font-weight: 700;
+  border: none;
+  transition: .3s;
+}
+
+#ventanaFlotante .btn-primary:hover {
+  background: #FFFFFF;
+  color: #002C5F;
+  transform: scale(1.05);
+}
+/* ---------- IMAGEN QUE LLENA TODO EL MODAL ---------- */
+
+#imgPromo {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important; /* evita que se deforme */
+  border-radius: 12px !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,.35) !important;
+}
+
+#ventanaFlotante .modal-content {
+  background: transparent !important; /* para que la imagen resalte */
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#ventanaFlotante .modal-body {
+  padding: 0 !important; /* elimina espacios internos */
+}
+
+#ventanaFlotante .modal-footer {
+  border: none !important;
+}
+/* ---------- "X" ELEGANTE Y CENTRADA ---------- */
+
+#ventanaFlotante .modal-header {
+  background: transparent !important;
+  border: none !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 0 !important;
+}
+
+#ventanaFlotante .btn-close {
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+  width: 32px !important;
+  height: 32px !important;
+  background: rgba(255,255,255,.9) !important;
+  border-radius: 50% !important;
+  color: #002C5F !important;
+  border: 2px solid #FFC700 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1.2rem !important;
+  line-height: 1 !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,.25) !important;
+  transition: .3s !important;
+}
+
+#ventanaFlotante .btn-close:hover {
+  background: #FFC700 !important;
+  color: #002C5F !important;
+  transform: scale(1.1) !important;
+}
+/* ---------- CUALQUIER IMAGEN SE ADAPTA SIN DEFORMARSE ---------- */
+
+#imgPromo {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important; /* evita que se deforme */
+  border-radius: 12px !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,.35) !important;
+}
+
+#ventanaFlotante .modal-content {
+  background: transparent !important; /* para que la imagen resalte */
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#ventanaFlotante .modal-body {
+  padding: 0 !important; /* elimina espacios internos */
+}
+
+#ventanaFlotante .modal-footer {
+  border: none !important;
+}
+/* ---------- VENTANA QUE SE AJUSTA AL TAMAÑO DE LA IMAGEN ---------- */
+
+#ventanaFlotante .modal-dialog {
+  width: auto !important;
+  max-width: 90vw !important; /* máximo 90% del ancho de la pantalla */
+}
+
+#ventanaFlotante .modal-content {
+  width: auto !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#ventanaFlotante .modal-body {
+  padding: 0 !important; /* elimina espacios internos */
+}
+
+#ventanaFlotante .modal-header {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  z-index: 10 !important;
+  background: rgba(255,255,255,.9) !important;
+  border-radius: 50% !important;
+  border: 2px solid #FFC700 !important;
+  width: 32px !important;
+  height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1.2rem !important;
+  color: #002C5F !important;
+  transition: .3s !important;
+}
+
+#ventanaFlotante .btn-close {
+  filter: invert(1) brightness(2) !important;
+}
+
+#ventanaFlotante .btn-close:hover {
+  background: #FFC700 !important;
+  color: #002C5F !important;
+  transform: scale(1.1) !important;
+}
+
+#imgPromo {
+  border-radius: 12px !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,.35) !important;
+  max-height: 90vh !important; /* máximo 90% del alto de la pantalla */
+  max-width: 90vw !important; /* máximo 90% del ancho de la pantalla */
+  object-fit: contain !important; /* se adapta sin deformar */
+}
+/* ---------- VENTANA CENTRADA Y CON BOTONES SOBRE LA IMAGEN ---------- */
+
+#ventanaFlotante .modal-dialog {
+  width: auto !important;
+  max-width: 90vw !important; /* máximo 90% del ancho de la pantalla */
+  margin: auto !important; /* centra horizontalmente */
+}
+
+#ventanaFlotante .modal-content {
+  width: auto !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#ventanaFlotante .modal-body {
+  padding: 0 !important; /* elimina espacios internos */
+}
+
+#imgPromo {
+  border-radius: 12px !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,.35) !important;
+  max-height: 90vh !important; /* máximo 90% del alto de la pantalla */
+  max-width: 90vw !important; /* máximo 90% del ancho de la pantalla */
+  object-fit: contain !important; /* se adapta sin deformar */
+}
+
+#ventanaFlotante .btn-close {
+  filter: invert(1) brightness(2) !important;
+}
+
+#ventanaFlotante .btn-primary {
+  background: #FFC700;
+  color: #002C5F;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 24px;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(0,0,0,.30);
+  transition: .3s;
+}
+
+#ventanaFlotante .btn-primary:hover {
+  background: #FFFFFF;
+  color: #002C5F;
+  transform: scale(1.05);
+}
+/* ---------- CENTRAR VENTANA MODAL EN CUALQUIER DISPOSITIVO ---------- */
+
+#ventanaFlotante {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 9999 !important;
+  width: auto !important;
+  max-width: 90vw !important;
+  max-height: 90vh !important;
+}
+
+#ventanaFlotante .modal-dialog {
+  margin: 0 !important;
+  width: auto !important;
+  max-width: 90vw !important;
+  max-height: 90vh !important;
+}
+
+#ventanaFlotante .modal-content {
+  position: relative !important;
+  width: auto !important;
+  max-width: 90vw !important;
+  max-height: 90vh !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#ventanaFlotante .modal-body {
+  padding: 0 !important;
+}
+
+#imgPromo {
+  border-radius: 12px !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,.35) !important;
+  max-height: 90vh !important;
+  max-width: 90vw !important;
+  object-fit: contain !important;
+}
+
+#ventanaFlotante .btn-close {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  z-index: 10 !important;
+  background: rgba(255,255,255,.9) !important;
+  border-radius: 50% !important;
+  border: 2px solid #FFC700 !important;
+  width: 24px !important;
+  height: 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1.2rem !important;
+  color: #002C5F !important;
+  transition: .3s !important;
+}
+
+#ventanaFlotante .btn-close:hover {
+  background: #FFC700 !important;
+  color: #002C5F !important;
+  transform: scale(1.1) !important;
+}
+
+#ventanaFlotante .btn-primary {
+  position: absolute !important;
+  bottom: 20px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  bottom: 20px !important;
+  z-index: 10 !important;
+  background: #FFC700 !important;
+  color: #002C5F !important;
+  border: none !important;
+  border-radius: 30px !important;
+  padding: 10px 24px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,.30) !important;
+  transition: .3s !important;
+}
+
+#ventanaFlotante .btn-primary:hover {
+  background: #FFFFFF !important;
+  color: #002C5F !important;
+  transform: translateX(-50%) scale(1.05) !important;
+}
+/* Modo noche: fuerza contraste blanco sobre fondos oscuros */
+body.dark .card,
+body.dark .bg-light {
+    background-color: #1e1e1e !important;
+    color: #f1f1f1 !important;
+}
+
+body.dark .card-title,
+body.dark .card-text,
+body.dark small,
+body.dark h6 {
+    color: #f1f1f1 !important;
+}
+/* Justificado profesional para SIEMPRE */
+.justificado {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  line-height: 1.8;
+  color: #212529; /* color oscuro para modo claro */
+}
+
+body.dark .justificado {
+  color: #f1f1f1; /* blanco suave para modo noche */
+}
+/* ---------- CARRUSEL 100 % RESPONSIVE ---------- */
+.equipo-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;          /* Firefox */
+}
+.equipo-scroll::-webkit-scrollbar {
+  display: none;                  /* Chrome/Safari */
+}
+
+.equipo-track {
+  display: flex;
+  gap: clamp(10px, 2vw, 20px);    /* espacio proporcional al ancho */
+  padding-bottom: 10px;
+}
+
+.equipo-item {
+  flex: 0 0 clamp(150px, 40vw, 280px); /* ancho auto-ajustable */
+  aspect-ratio: 4 / 3;            /* mantiene proporción siempre */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,.25);
+  transition: transform .3s ease;
+}
+.equipo-item:hover {
+  transform: scale(1.03);
+}
+
+.equipo-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;              /* cubre sin deformar */
+}
+
+/* Modo noche */
+body.dark .equipo-item {
+  box-shadow: 0 8px 20px rgba(0,0,0,.55);
+}
+
+/* Foto de "Nuestra Historia" también responsive */
+.pro-foto {
+  width: 100%;
+  height: auto;
+  max-width: 560px;               /* no crece más allá de este tamaño */
+  margin: 0 auto;                 /* centra si sobra espacio */
+  display: block;                 /* evita huecos */
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.25);
+  transition: transform .3s ease, box-shadow .3s ease;
+  border: 1px solid rgba(255,255,255,.15);
+}
+.pro-foto:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+}
+body.dark .pro-foto {
+  box-shadow: 0 12px 30px rgba(0,0,0,.55);
+}
+body.dark .pro-foto:hover {
+  box-shadow: 0 18px 40px rgba(0,0,0,.65);
+}
+/* ==========================================
+   ZOOM QUE SE NOTA - MOUSE Y TOQUE
+   ========================================== */
+.pro-foto {
+  width: 100%;
+  height: auto;
+  max-width: 560px;
+  margin: 0 auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.25);
+  transition: transform .4s ease, box-shadow .4s ease;
+  border: 1px solid rgba(255,255,255,.15);
+  cursor: zoom-in;
+}
+
+/* ZOOM FUERTE al pasar el mouse (escritorio) */
+@media (hover: hover) and (pointer: fine) {
+  .pro-foto:hover {
+    transform: scale(1.35); /* 35 % más grande */
+    box-shadow: 0 30px 70px rgba(0,0,0,.5);
+  }
+}
+
+/* ZOOM FUERTE al tocar (móviles y tablets) */
+@media (hover: none) and (pointer: coarse) {
+  .pro-foto:active {
+    transform: scale(1.35);
+    box-shadow: 0 30px 70px rgba(0,0,0,.5);
+    transition: transform .2s ease; /* más rápido en toque */
+  }
+}
+
+/* Modo noche: sombra más intensa */
+body.dark .pro-foto:hover,
+body.dark .pro-foto:active {
+  box-shadow: 0 30px 70px rgba(0,0,0,.8);
+}
+/* ---------- EFECTO BRILLO + ZOOM EN CUALQUIER DISPOSITIVO ---------- */
+.pro-foto {
+  transition: transform .3s ease, box-shadow .3s ease, border .3s ease;
+  cursor: pointer;
+}
+
+.pro-foto:hover,
+.pro-foto:active {
+  transform: scale(1.05);                    /* mini-zoom suave */
+  box-shadow: 0 0 30px 10px rgba(255, 200, 0, .7); /* brillo dorado difuminado */
+  border: 3px solid rgba(255, 200, 0, .9);   /* borde brillante */
+}
+
+/* Modo noche: brillo más intenso */
+body.dark .pro-foto:hover,
+body.dark .pro-foto:active {
+  box-shadow: 0 0 35px 12px rgba(255, 215, 0, .9);
+  border: 3px solid rgba(255, 215, 0, 1);
+}
+/* --------------------------------------
+   SHOWCASE CAROUSEL - NUESTROS CLIENTES
+-------------------------------------- */
+.showcase-wrap {
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.showcase-track {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  transition: transform .5s ease;
+}
+
+/* Tarjeta base */
+.showcase-card {
+  flex: 0 0 clamp(120px, 25vw, 200px); /* tamaño lateral */
+  aspect-ratio: 3 / 2;
+  border-radius: 12px;
+  overflow: hidden;
+  opacity: .5;
+  filter: blur(2px) brightness(.9);
+  transition: all .4s ease;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,.2);
+}
+
+/* Tarjeta central */
+.showcase-card.center {
+  flex: 0 0 clamp(200px, 45vw, 380px); /* más grande */
+  opacity: 1;
+  filter: none;
+  box-shadow: 0 20px 50px rgba(0,0,0,.35);
+}
+
+/* Al pasar mouse / tocar: revela y brilla */
+.showcase-card.center {
+  flex: 0 0 clamp(200px, 45vw, 380px);
+  opacity: 1;
+  filter: none;
+  box-shadow: 0 0 30px 8px rgba(255, 200, 0, .7);
+  border: 2px solid rgba(255, 200, 0, .8);
+}
+
+/* Modo noche: brillo más intenso */
+body.dark .showcase-card:hover,
+body.dark .showcase-card:active {
+  box-shadow: 0 0 35px 10px rgba(255, 215, 0, .9);
+  border: 2px solid rgba(255, 215, 0, 1);
+}
+
+/* Imagen interna */
+.showcase-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none; /* evita conflictos al hacer clic */
+}
+
+/* Scroll suave en móviles */
+.showcase-track {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+/* ---------- SHOWCASE CAROUSEL - NUESTROS CLIENTES ----------
+   100 % funcional en cualquier dispositivo y tema
+-------------------------------------------------------------- */
+.showcase-wrap {
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.showcase-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  transition: transform .5s ease;
+  -webkit-overflow-scrolling: touch;
+}
+
+.showcase-card {
+  flex: 0 0 clamp(120px, 25vw, 200px);
+  aspect-ratio: 3 / 2;
+  border-radius: 12px;
+  overflow: hidden;
+  opacity: .5;
+  filter: blur(2px) brightness(.9);
+  transition: all .4s ease;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,.2);
+}
+
+/* Tarjeta central (activa) */
+.showcase-card.center {
+  flex: 0 0 clamp(200px, 45vw, 380px);
+  opacity: 1;
+  filter: none;
+  box-shadow: 0 0 30px 8px rgba(255, 200, 0, .7);
+  border: 2px solid rgba(255, 200, 0, .8);
+}
+
+/* Interacción: brillo dorado al pasar mouse / tocar */
+.showcase-card:hover,
+.showcase-card:active {
+  opacity: 1 !important;
+  filter: none !important;
+  transform: scale(1.05);
+  box-shadow: 0 0 25px 6px rgba(255, 200, 0, .6);
+  border: 2px solid rgba(255, 200, 0, .8);
+}
+
+/* Modo noche: brillo más intenso */
+body.dark .showcase-card:hover,
+body.dark .showcase-card:active,
+body.dark .showcase-card.center {
+  box-shadow: 0 0 35px 10px rgba(255, 215, 0, .9);
+  border: 2px solid rgba(255, 215, 0, 1);
+}
+
+/* Imagen interna */
+.showcase-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none; /* evita conflictos de clic */
+}
+
+/* Responsive: móviles pequeños */
+@media (max-width: 480px) {
+  .showcase-track {
+    gap: 10px;
+  }
+  .showcase-card {
+    flex: 0 0 100px;
+  }
+  .showcase-card.center {
+    flex: 0 0 180px;
+  }
+}
+/* ---------- SHOWCASE CENTRAL - NUESTROS CLIENTES ----------
+   Cualquier foto que toques queda centrada y brillante
+-------------------------------------------------------------- */
+.showcase-wrap {
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.showcase-track {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  transition: transform .5s ease;
+}
+
+.showcase-card {
+  flex: 0 0 clamp(120px, 25vw, 200px);
+  aspect-ratio: 3 / 2;
+  border-radius: 12px;
+  overflow: hidden;
+  opacity: .5;
+  filter: blur(2px) brightness(.9);
+  transition: all .4s ease;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,.2);
+}
+
+/* Tarjeta que está en el centro visual */
+.showcase-card.center {
+  flex: 0 0 clamp(200px, 45vw, 380px);
+  opacity: 1;
+  filter: none;
+  box-shadow: 0 0 30px 8px rgba(255, 200, 0, .7);
+  border: 2px solid rgba(255, 200, 0, .8);
+}
+
+/* Interacción: brilla al pasar mouse / tocar */
+.showcase-card:hover,
+.showcase-card:active {
+  opacity: 1 !important;
+  filter: none !important;
+  transform: scale(1.05);
+  box-shadow: 0 0 25px 6px rgba(255, 200, 0, .6);
+  border: 2px solid rgba(255, 200, 0, .8);
+}
+
+/* Modo noche: brillo más intenso */
+body.dark .showcase-card:hover,
+body.dark .showcase-card:active,
+body.dark .showcase-card.center {
+  box-shadow: 0 0 35px 10px rgba(255, 215, 0, .9);
+  border: 2px solid rgba(255, 215, 0, 1);
+}
+
+/* Imagen interna */
+.showcase-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  .showcase-track { gap: 10px; }
+  .showcase-card { flex: 0 0 100px; }
+  .showcase-card.center { flex: 0 0 180px; }
+}
+/* ---------- SHOWCASE MODERNO - PROPORCIONAL Y CENTRADO ---------- */
+.showcase-modern-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(10px, 2vw, 20px) 0;
+}
+
+.showcase-modern-track {
+  display: flex;
+  gap: clamp(8px, 1.5vw, 15px);
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+.showcase-slide {
+  flex: 0 0 auto;                       /* se ajusta al ancho real de la imagen */
+  max-width: clamp(180px, 35vw, 280px); /* mismo límite que antes */
+  border-radius: clamp(8px, 1.5vw, 12px);
+  opacity: 0.4;
+  filter: blur(2px) brightness(0.8);
+  transform: scale(0.85);
+  transition: all 0.5s ease;
+  cursor: pointer;
+  line-height: 0;        /* evita espacios fantasma */
+}
+
+.showcase-slide img {
+  width: 100%;
+  height: auto;          /* mantiene proporción original */
+  display: block;
+  border-radius: inherit;
+}
+/* Slide central - grande y nítido */
+.showcase-slide.center {
+  flex: 0 0 auto;
+  max-width: clamp(240px, 45vw, 380px); /* mismo límite, pero respeta imagen */
+  opacity: 1;
+  filter: none;
+  transform: scale(1);
+  box-shadow: 0 0 clamp(15px, 2vw, 30px) clamp(4px, 1vw, 8px) rgba(255, 200, 0, 0.7);
+  border: clamp(1px, 0.3vw, 2px) solid rgba(255, 200, 0, 0.8);
+}
+/* Modo noche: brillo más intenso */
+body.dark .showcase-slide.center {
+  box-shadow: 0 0 clamp(20px, 2.5vw, 35px) clamp(6px, 1.2vw, 10px) rgba(255, 215, 0, 0.9);
+  border: clamp(1px, 0.3vw, 2px) solid rgba(255, 215, 0, 1);
+}
+
+/* Imagen interna */
+.showcase-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Flechas de navegación - proporcionales */
+.showcase-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  color: #00529B;
+  border: clamp(1px, 0.3vw, 2px) solid #FFC700;
+  border-radius: 50%;
+  width: clamp(32px, 4vw, 44px);
+  height: clamp(32px, 4vw, 44px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  cursor: pointer;
+  z-index: 10;
+  transition: 0.3s;
+}
+
+.showcase-arrow:hover {
+  background: #FFC700;
+  color: #002C5F;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.showcase-prev {
+  left: clamp(8px, 2vw, 20px);
+}
+
+.showcase-next {
+  right: clamp(8px, 2vw, 20px);
+}
+
+/* Móviles: más pequeño y centrado */
+@media (max-width: 576px) {
+  .showcase-slide {
+    flex: 0 0 70%;
+  }
+  .showcase-slide.center {
+    flex: 0 0 70%;
+  }
+  .showcase-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 1.2rem;
+  }
+}
+
+/* Tablets: mediano */
+@media (min-width: 577px) and (max-width: 992px) {
+  .showcase-slide {
+    flex: 0 0 50%;
+  }
+  .showcase-slide.center {
+    flex: 0 0 50%;
+  }
+}
+
+/* Escritorio: grande pero proporcional */
+@media (min-width: 993px) {
+  .showcase-slide {
+    flex: 0 0 35%;
+  }
+  .showcase-slide.center {
+    flex: 0 0 45%;
+  }
+}
+/* ---------- SHOWCASE MODERNO - SIN RECORTES Y CENTRADO REAL ---------- */
+.showcase-modern-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(10px, 2vw, 20px) 0;
+  min-height: 0; /* evita saltos */
+}
+
+.showcase-modern-track {
+  display: flex;
+  gap: clamp(8px, 1.5vw, 15px);
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+.showcase-slide {
+  flex: 0 0 auto;                       /* se ajusta al ancho REAL de la imagen */
+  max-width: clamp(180px, 35vw, 280px); /* límite máximo */
+  border-radius: clamp(8px, 1.5vw, 12px);
+  opacity: 0.4;
+  filter: blur(2px) brightness(0.8);
+  transform: scale(0.85);
+  transition: all 0.5s ease;
+  cursor: pointer;
+  line-height: 0;        /* elimina espacios fantasma */
+}
+
+.showcase-slide img {
+  width: 100%;
+  height: auto;          /* mantiene proporción original */
+  display: block;
+  border-radius: inherit;
+  object-fit: contain;   /* 🔥 EVITA RECORTES */
+}
+
+/* Slide central - grande y nítido */
+.showcase-slide.center {
+  flex: 0 0 auto;
+  max-width: clamp(240px, 45vw, 380px); /* límite mayor, pero respeta imagen */
+  opacity: 1;
+  filter: none;
+  transform: scale(1);
+  box-shadow: 0 0 clamp(15px, 2vw, 30px) clamp(4px, 1vw, 8px) rgba(255, 200, 0, 0.7);
+  border: clamp(1px, 0.3vw, 2px) solid rgba(255, 200, 0, 0.8);
+}
+
+/* Modo noche: brillo más intenso */
+body.dark .showcase-slide.center {
+  box-shadow: 0 0 clamp(20px, 2.5vw, 35px) clamp(6px, 1.2vw, 10px) rgba(255, 215, 0, 0.9);
+  border: clamp(1px, 0.3vw, 2px) solid rgba(255, 215, 0, 1);
+}
+
+/* Flechas de navegación - proporcionales */
+.showcase-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  color: #00529B;
+  border: clamp(1px, 0.3vw, 2px) solid #FFC700;
+  border-radius: 50%;
+  width: clamp(32px, 4vw, 44px);
+  height: clamp(32px, 4vw, 44px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  cursor: pointer;
+  z-index: 10;
+  transition: 0.3s;
+}
+
+.showcase-arrow:hover {
+  background: #FFC700;
+  color: #002C5F;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.showcase-prev {
+  left: clamp(8px, 2vw, 20px);
+}
+
+.showcase-next {
+  right: clamp(8px, 2vw, 20px);
+}
+
+/* Móviles: más pequeño y centrado */
+@media (max-width: 576px) {
+  .showcase-slide {
+    max-width: 70%;
+  }
+  .showcase-slide.center {
+    max-width: 70%;
+  }
+  .showcase-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 1.2rem;
+  }
+}
+
+/* Tablets: mediano */
+@media (min-width: 577px) and (max-width: 992px) {
+  .showcase-slide {
+    max-width: 50%;
+  }
+  .showcase-slide.center {
+    max-width: 50%;
+  }
+}
+
+/* Escritorio: grande pero proporcional */
+@media (min-width: 993px) {
+  .showcase-slide {
+    max-width: 35%;
+  }
+  .showcase-slide.center {
+    max-width: 45%;
+  }
+}
+/* ---------- SHOWCASE MODERNO - TAMAÑO INTUITIVO Y PROPORCIONAL ---------- */
+.showcase-modern-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(15px, 3vw, 30px) 0;
+}
+
+.showcase-modern-track {
+  display: flex;
+  gap: clamp(10px, 2vw, 20px);
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+/* 🔹 TAMAÑO LATERAL: pequeño y desenfocado */
+.showcase-slide {
+  flex: 0 0 auto;
+  max-width: clamp(120px, 25vw, 200px); /* 🔒 Límite pequeño */
+  border-radius: clamp(8px, 1.5vw, 12px);
+  opacity: 0.4;
+  filter: blur(2px) brightness(0.8);
+  transform: scale(0.85);
+  transition: all 0.5s ease;
+  cursor: pointer;
+  line-height: 0;
+}
+
+/* 🔹 TAMAÑO CENTRAL: más grande pero SIN deformar */
+.showcase-slide.center {
+  flex: 0 0 auto;
+  max-width: clamp(220px, 40vw, 350px); /* 🔒 Más grande, pero con límite */
+  opacity: 1;
+  filter: none;
+  transform: scale(1);
+  box-shadow: 0 0 clamp(20px, 3vw, 35px) clamp(6px, 1vw, 10px) rgba(255, 200, 0, 0.7);
+  border: clamp(2px, 0.5vw, 3px) solid rgba(255, 200, 0, 0.8);
+}
+
+/* 🔹 IMAGEN: mantiene proporción original */
+.showcase-slide img {
+  width: 100%;
+  height: auto;          /* 🔒 No se deforma */
+  display: block;
+  border-radius: inherit;
+  object-fit: contain;   /* 🔒 EVITA RECORTES */
+}
+
+/* 🔹 MODO NOCHE: brillo más intenso */
+body.dark .showcase-slide.center {
+  box-shadow: 0 0 clamp(25px, 3.5vw, 40px) clamp(8px, 1.5vw, 12px) rgba(255, 215, 0, 0.9);
+  border: clamp(2px, 0.5vw, 3px) solid rgba(255, 215, 0, 1);
+}
+
+/* 🔹 FLECHAS: proporcionales y centradas */
+.showcase-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  color: #00529B;
+  border: clamp(1px, 0.3vw, 2px) solid #FFC700;
+  border-radius: 50%;
+  width: clamp(36px, 5vw, 48px);
+  height: clamp(36px, 5vw, 48px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  cursor: pointer;
+  z-index: 10;
+  transition: 0.3s;
+}
+
+.showcase-arrow:hover {
+  background: #FFC700;
+  color: #002C5F;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.showcase-prev {
+  left: clamp(10px, 3vw, 25px);
+}
+
+.showcase-next {
+  right: clamp(10px, 3vw, 25px);
+}
+
+/* 🔹 MÓVILES: más pequeño y centrado */
+@media (max-width: 576px) {
+  .showcase-slide {
+    max-width: 60%;
+  }
+  .showcase-slide.center {
+    max-width: 70%; /* 🔒 Un poco más grande en móvil */
+  }
+  .showcase-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+  }
+}
+
+/* 🔹 TABLETS: mediano */
+@media (min-width: 577px) and (max-width: 992px) {
+  .showcase-slide {
+    max-width: 45%;
+  }
+  .showcase-slide.center {
+    max-width: 55%;
+  }
+}
+
+/* 🔹 ESCRITORIO: grande pero proporcional */
+@media (min-width: 993px) {
+  .showcase-slide {
+    max-width: 30%;
+  }
+  .showcase-slide.center {
+    max-width: 40%;
+  }
+}
+/* ---------- SHOWCASE PERFECTAMENTE CENTRADO - PROFESIONAL ---------- */
+.showcase-modern-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(15px, 3vw, 30px) 0;
+}
+
+.showcase-modern-track {
+  display: flex;
+  gap: clamp(10px, 2vw, 20px);
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+/* 🔹 TAMAÑO LATERAL: pequeño y desenfocado */
+.showcase-slide {
+  flex: 0 0 auto;
+  max-width: clamp(140px, 28vw, 220px); /* 🔒 Límite pequeño */
+  border-radius: clamp(8px, 1.5vw, 12px);
+  opacity: 0.4;
+  filter: blur(2px) brightness(0.8);
+  transform: scale(0.85);
+  transition: all 0.5s ease;
+  cursor: pointer;
+  line-height: 0;
+}
+
+/* 🔹 TAMAÑO CENTRAL: más grande pero proporcional */
+.showcase-slide.center {
+  flex: 0 0 auto;
+  max-width: clamp(220px, 42vw, 320px); /* 🔒 Más grande, pero con límite */
+  opacity: 1;
+  filter: none;
+  transform: scale(1);
+  box-shadow: 0 0 clamp(20px, 3vw, 35px) clamp(6px, 1vw, 10px) rgba(255, 200, 0, 0.7);
+  border: clamp(2px, 0.5vw, 3px) solid rgba(255, 200, 0, 0.8);
+}
+
+/* 🔹 IMAGEN: mantiene proporción original */
+.showcase-slide img {
+  width: 100%;
+  height: auto;          /* 🔒 No se deforma */
+  display: block;
+  border-radius: inherit;
+  object-fit: contain;   /* 🔒 EVITA RECORTES */
+}
+
+/* 🔹 MODO NOCHE: brillo más intenso */
+body.dark .showcase-slide.center {
+  box-shadow: 0 0 clamp(25px, 3.5vw, 40px) clamp(8px, 1.5vw, 12px) rgba(255, 215, 0, 0.9);
+  border: clamp(2px, 0.5vw, 3px) solid rgba(255, 215, 0, 1);
+}
+
+/* 🔹 FLECHAS: DISTANCIA SIMÉTRICA y TAMAÑO PROPORCIONAL */
+.showcase-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  color: #00529B;
+  border: clamp(1px, 0.3vw, 2px) solid #FFC700;
+  border-radius: 50%;
+  width: clamp(36px, 5vw, 48px);
+  height: clamp(36px, 5vw, 48px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  cursor: pointer;
+  z-index: 10;
+  transition: 0.3s;
+}
+
+.showcase-arrow:hover {
+  background: #FFC700;
+  color: #002C5F;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* 🔹 DISTANCIA SIMÉTRICA: misma medida a ambos lados */
+.showcase-prev {
+  left: clamp(12px, 4vw, 30px);
+}
+
+.showcase-next {
+  right: clamp(12px, 4vw, 30px);
+}
+
+/* 🔹 MÓVILES: más pequeño y centrado */
+@media (max-width: 576px) {
+  .showcase-slide {
+    max-width: 65%;
+  }
+  .showcase-slide.center {
+    max-width: 75%; /* 🔒 Un poco más grande en móvil */
+  }
+  .showcase-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+  }
+}
+
+/* 🔹 TABLETS: mediano */
+@media (min-width: 577px) and (max-width: 992px) {
+  .showcase-slide {
+    max-width: 50%;
+  }
+  .showcase-slide.center {
+    max-width: 60%;
+  }
+}
+
+/* 🔹 ESCRITORIO: grande pero proporcional */
+@media (min-width: 993px) {
+  .showcase-slide {
+    max-width: 35%;
+  }
+  .showcase-slide.center {
+    max-width: 45%;
+  }
+}
+/* ---------- CENTRADO PERFECTO - CUALQUIER DISPOSITIVO ---------- */
+.showcase-modern-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(10px, 3vw, 30px) 0;
+}
+
+.showcase-modern-track {
+  display: flex;
+  gap: clamp(8px, 2vw, 20px);
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+/* 🔹 TAMAÑO LATERAL: pequeño y desenfocado */
+.showcase-slide {
+  flex: 0 0 auto;
+  max-width: clamp(120px, 28vw, 200px);
+  border-radius: clamp(8px, 1.5vw, 12px);
+  opacity: 0.4;
+  filter: blur(2px) brightness(0.8);
+  transform: scale(0.85);
+  transition: all 0.5s ease;
+  cursor: pointer;
+  line-height: 0;
+}
+
+/* 🔹 TAMAÑO CENTRAL: más grande pero proporcional */
+.showcase-slide.center {
+  flex: 0 0 auto;
+  max-width: clamp(200px, 42vw, 300px);
+  opacity: 1;
+  filter: none;
+  transform: scale(1);
+  box-shadow: 0 0 clamp(20px, 3vw, 35px) clamp(6px, 1vw, 10px) rgba(255, 200, 0, 0.7);
+  border: clamp(2px, 0.5vw, 3px) solid rgba(255, 200, 0, 0.8);
+}
+
+/* 🔹 IMAGEN: mantiene proporción original */
+.showcase-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: inherit;
+  object-fit: contain; /* 🔒 EVITA RECORTES */
+}
+
+/* 🔹 MODO NOCHE: brillo más intenso */
+body.dark .showcase-slide.center {
+  box-shadow: 0 0 clamp(25px, 3.5vw, 40px) clamp(8px, 1.5vw, 12px) rgba(255, 215, 0, 0.9);
+  border: clamp(2px, 0.5vw, 3px) solid rgba(255, 215, 0, 1);
+}
+
+/* 🔹 FLECHAS: DISTANCIA SIMÉTRICA y TAMAÑO PROPORCIONAL */
+.showcase-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  color: #00529B;
+  border: clamp(1px, 0.3vw, 2px) solid #FFC700;
+  border-radius: 50%;
+  width: clamp(36px, 5vw, 48px);
+  height: clamp(36px, 5vw, 48px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  cursor: pointer;
+  z-index: 10;
+  transition: 0.3s;
+}
+
+.showcase-arrow:hover {
+  background: #FFC700;
+  color: #002C5F;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* 🔹 DISTANCIA SIMÉTRICA: misma medida a ambos lados */
+.showcase-prev {
+  left: clamp(12px, 4vw, 30px);
+}
+
+.showcase-next {
+  right: clamp(12px, 4vw, 30px);
+}
+
+/* 🔹 MÓVILES: más pequeño y centrado */
+@media (max-width: 576px) {
+  .showcase-slide {
+    max-width: 65%;
+  }
+  .showcase-slide.center {
+    max-width: 75%; /* 🔒 Un poco más grande en móvil */
+  }
+  .showcase-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+  }
+}
+
+/* 🔹 TABLETS: mediano */
+@media (min-width: 577px) and (max-width: 992px) {
+  .showcase-slide {
+    max-width: 50%;
+  }
+  .showcase-slide.center {
+    max-width: 60%;
+  }
+}
+
+/* 🔹 ESCRITORIO: grande pero proporcional */
+@media (min-width: 993px) {
+  .showcase-slide {
+    max-width: 35%;
+  }
+  .showcase-slide.center {
+    max-width: 45%;
+  }
+}
+/* ---------- RESALTADO AMARILLO PARA COINCIDENCIAS ---------- */
+mark.resaltado {
+  background: #FFD600 !important; /* amarillo neón */
+  color: #002C5F !important; /* azul oscuro */
+  padding: 0 2px;
+  border-radius: 3px;
+  font-weight: 700;
+}
+/* Hero cover en modal de producto */
+.modal-img-hero {
+  width: 100%;
+  height: 300px;              /* altura fija para que todas las cards queden iguales */
+  object-fit: cover;
+  object-position: center;
+  border-radius: 12px 12px 0 0;
+}
+/* Modal de promociones - tamaño adaptativo */
+#productModal .modal-dialog {
+  max-width: 90vw;
+  width: auto;
+  margin: 1rem;
+}
+
+@media (min-width: 576px) {
+  #productModal .modal-dialog {
+    max-width: 600px;
+    margin: 1.75rem auto;
+  }
+}
+
+@media (min-width: 992px) {
+  #productModal .modal-dialog {
+    max-width: 700px;
+  }
+}
+
+/* Imagen dentro del modal */
+#productModal #modalImage {
+  width: 100%;
+  height: clamp(200px, 30vw, 350px);
+  object-fit: contain;
+  border-radius: 12px;
+  background: var(--color-claro);
+  padding: clamp(10px, 2vw, 20px);
+}
+
+/* Precios */
+.precio-original {
+  text-decoration: line-through;
+  color: #6c757d;
+  font-size: 1.1rem;
+}
+.precio-promo {
+  color: #dc3545;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+.badge-oferta {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #FFC700;
+  color: #002C5F;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.25);
+  z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.badge-oferta {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #FFC700;
+  color: #002C5F;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.25);
+  z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  animation: parpadeo 1.5s infinite;
+}
+
+@keyframes parpadeo {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+/* ========== PRECIO OFERTA LLAMATIVO ========== */
+.precio-oferta-box {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.precio-oferta {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #e60000;
+  text-shadow: 0 0 6px rgba(230, 0, 0, 0.4);
+  letter-spacing: -1px;
+}
+
+.tipo-oferta {
+  display: block;
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ========== MODO OSCURO ========== */
+body.dark .precio-oferta {
+  color: #ffcc00;
+  text-shadow: 0 0 8px rgba(255, 204, 0, 0.5);
+}
+
+body.dark .tipo-oferta {
+  color: #ccc;
+}
+/* ========== MODO CLARO: OFERTA LLAMATIVA ========== */
+body:not(.dark) .precio-oferta {
+  color: #ffffff !important;
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-shadow:
+    0 0 4px #ff4d4d,
+    0 0 8px #ff1a1a,
+    0 0 12px #e60000;
+  letter-spacing: -1px;
+  transition: all 0.3s ease;
+}
+
+body:not(.dark) .tipo-oferta {
+  color: #ffe066 !important;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-shadow:
+    0 0 3px rgba(255, 224, 102, 0.7);
+}
+
+/* ========== HOVER LLAMATIVO (modo claro) ========== */
+body:not(.dark) .card-magazine:hover .precio-oferta {
+  color: #ffcc00 !important;
+  text-shadow:
+    0 0 6px #ffcc00,
+    0 0 12px #ffaa00,
+    0 0 18px #ff8800;
+  transform: scale(1.05);
+}
+
+body:not(.dark) .card-magazine:hover .tipo-oferta {
+  color: #ffffff !important;
+  text-shadow:
+    0 0 4px #ffffff,
+    0 0 8px #ffe066;
+}
+/* ========== HOVER OSCURO (modo claro) ========== */
+body:not(.dark) .card-magazine:hover {
+  background: #1a1a1a !important; /* fondo oscuro intenso */
+  transition: background 0.3s ease;
+}
+
+body:not(.dark) .card-magazine:hover .precio-oferta {
+  color: #ffcc00 !important;
+  text-shadow:
+    0 0 6px #ffcc00,
+    0 0 12px #ffaa00,
+    0 0 18px #ff8800;
+  transform: scale(1.05);
+}
+
+body:not(.dark) .card-magazine:hover .tipo-oferta {
+  color: #ffffff !important;
+  text-shadow:
+    0 0 4px #ffffff,
+    0 0 8px #ffe066;
+}
+/* ========== HOVER AZUL CORPORATIVO (modo claro) ========== */
+body:not(.dark) .card-magazine:hover {
+  background: #001A3B !important; /* azul oscuro corporativo */
+  transition: background 0.3s ease;
+}
+
+body:not(.dark) .card-magazine:hover .precio-oferta {
+  color: #ffcc00 !important;
+  text-shadow:
+    0 0 6px #ffcc00,
+    0 0 12px #ffaa00,
+    0 0 18px #ff8800;
+  transform: scale(1.05);
+}
+
+body:not(.dark) .card-magazine:hover .tipo-oferta {
+  color: #ffffff !important;
+  text-shadow:
+    0 0 4px #ffffff,
+    0 0 8px #ffe066;
+}
+body:not(.dark) .card-magazine:hover .btn-outline-primary {
+  background: #ffcc00 !important;
+  color: #001A3B !important;
+  border-color: #ffcc00 !important;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.6);
+}
+/* ========== BOTÓN WHATSAPP LLAMATIVO (AMBOS MODOS) ========== */
+#btnWhatsApp {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 20px;
+  box-shadow:
+    0 0 8px rgba(37, 211, 102, 0.6),
+    0 0 16px rgba(37, 211, 102, 0.4);
+  transition: all 0.3s ease;
+}
+
+#btnWhatsApp:hover {
+  background: linear-gradient(135deg, #2fe87a, #15a085);
+  color: #ffffff;
+  box-shadow:
+    0 0 12px rgba(47, 232, 122, 0.8),
+    0 0 24px rgba(47, 232, 122, 0.5);
+  transform: scale(1.05);
+}
+
+#btnWhatsApp i {
+  font-size: 1.3rem;
+  vertical-align: middle;
+}
+/* ========== HOVER MODO OSCURO: solo cambia fondo de tarjeta ========== */
+body.dark .card-magazine:hover {
+  background: #0d1b2a !important; /* azul muy oscuro */
+  transition: background 0.3s ease;
+}
+/* ========== MODO OSCURO: resaltado dorado al hover (sin bordes) ========== */
+body.dark .card-magazine:hover .precio-oferta {
+  color: #ffdd33 !important;
+  text-shadow:
+    0 0 6px #ffdd33,
+    0 0 12px #ffcc00,
+    0 0 18px #ffb700;
+  transform: scale(1.05);
+}
+
+body.dark .card-magazine:hover .tipo-oferta {
+  color: #ffffff !important;
+  text-shadow:
+    0 0 4px #ffffff,
+    0 0 8px #ffe066;
+}/* ========== MODO OSCURO: contorno rojizo permanente (sin hover, sin bordes) ========== */
+body.dark .precio-oferta {
+  color: #ffffff !important;
+  text-shadow:
+    0 0 2px #ff4d4d,
+    0 0 4px #e60000,
+    0 0 6px #b30000;
+}
+
+body.dark .tipo-oferta {
+  color: #ffe066 !important;
+  text-shadow:
+    0 0 1px #ff4d4d,
+    0 0 2px #e60000;
+}
+
+/* ========== SCROLL INVISIBLE SOLO EN MODO HORIZONTAL ========== */
+
+/* Scroll invisible pero funcional SOLO en modo horizontal */
+@media (max-width: 768px) and (orientation: landscape) {
+  .modal-body {
+    overflow-y: auto !important;
+    max-height: 75vh !important;
+    padding: clamp(15px, 2vw, 30px) !important;
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE/Edge */
+  }
+  
+  .modal-body::-webkit-scrollbar {
+    display: none !important; /* Chrome, Safari, Opera */
+  }
+  
+  .modal-content {
+    max-height: 85vh !important;
+    overflow: hidden !important;
+  }
+  
+  .modal-dialog {
+    margin: 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 100vh !important;
+  }
+  
+  .modal-content {
+    width: 95vw !important;
+    margin: 0 auto !important;
+    max-height: 85vh !important;
+    overflow: hidden !important;
+  }
+}
+
+/* Centrado en TODOS los dispositivos */
+@media (max-width: 768px) {
+  .modal-dialog {
+    margin: 0 auto !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+  .modal-content {
+    width: 95vw !important;
+    margin: 0 auto !important;
+    max-height: 85vh !important;
+    overflow: hidden !important;
+  }
+  .modal-body {
+    padding: clamp(15px, 2vw, 30px) !important;
+    overflow-y: scroll !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+  .modal-body::-webkit-scrollbar {
+    display: none !important;
+  }
+}
+
+/* ---------- FONDO SUAVE Y ELEGANTE (sin deformar nada) ---------- */
+
+/* Opción 2: Azul muy muy suave (casi blanco) */
+body {
+  background: #E6F3FF !important; /* celeste súper suave */
+  color: #333333 !important;     /* gris oscuro para contraste */
+}

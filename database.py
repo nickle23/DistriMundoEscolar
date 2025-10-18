@@ -11,7 +11,7 @@ def get_db_connection():
     return conn
 
 def sincronizar_sqlite_a_json():
-    """Sincroniza datos de SQLite a JSON como respaldo"""
+    """Sincroniza datos de SQLite a JSON como respaldo - MEJORADA"""
     try:
         conn = get_db_connection()
         vendedores = conn.execute('SELECT * FROM vendedores').fetchall()
@@ -22,20 +22,25 @@ def sincronizar_sqlite_a_json():
         for v in vendedores:
             vendedores_dict[v['codigo']] = dict(v)
         
-        # Guardar respaldo
+        # Guardar respaldo con metadatos
+        backup_data = {
+            'fecha_sincronizacion': datetime.now().isoformat(),
+            'total_vendedores': len(vendedores_dict),
+            'vendedores': vendedores_dict
+        }
+        
         with open('vendedores_backup.json', 'w', encoding='utf-8') as f:
-            json.dump({
-                'fecha_sincronizacion': datetime.now().isoformat(),
-                'vendedores': vendedores_dict
-            }, f, indent=2, ensure_ascii=False)
+            json.dump(backup_data, f, indent=2, ensure_ascii=False)
         
         print(f"✅ Sincronizado: {len(vendedores_dict)} vendedores a JSON")
+        return True
         
     except Exception as e:
         print(f"❌ Error sincronizando: {e}")
+        return False
 
 def restaurar_desde_json():
-    """Restaura datos desde JSON - SIEMPRE en Render"""
+    """Restaura datos desde JSON - MEJORADA para Render"""
     try:
         if not os.path.exists('vendedores_backup.json'):
             print("📝 No hay archivo de respaldo para restaurar")
@@ -44,13 +49,17 @@ def restaurar_desde_json():
         with open('vendedores_backup.json', 'r', encoding='utf-8') as f:
             backup = json.load(f)
         
+        # Verificar que el backup tenga datos válidos
+        if 'vendedores' not in backup or not backup['vendedores']:
+            print("⚠️  Backup vacío o inválido")
+            return False
+        
         conn = get_db_connection()
         cursor = conn.cursor()
         
-        # ✅ CORREGIDO: En Render, SIEMPRE restaurar sin verificar si está vacío
+        # En Render, SIEMPRE limpiar y restaurar completamente
         if os.environ.get('RENDER'):
-            print("🔄 Render: Restaurando datos desde respaldo...")
-            # Limpiar tabla antes de restaurar
+            print("🔄 Render: Limpiando y restaurando desde respaldo...")
             cursor.execute('DELETE FROM vendedores')
         
         # Restaurar vendedores
@@ -185,7 +194,7 @@ def migrar_datos_json():
             conn.close()
             print("✅ Vendedores migrados a SQLite")
         
-        # Migrar accesos
+        # Migrar accesos (si existe)
         if os.path.exists('accesos.json'):
             with open('accesos.json', 'r', encoding='utf-8') as f:
                 accesos = json.load(f)
@@ -207,7 +216,7 @@ def migrar_datos_json():
             conn.close()
             print("✅ Accesos migrados a SQLite")
         
-        # Migrar sesiones activas
+        # Migrar sesiones activas (si existe)
         if os.path.exists('sesiones_activas.json'):
             with open('sesiones_activas.json', 'r', encoding='utf-8') as f:
                 sesiones = json.load(f)
@@ -237,6 +246,6 @@ def migrar_datos_json():
     except Exception as e:
         print(f"❌ Error en migración de datos: {e}")
 
-# Inicializar la base de datos al importar este módulo
-init_db()
-migrar_datos_json()
+# ⚠️ IMPORTANTE: COMENTAR LAS SIGUIENTES LÍNEAS PARA EVITAR INICIALIZACIÓN DUPLICADA
+# init_db()
+# migrar_datos_json()

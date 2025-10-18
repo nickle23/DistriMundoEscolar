@@ -7,27 +7,75 @@ from database import get_db_connection, init_db, migrar_datos_json, sincronizar_
 app = Flask(__name__)
 app.secret_key = 'tu_clave_secreta_muy_segura_admin_12345'
 
-# ================= INICIALIZACIÓN AUTOMÁTICA =================
+# ================= INICIALIZACIÓN MEJORADA PARA RENDER =================
 def initialize_database():
-    """Inicializa la base de datos"""
+    """Inicializa la base de datos de forma SEGURA para Render"""
     print("🔄 Inicializando base de datos...")
+    
+    # 1. Siempre crear tablas si no existen
     init_db()
     
-    # ✅ CORREGIDO: En Render, SIEMPRE restaurar desde respaldo
-    if os.environ.get('RENDER'):  # Solo en producción
-        print("🔍 Render detectado - Restaurando desde respaldo...")
-        if restaurar_desde_json():
-            print("✅ Datos restaurados desde respaldo JSON")
+    # 2. Estrategia diferente para Render vs Desarrollo
+    if os.environ.get('RENDER'):
+        print("🏗️  Entorno RENDER detectado - Verificando datos...")
+        
+        # Verificar si la base de datos SQLite tiene datos REALES (más que solo el admin)
+        conn = get_db_connection()
+        vendedores_count = conn.execute('SELECT COUNT(*) as count FROM vendedores').fetchone()['count']
+        
+        # Verificar si solo existe el admin por defecto
+        solo_admin = False
+        if vendedores_count == 1:
+            admin = conn.execute('SELECT * FROM vendedores WHERE codigo = "DARKEYES"').fetchone()
+            if admin:
+                solo_admin = True
+        
+        conn.close()
+        
+        if vendedores_count == 0 or solo_admin:
+            print("📦 SQLite vacío o solo con admin - Restaurando desde respaldo...")
+            if restaurar_desde_json():
+                print("✅ Datos restaurados desde respaldo JSON")
+            else:
+                print("🆕 No hay respaldo válido, iniciando con datos básicos...")
+                # Solo crear admin si no existe
+                conn = get_db_connection()
+                cursor = conn.execute('SELECT COUNT(*) as count FROM vendedores WHERE codigo = "DARKEYES"')
+                if cursor.fetchone()['count'] == 0:
+                    conn.execute('''
+                        INSERT INTO vendedores 
+                        (codigo, nombre, device_id, activo, es_admin, fecha_creacion, accesos_totales)
+                        VALUES (?, ?, ?, ?, ?, ?, ?)
+                    ''', (
+                        'DARKEYES',
+                        'Administrador Principal',
+                        '',
+                        True,
+                        True,
+                        datetime.now().isoformat(),
+                        0
+                    ))
+                    conn.commit()
+                    print("✅ Admin DARKEYES creado")
+                conn.close()
+                
+                # CREAR RESPALDO INICIAL SIEMPRE
+                print("📝 Creando respaldo inicial...")
+                sincronizar_sqlite_a_json()
         else:
-            print("📝 No hay respaldo o SQLite ya tiene datos, migrando...")
-            migrar_datos_json()
+            print(f"✅ SQLite ya tiene {vendedores_count} vendedores - Todo listo")
+            
+            # ACTUALIZAR RESPALDO por si acaso
+            sincronizar_sqlite_a_json()
+            
     else:
-        # En desarrollo, migrar normalmente
+        # Entorno desarrollo: migrar normalmente
+        print("💻 Entorno DESARROLLO - Migrando datos...")
         migrar_datos_json()
+        # Crear respaldo inicial en desarrollo también
+        sincronizar_sqlite_a_json()
     
-    # ✅ NUEVO: Crear respaldo inicial si no existe
-    sincronizar_sqlite_a_json()
-    print("✅ Base de datos inicializada")
+    print("✅ Base de datos inicializada correctamente")
 
 # Ejecutar inicialización al importar el módulo
 initialize_database()
@@ -325,7 +373,7 @@ def agregar_vendedor():
             'es_admin': False
         })
         
-        # ✅ NUEVO: Crear respaldo automáticamente
+        # ✅ CRÍTICO: Sincronizar inmediatamente después de agregar
         sincronizar_sqlite_a_json()
         
         return jsonify({
@@ -408,7 +456,7 @@ def editar_vendedor(codigo_actual):
             sesiones_cerradas = invalidar_sesiones_vendedor(codigo_final)
             registrar_acceso('ADMIN', f'Desactivación: {codigo_final} - {sesiones_cerradas} sesiones cerradas', True)
         
-        # ✅ NUEVO: Crear respaldo automáticamente después de editar
+        # ✅ CRÍTICO: Sincronizar inmediatamente después de editar
         sincronizar_sqlite_a_json()
         
         # Si el usuario editó su propia cuenta, limpiar sesión
@@ -479,7 +527,7 @@ def eliminar_vendedor(codigo):
         # Invalidar sesiones al eliminar
         invalidar_sesiones_vendedor(codigo)
         
-        # ✅ NUEVO: Crear respaldo automáticamente después de eliminar
+        # ✅ CRÍTICO: Sincronizar inmediatamente después de eliminar
         sincronizar_sqlite_a_json()
         
         return jsonify({
@@ -521,6 +569,22 @@ def logout():
         invalidar_sesiones_vendedor(session['vendedor_id'])
     session.clear()
     return redirect(url_for('login'))
+
+# ================= NUEVO: ENDPOINT DE SINCRONIZACIÓN MANUAL =================
+@app.route('/admin/sincronizar-backup', methods=['POST'])
+def sincronizar_backup():
+    """Sincroniza manualmente la base de datos con el backup JSON"""
+    if not vendedor_autenticado() or not es_administrador():
+        return jsonify({'error': 'No autorizado'}), 403
+    
+    try:
+        sincronizar_sqlite_a_json()
+        return jsonify({
+            'success': True,
+            'mensaje': 'Backup sincronizado exitosamente'
+        })
+    except Exception as e:
+        return jsonify({'error': f'Error sincronizando: {str(e)}'}), 500
 
 # ================= CONFIGURACIÓN PARA PRODUCCIÓN =================
 if __name__ == '__main__':

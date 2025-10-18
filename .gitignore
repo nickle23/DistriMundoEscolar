@@ -1,0 +1,18 @@
+# ARCHIVOS DINÁMICOS - NO SUBIR A GIT
+vendedores_backup.json
+distrimundo.db
+*.db
+*.sqlite
+
+# ARCHIVOS TEMPORALES
+*.tmp
+*.temp
+__pycache__/
+*.pyc
+
+# LOGS
+*.log
+
+# SISTEMA
+.DS_Store
+Thumbs.db

@@ -1,102 +1,86 @@
-# database.py
-import sqlite3
+# database.py - COMPATIBLE CON SQLite (local) Y PostgreSQL (Render)
 import os
 import json
 from datetime import datetime
 
-def get_db_connection():
-    """Establece conexión con la base de datos SQLite"""
-    conn = sqlite3.connect('distrimundo.db', check_same_thread=False)
-    conn.row_factory = sqlite3.Row  # Para acceder a las columnas por nombre
-    return conn
-
-def sincronizar_sqlite_a_json():
-    """Sincroniza datos de SQLite a JSON como respaldo - MEJORADA"""
-    try:
-        conn = get_db_connection()
-        vendedores = conn.execute('SELECT * FROM vendedores').fetchall()
-        conn.close()
-        
-        # Convertir a formato JSON compatible
-        vendedores_dict = {}
-        for v in vendedores:
-            vendedores_dict[v['codigo']] = dict(v)
-        
-        # Guardar respaldo con metadatos
-        backup_data = {
-            'fecha_sincronizacion': datetime.now().isoformat(),
-            'total_vendedores': len(vendedores_dict),
-            'vendedores': vendedores_dict
+# Determinar qué base de datos usar
+def get_database_config():
+    """Configura la base de datos según el entorno"""
+    if os.environ.get('RENDER'):
+        # En Render: usar PostgreSQL
+        print("🔄 Conectando a PostgreSQL (Render)")
+        import psycopg2
+        database_url = os.environ.get('DATABASE_URL')
+        if not database_url:
+            raise Exception("❌ DATABASE_URL no configurada en Render")
+        return {
+            'type': 'postgresql',
+            'connector': psycopg2,
+            'url': database_url
         }
-        
-        with open('vendedores_backup.json', 'w', encoding='utf-8') as f:
-            json.dump(backup_data, f, indent=2, ensure_ascii=False)
-        
-        print(f"✅ Sincronizado: {len(vendedores_dict)} vendedores a JSON")
-        return True
-        
-    except Exception as e:
-        print(f"❌ Error sincronizando: {e}")
-        return False
+    else:
+        # En local: usar SQLite
+        print("🔄 Conectando a SQLite (Local)")
+        import sqlite3
+        return {
+            'type': 'sqlite', 
+            'connector': sqlite3,
+            'file': 'distrimundo.db'
+        }
 
-def restaurar_desde_json():
-    """Restaura datos desde JSON - MEJORADA para Render"""
+def get_db_connection():
+    """Conexión universal para SQLite y PostgreSQL"""
+    config = get_database_config()
+    
     try:
-        if not os.path.exists('vendedores_backup.json'):
-            print("📝 No hay archivo de respaldo para restaurar")
-            return False
-            
-        with open('vendedores_backup.json', 'r', encoding='utf-8') as f:
-            backup = json.load(f)
-        
-        # Verificar que el backup tenga datos válidos
-        if 'vendedores' not in backup or not backup['vendedores']:
-            print("⚠️  Backup vacío o inválido")
-            return False
-        
-        conn = get_db_connection()
-        cursor = conn.cursor()
-        
-        # En Render, SIEMPRE limpiar y restaurar completamente
-        if os.environ.get('RENDER'):
-            print("🔄 Render: Limpiando y restaurando desde respaldo...")
-            cursor.execute('DELETE FROM vendedores')
-        
-        # Restaurar vendedores
-        vendedores_restaurados = 0
-        for codigo, datos in backup['vendedores'].items():
-            cursor.execute('''
-                INSERT OR REPLACE INTO vendedores 
-                (codigo, nombre, device_id, activo, es_admin, fecha_creacion, ultimo_acceso, accesos_totales)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-            ''', (
-                codigo,
-                datos['nombre'],
-                datos.get('device_id', ''),
-                datos.get('activo', True),
-                datos.get('es_admin', False),
-                datos.get('fecha_creacion', datetime.now().isoformat()),
-                datos.get('ultimo_acceso'),
-                datos.get('accesos_totales', 0)
-            ))
-            vendedores_restaurados += 1
-        
-        conn.commit()
-        conn.close()
-        print(f"✅ Restaurados {vendedores_restaurados} vendedores desde JSON")
-        return True
-        
+        if config['type'] == 'sqlite':
+            # Conexión SQLite (local)
+            conn = config['connector'].connect(config['file'], check_same_thread=False)
+            conn.row_factory = config['connector'].Row
+            return conn
+        else:
+            # Conexión PostgreSQL (Render)
+            import psycopg2.extras
+            conn = config['connector'].connect(config['url'])
+            # Crear un cursor que devuelva diccionarios
+            cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+            return conn, cur
     except Exception as e:
-        print(f"❌ Error restaurando desde JSON: {e}")
-        return False
+        print(f"❌ Error conectando a la base de datos: {e}")
+        raise
+
+def execute_query(query, params=None):
+    """Ejecuta consultas en ambas bases de datos"""
+    config = get_database_config()
+    
+    if config['type'] == 'sqlite':
+        # SQLite
+        conn = get_db_connection()
+        cursor = conn.execute(query, params or ())
+        result = cursor.fetchall() if query.strip().upper().startswith('SELECT') else None
+        conn.commit()
+        if not query.strip().upper().startswith('SELECT'):
+            conn.close()
+        return result, cursor
+    else:
+        # PostgreSQL
+        conn, cur = get_db_connection()
+        cur.execute(query, params or ())
+        result = cur.fetchall() if query.strip().upper().startswith('SELECT') else None
+        conn.commit()
+        cur.close()
+        conn.close()
+        return result, cur
 
 def init_db():
-    """Inicializa la base de datos con las tablas necesarias"""
+    """Inicializa la base de datos (funciona en ambos)"""
+    print("🔄 Inicializando base de datos...")
+    
+    config = get_database_config()
+    
     try:
-        conn = get_db_connection()
-        
         # Tabla de vendedores
-        conn.execute('''
+        execute_query('''
             CREATE TABLE IF NOT EXISTS vendedores (
                 codigo TEXT PRIMARY KEY,
                 nombre TEXT NOT NULL,
@@ -110,20 +94,19 @@ def init_db():
         ''')
         
         # Tabla de historial de accesos
-        conn.execute('''
+        execute_query('''
             CREATE TABLE IF NOT EXISTS accesos (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                id SERIAL PRIMARY KEY,
                 vendedor_id TEXT NOT NULL,
                 dispositivo TEXT NOT NULL,
                 exitoso BOOLEAN NOT NULL,
                 fecha_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                ip TEXT,
-                FOREIGN KEY (vendedor_id) REFERENCES vendedores (codigo)
+                ip TEXT
             )
         ''')
         
         # Tabla de sesiones activas
-        conn.execute('''
+        execute_query('''
             CREATE TABLE IF NOT EXISTS sesiones_activas (
                 sesion_id TEXT PRIMARY KEY,
                 vendedor_id TEXT NOT NULL,
@@ -131,20 +114,20 @@ def init_db():
                 ip TEXT NOT NULL,
                 fecha_inicio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 fecha_fin TIMESTAMP,
-                activa BOOLEAN DEFAULT TRUE,
-                FOREIGN KEY (vendedor_id) REFERENCES vendedores (codigo)
+                activa BOOLEAN DEFAULT TRUE
             )
         ''')
         
-        conn.commit()
-        
         # Insertar admin por defecto si no existe
-        cursor = conn.execute('SELECT COUNT(*) as count FROM vendedores WHERE codigo = "DARKEYES"')
-        if cursor.fetchone()['count'] == 0:
-            conn.execute('''
+        result, cursor = execute_query('SELECT COUNT(*) as count FROM vendedores WHERE codigo = %s', ('DARKEYES',))
+        
+        count = result[0]['count'] if result else 0
+        
+        if count == 0:
+            execute_query('''
                 INSERT INTO vendedores 
                 (codigo, nombre, device_id, activo, es_admin, fecha_creacion, accesos_totales)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
             ''', (
                 'DARKEYES',
                 'Administrador Principal',
@@ -154,32 +137,55 @@ def init_db():
                 datetime.now().isoformat(),
                 0
             ))
-            conn.commit()
             print("✅ Admin DARKEYES creado")
         
-        conn.close()
         print("✅ Base de datos inicializada correctamente")
         
     except Exception as e:
         print(f"❌ Error inicializando base de datos: {e}")
 
-def migrar_datos_json():
-    """Migra los datos existentes de JSON a SQLite"""
+# Funciones específicas para SQLite (solo locales)
+def sincronizar_sqlite_a_json():
+    """Sincroniza datos a JSON como respaldo (solo para SQLite local)"""
     try:
-        # Migrar vendedores
+        if not os.environ.get('RENDER'):  # Solo en local
+            result, cursor = execute_query('SELECT * FROM vendedores')
+            vendedores = result or []
+            
+            vendedores_dict = {}
+            for v in vendedores:
+                vendedores_dict[v['codigo']] = dict(v)
+            
+            with open('vendedores_backup.json', 'w', encoding='utf-8') as f:
+                json.dump({
+                    'fecha_sincronizacion': datetime.now().isoformat(),
+                    'vendedores': vendedores_dict
+                }, f, indent=2, ensure_ascii=False)
+            
+            print(f"✅ Sincronizado: {len(vendedores_dict)} vendedores a JSON")
+            
+    except Exception as e:
+        print(f"❌ Error sincronizando: {e}")
+
+def migrar_datos_json():
+    """Migra datos de JSON a la base de datos (solo local)"""
+    if os.environ.get('RENDER'):
+        return  # En Render no migrar desde JSON
+        
+    try:
         if os.path.exists('vendedores.json'):
             with open('vendedores.json', 'r', encoding='utf-8') as f:
                 vendedores = json.load(f)
                 
-            conn = get_db_connection()
             for codigo, datos in vendedores.items():
-                # Verificar si el vendedor ya existe
-                cursor = conn.execute('SELECT COUNT(*) as count FROM vendedores WHERE codigo = ?', (codigo,))
-                if cursor.fetchone()['count'] == 0:
-                    conn.execute('''
+                result, cursor = execute_query('SELECT COUNT(*) as count FROM vendedores WHERE codigo = %s', (codigo,))
+                count = result[0]['count'] if result else 0
+                
+                if count == 0:
+                    execute_query('''
                         INSERT INTO vendedores 
                         (codigo, nombre, device_id, activo, es_admin, fecha_creacion, ultimo_acceso, accesos_totales)
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
                     ''', (
                         codigo,
                         datos['nombre'],
@@ -190,62 +196,11 @@ def migrar_datos_json():
                         datos.get('ultimo_acceso'),
                         datos.get('accesos_totales', 0)
                     ))
-            conn.commit()
-            conn.close()
-            print("✅ Vendedores migrados a SQLite")
-        
-        # Migrar accesos (si existe)
-        if os.path.exists('accesos.json'):
-            with open('accesos.json', 'r', encoding='utf-8') as f:
-                accesos = json.load(f)
-                
-            conn = get_db_connection()
-            for acceso in accesos:
-                conn.execute('''
-                    INSERT INTO accesos 
-                    (vendedor_id, dispositivo, exitoso, fecha_hora, ip)
-                    VALUES (?, ?, ?, ?, ?)
-                ''', (
-                    acceso['vendedor_id'],
-                    acceso['dispositivo'],
-                    acceso['exitoso'],
-                    acceso['fecha_hora'],
-                    acceso.get('ip', '')
-                ))
-            conn.commit()
-            conn.close()
-            print("✅ Accesos migrados a SQLite")
-        
-        # Migrar sesiones activas (si existe)
-        if os.path.exists('sesiones_activas.json'):
-            with open('sesiones_activas.json', 'r', encoding='utf-8') as f:
-                sesiones = json.load(f)
-                
-            conn = get_db_connection()
-            for sesion_id, datos in sesiones.items():
-                # Verificar si la sesión ya existe
-                cursor = conn.execute('SELECT COUNT(*) as count FROM sesiones_activas WHERE sesion_id = ?', (sesion_id,))
-                if cursor.fetchone()['count'] == 0:
-                    conn.execute('''
-                        INSERT INTO sesiones_activas 
-                        (sesion_id, vendedor_id, dispositivo, ip, fecha_inicio, fecha_fin, activa)
-                        VALUES (?, ?, ?, ?, ?, ?, ?)
-                    ''', (
-                        sesion_id,
-                        datos['vendedor_id'],
-                        datos['dispositivo'],
-                        datos['ip'],
-                        datos['fecha_inicio'],
-                        datos.get('fecha_fin'),
-                        datos.get('activa', True)
-                    ))
-            conn.commit()
-            conn.close()
-            print("✅ Sesiones migradas a SQLite")
+            print("✅ Vendedores migrados a la base de datos")
             
     except Exception as e:
         print(f"❌ Error en migración de datos: {e}")
 
-# ⚠️ IMPORTANTE: COMENTAR LAS SIGUIENTES LÍNEAS PARA EVITAR INICIALIZACIÓN DUPLICADA
-# init_db()
-# migrar_datos_json()
+# Inicializar la base de datos al importar
+if __name__ != "__main__":
+    init_db()

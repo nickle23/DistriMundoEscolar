@@ -97,6 +97,17 @@ def eliminar_vendedor_db(codigo):
     conn.commit()
     conn.close()
 
+def registrar_acceso(vendedor_id, dispositivo, exitoso, ip=None):
+    """Registra un intento de acceso en la base de datos"""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('''
+        INSERT INTO accesos (vendedor_id, dispositivo, exitoso, ip)
+        VALUES (%s, %s, %s, %s)
+    ''', (vendedor_id, dispositivo, exitoso, ip or request.remote_addr))
+    conn.commit()
+    conn.close()
+
 # ================= RUTAS PÚBLICAS =================
 @app.route('/')
 def index():
@@ -119,6 +130,7 @@ def autenticar():
         # Verificar device_id si está configurado
         if vendedor.get('device_id') and vendedor['device_id'].strip():
             if vendedor['device_id'] != dispositivo:
+                registrar_acceso(codigo, dispositivo, False)
                 return render_template('login.html', 
                                     error="❌ Dispositivo no autorizado")
         
@@ -132,11 +144,15 @@ def autenticar():
         vendedor['accesos_totales'] = vendedor.get('accesos_totales', 0) + 1
         actualizar_vendedor(codigo, vendedor)
         
+        # Registrar acceso exitoso
+        registrar_acceso(codigo, dispositivo, True)
+        
         if vendedor.get('es_admin', False):
             return redirect(url_for('admin_panel'))
         else:
             return redirect(url_for('distrimundoescolar'))
     else:
+        registrar_acceso(codigo, dispositivo, False)
         return render_template('login.html', 
                             error="❌ Código inválido o cuenta desactivada")
 
@@ -290,6 +306,35 @@ def listar_vendedores():
     if 'vendedor_id' not in session or not session.get('es_admin'):
         return jsonify({'error': 'No autorizado'}), 403
     return jsonify(cargar_vendedores())
+
+@app.route('/admin/historial-accesos')
+def historial_accesos():
+    """Obtiene el historial completo de accesos"""
+    if 'vendedor_id' not in session or not session.get('es_admin'):
+        return jsonify({'error': 'No autorizado'}), 403
+    
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('''
+        SELECT vendedor_id, dispositivo, exitoso, fecha_hora, ip 
+        FROM accesos 
+        ORDER BY fecha_hora DESC 
+        LIMIT 100
+    ''')
+    results = cursor.fetchall()
+    conn.close()
+    
+    accesos = []
+    for result in results:
+        accesos.append({
+            'vendedor_id': result[0],
+            'dispositivo': result[1],
+            'exitoso': result[2],
+            'fecha_hora': result[3],
+            'ip': result[4]
+        })
+    
+    return jsonify(accesos)
 
 # ================= RUTAS GENERALES =================
 @app.route('/logout')

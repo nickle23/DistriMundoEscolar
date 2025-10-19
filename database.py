@@ -4,10 +4,9 @@ from datetime import datetime
 
 def get_db_connection():
     if os.environ.get('RENDER'):
-        # PostgreSQL en Render
-        import psycopg2
-        import psycopg2.extras
-        conn = psycopg2.connect(os.environ.get('DATABASE_URL'))
+        # PostgreSQL en Render con psycopg3
+        import psycopg
+        conn = psycopg.connect(os.environ.get('DATABASE_URL'))
         return conn
     else:
         # SQLite en local
@@ -35,7 +34,9 @@ def init_db():
     
     # Insertar admin si no existe
     cursor.execute("SELECT COUNT(*) FROM vendedores WHERE codigo = 'DARKEYES'")
-    if cursor.fetchone()[0] == 0:
+    count = cursor.fetchone()[0]
+    
+    if count == 0:
         cursor.execute('''
             INSERT INTO vendedores (codigo, nombre, device_id, activo, es_admin, fecha_creacion, accesos_totales)
             VALUES ('DARKEYES', 'Administrador Principal', '', TRUE, TRUE, %s, 0)
@@ -44,4 +45,6 @@ def init_db():
     conn.commit()
     conn.close()
 
-init_db()
+# Inicializar la base de datos
+if __name__ != "__main__":
+    init_db()

@@ -15,7 +15,7 @@ def get_database_config():
             raise Exception("❌ DATABASE_URL no configurada en Render")
         return {
             'type': 'postgresql',
-            'connector': psycopg2,
+            'connector': psycopg,
             'url': database_url
         }
     else:

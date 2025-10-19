@@ -108,6 +108,70 @@ def registrar_acceso(vendedor_id, dispositivo, exitoso, ip=None):
     conn.commit()
     conn.close()
 
+def registrar_sesion(vendedor_id, dispositivo, ip=None):
+    """Registra una nueva sesión activa"""
+    sesion_id = f"{vendedor_id}_{dispositivo}_{datetime.now().timestamp()}"
+    
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('''
+        INSERT INTO sesiones_activas (sesion_id, vendedor_id, dispositivo, ip)
+        VALUES (%s, %s, %s, %s)
+    ''', (sesion_id, vendedor_id, dispositivo, ip or request.remote_addr))
+    conn.commit()
+    conn.close()
+    return sesion_id
+
+def invalidar_sesiones_vendedor(vendedor_id):
+    """Invalida TODAS las sesiones de un vendedor"""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        'UPDATE sesiones_activas SET activa = FALSE, fecha_fin = %s WHERE vendedor_id = %s AND activa = TRUE',
+        (datetime.now().isoformat(), vendedor_id)
+    )
+    sesiones_invalidadas = cursor.rowcount
+    conn.commit()
+    conn.close()
+    return sesiones_invalidadas
+
+def sesion_es_valida(vendedor_id, dispositivo_actual, vendedor_device_id):
+    """Verifica si la sesión actual es válida"""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    
+    # Usar dispositivo_actual si el vendedor no tiene Device ID configurado
+    dispositivo_buscar = vendedor_device_id if vendedor_device_id else dispositivo_actual
+    
+    cursor.execute(
+        'SELECT * FROM sesiones_activas WHERE vendedor_id = %s AND dispositivo = %s AND activa = TRUE',
+        (vendedor_id, dispositivo_buscar)
+    )
+    sesion = cursor.fetchone()
+    conn.close()
+    return sesion is not None
+
+def vendedor_autenticado():
+    """Verifica si el usuario está autenticado Y tiene sesión válida"""
+    if 'vendedor_id' not in session:
+        return False
+    
+    vendedor_id = session.get('vendedor_id')
+    dispositivo_actual = session.get('dispositivo_actual', '')
+    vendedor_device_id = session.get('vendedor_device_id', '')
+    
+    # Verificar si es administrador
+    vendedor = obtener_vendedor(vendedor_id)
+    if not vendedor:
+        return False
+    
+    # Si es administrador, bypass de seguridad
+    if vendedor.get('es_admin', False):
+        return True
+    
+    # Verificar si la sesión sigue siendo válida para usuarios normales
+    return sesion_es_valida(vendedor_id, dispositivo_actual, vendedor_device_id)
+
 # ================= RUTAS PÚBLICAS =================
 @app.route('/')
 def index():
@@ -115,7 +179,7 @@ def index():
 
 @app.route('/login')
 def login():
-    if 'vendedor_id' in session:
+    if vendedor_autenticado():
         return redirect(url_for('distrimundoescolar'))
     return render_template('login.html')
 
@@ -126,18 +190,29 @@ def autenticar():
     
     vendedor = obtener_vendedor(codigo)
     
-    if vendedor and vendedor.get('activo', True):
-        # Verificar device_id si está configurado
+    if vendedor:
+        # Verificar si está activo
+        if not vendedor.get('activo', True):
+            registrar_acceso(codigo, dispositivo, False)
+            return render_template('login.html', 
+                                error="❌ Cuenta desactivada. Contacta al administrador.")
+        
+        # Verificar Device ID (solo si está configurado y no está vacío)
         if vendedor.get('device_id') and vendedor['device_id'].strip():
             if vendedor['device_id'] != dispositivo:
                 registrar_acceso(codigo, dispositivo, False)
                 return render_template('login.html', 
-                                    error="❌ Dispositivo no autorizado")
+                                    error="❌ Dispositivo no autorizado. Contacta al administrador.")
         
         # Login exitoso
         session['vendedor_id'] = codigo
         session['vendedor_nombre'] = vendedor['nombre']
+        session['vendedor_device_id'] = vendedor.get('device_id', '')
+        session['dispositivo_actual'] = dispositivo
         session['es_admin'] = vendedor.get('es_admin', False)
+        
+        # Registrar sesión activa
+        registrar_sesion(codigo, dispositivo)
         
         # Actualizar último acceso
         vendedor['ultimo_acceso'] = datetime.now().isoformat()
@@ -165,28 +240,28 @@ def obtener_id():
 @app.route('/distrimundoescolar')
 def distrimundoescolar():
     """Página principal después del login"""
-    if 'vendedor_id' not in session:
+    if not vendedor_autenticado():
         return redirect(url_for('login'))
     return render_template('distrimundoescolar.html')
 
 @app.route('/promociones')
 def promociones():
     """Página de promociones"""
-    if 'vendedor_id' not in session:
+    if not vendedor_autenticado():
         return redirect(url_for('login'))
     return render_template('promociones.html')
 
 @app.route('/nosotros')
 def nosotros():
     """Página nosotros"""
-    if 'vendedor_id' not in session:
+    if not vendedor_autenticado():
         return redirect(url_for('login'))
     return render_template('nosotros.html')
 
 @app.route('/contacto')
 def contacto():
     """Página contacto"""
-    if 'vendedor_id' not in session:
+    if not vendedor_autenticado():
         return redirect(url_for('login'))
     return render_template('contacto.html')
 
@@ -194,14 +269,14 @@ def contacto():
 @app.route('/admin')
 def admin_panel():
     """Panel de administración"""
-    if 'vendedor_id' not in session or not session.get('es_admin'):
+    if not vendedor_autenticado() or not session.get('es_admin'):
         return redirect(url_for('login'))
     return render_template('admin_panel.html')
 
 @app.route('/admin/agregar-vendedor', methods=['POST'])
 def agregar_vendedor():
     """Agrega un nuevo vendedor"""
-    if 'vendedor_id' not in session or not session.get('es_admin'):
+    if not vendedor_autenticado() or not session.get('es_admin'):
         return jsonify({'error': 'No autorizado'}), 403
     
     codigo = request.form.get('codigo', '').strip().upper()
@@ -234,7 +309,7 @@ def agregar_vendedor():
 @app.route('/admin/editar-vendedor/<codigo_actual>', methods=['POST'])
 def editar_vendedor(codigo_actual):
     """Edita un vendedor existente"""
-    if 'vendedor_id' not in session or not session.get('es_admin'):
+    if not vendedor_autenticado() or not session.get('es_admin'):
         return jsonify({'error': 'No autorizado'}), 403
     
     vendedor_actual = obtener_vendedor(codigo_actual)
@@ -251,6 +326,9 @@ def editar_vendedor(codigo_actual):
     if nuevo_codigo != codigo_actual and obtener_vendedor(nuevo_codigo):
         return jsonify({'error': 'El nuevo código ya está en uso'}), 400
     
+    estado_anterior = vendedor_actual.get('activo', True)
+    se_desactivo = estado_anterior and not activo
+    
     try:
         if nuevo_codigo != codigo_actual:
             # Crear nuevo vendedor con el nuevo código
@@ -265,6 +343,11 @@ def editar_vendedor(codigo_actual):
             })
             # Eliminar el viejo código
             eliminar_vendedor_db(codigo_actual)
+            codigo_final = nuevo_codigo
+            
+            # Invalidar sesiones del código viejo
+            sesiones_invalidadas = invalidar_sesiones_vendedor(codigo_actual)
+            
         else:
             # Solo actualizar datos
             actualizar_vendedor(codigo_actual, {
@@ -273,6 +356,11 @@ def editar_vendedor(codigo_actual):
                 'activo': activo,
                 'es_admin': es_admin
             })
+            codigo_final = codigo_actual
+        
+        # Si se DESACTIVÓ al vendedor, invalidar sus sesiones
+        if se_desactivo:
+            sesiones_cerradas = invalidar_sesiones_vendedor(codigo_final)
         
         return jsonify({
             'success': True,
@@ -281,10 +369,31 @@ def editar_vendedor(codigo_actual):
     except Exception as e:
         return jsonify({'error': f'Error actualizando vendedor: {str(e)}'}), 500
 
+@app.route('/admin/desloguear-vendedor/<codigo>', methods=['POST'])
+def desloguear_vendedor(codigo):
+    """Forza el cierre de sesión de un vendedor"""
+    if not vendedor_autenticado() or not session.get('es_admin'):
+        return jsonify({'error': 'No autorizado'}), 403
+    
+    vendedor = obtener_vendedor(codigo)
+    if not vendedor:
+        return jsonify({'error': 'Vendedor no encontrado'}), 404
+    
+    # Invalidar TODAS las sesiones del vendedor
+    sesiones_invalidadas = invalidar_sesiones_vendedor(codigo)
+    
+    registrar_acceso('ADMIN', f'Deslogueo forzado: {codigo} - {sesiones_invalidadas} sesiones cerradas', True)
+    
+    return jsonify({
+        'success': True,
+        'mensaje': f'Sesión cerrada forzadamente para {vendedor["nombre"]}. {sesiones_invalidadas} sesión(es) invalidada(s).',
+        'sesiones_invalidadas': sesiones_invalidadas
+    })
+
 @app.route('/admin/eliminar-vendedor/<codigo>', methods=['POST'])
 def eliminar_vendedor(codigo):
     """Elimina un vendedor"""
-    if 'vendedor_id' not in session or not session.get('es_admin'):
+    if not vendedor_autenticado() or not session.get('es_admin'):
         return jsonify({'error': 'No autorizado'}), 403
     
     vendedor = obtener_vendedor(codigo)
@@ -293,6 +402,10 @@ def eliminar_vendedor(codigo):
     
     try:
         eliminar_vendedor_db(codigo)
+        
+        # Invalidar sesiones al eliminar
+        invalidar_sesiones_vendedor(codigo)
+        
         return jsonify({
             'success': True,
             'mensaje': f'Vendedor {vendedor["nombre"]} eliminado exitosamente'
@@ -303,14 +416,14 @@ def eliminar_vendedor(codigo):
 @app.route('/admin/vendedores')
 def listar_vendedores():
     """API para listar vendedores (JSON)"""
-    if 'vendedor_id' not in session or not session.get('es_admin'):
+    if not vendedor_autenticado() or not session.get('es_admin'):
         return jsonify({'error': 'No autorizado'}), 403
     return jsonify(cargar_vendedores())
 
 @app.route('/admin/historial-accesos')
 def historial_accesos():
     """Obtiene el historial completo de accesos"""
-    if 'vendedor_id' not in session or not session.get('es_admin'):
+    if not vendedor_autenticado() or not session.get('es_admin'):
         return jsonify({'error': 'No autorizado'}), 403
     
     conn = get_db_connection()
@@ -340,6 +453,8 @@ def historial_accesos():
 @app.route('/logout')
 def logout():
     """Cierra la sesión"""
+    if 'vendedor_id' in session:
+        invalidar_sesiones_vendedor(session['vendedor_id'])
     session.clear()
     return redirect(url_for('login'))
 

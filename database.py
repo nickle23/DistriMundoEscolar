@@ -9,7 +9,7 @@ def get_database_config():
     if os.environ.get('RENDER'):
         # En Render: usar PostgreSQL
         print("🔄 Conectando a PostgreSQL (Render)")
-        import psycopg2
+        import psycopg
         database_url = os.environ.get('DATABASE_URL')
         if not database_url:
             raise Exception("❌ DATABASE_URL no configurada en Render")
@@ -40,7 +40,7 @@ def get_db_connection():
             return conn
         else:
             # Conexión PostgreSQL (Render)
-            import psycopg2.extras
+            import psycopg.extras
             conn = config['connector'].connect(config['url'])
             # Crear un cursor que devuelva diccionarios
             cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)

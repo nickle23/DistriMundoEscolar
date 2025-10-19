@@ -21,7 +21,9 @@ def initialize_database():
         
         # Verificar si la base de datos SQLite tiene datos REALES (más que solo el admin)
         conn = get_db_connection()
-        vendedores_count = conn.execute('SELECT COUNT(*) as count FROM vendedores').fetchone()['count']
+        result = conn.execute('SELECT COUNT(*) as count FROM vendedores').fetchone()
+        # Manejar tanto PostgreSQL (tupla) como SQLite (dict)
+        vendedores_count = result[0] if isinstance(result, tuple) else result['count']
         
         # Verificar si solo existe el admin por defecto
         solo_admin = False

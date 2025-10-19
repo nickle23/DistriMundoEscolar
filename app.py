@@ -42,7 +42,7 @@ def initialize_database():
                 print("🆕 No hay respaldo válido, iniciando con datos básicos...")
                 # Solo crear admin si no existe
                 conn = get_db_connection()
-                cursor = conn.execute('SELECT COUNT(*) as count FROM vendedores WHERE codigo = 'DARKEYES'')
+                cursor = conn.execute("SELECT COUNT(*) as count FROM vendedores WHERE codigo = 'DARKEYES'")
                 if cursor.fetchone()['count'] == 0:
                     conn.execute('''
                         INSERT INTO vendedores 

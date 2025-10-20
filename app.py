@@ -27,6 +27,19 @@ def obtener_vendedor(codigo):
         }
     return None
 
+# ✅ NUEVA FUNCIÓN PARA VERIFICAR CREDENCIALES
+def credenciales_coinciden(vendedor_id, dispositivo_actual):
+    """Verifica si las credenciales actuales coinciden con la BD"""
+    vendedor = obtener_vendedor(vendedor_id)
+    if not vendedor:
+        return False
+    
+    # Verificar Device ID si está configurado
+    if vendedor.get('device_id') and vendedor['device_id'].strip():
+        return vendedor['device_id'] == dispositivo_actual
+    
+    return True
+
 def cargar_vendedores():
     """Carga todos los vendedores desde la base de datos"""
     conn = get_db_connection()
@@ -151,25 +164,32 @@ def sesion_es_valida(vendedor_id, dispositivo_actual, vendedor_device_id):
     conn.close()
     return sesion is not None
 
+# ✅ FUNCIÓN CORREGIDA CON VERIFICACIÓN DE CREDENCIALES
 def vendedor_autenticado():
-    """Verifica si el usuario está autenticado Y tiene sesión válida"""
+    """Verifica si el usuario está autenticado Y tiene sesión válida - CORREGIDA"""
     if 'vendedor_id' not in session:
         return False
     
     vendedor_id = session.get('vendedor_id')
     dispositivo_actual = session.get('dispositivo_actual', '')
-    vendedor_device_id = session.get('vendedor_device_id', '')
     
-    # Verificar si es administrador
+    # VERIFICACIÓN CRÍTICA: ¿Las credenciales aún coinciden?
+    if not credenciales_coinciden(vendedor_id, dispositivo_actual):
+        # Credenciales cambiadas - cerrar sesión inmediatamente
+        print(f"🚨 Sesión invalidada: credenciales cambiadas para {vendedor_id}")
+        session.clear()
+        return False
+    
     vendedor = obtener_vendedor(vendedor_id)
     if not vendedor:
         return False
     
-    # Si es administrador, bypass de seguridad
+    # Si es administrador, bypass de seguridad de sesiones activas
     if vendedor.get('es_admin', False):
         return True
     
     # Verificar si la sesión sigue siendo válida para usuarios normales
+    vendedor_device_id = vendedor.get('device_id', '')
     return sesion_es_valida(vendedor_id, dispositivo_actual, vendedor_device_id)
 
 # ================= RUTAS PÚBLICAS =================
@@ -306,9 +326,10 @@ def agregar_vendedor():
     except Exception as e:
         return jsonify({'error': f'Error guardando el vendedor: {str(e)}'}), 500
 
+# ✅ RUTA CORREGIDA CON INVALIDACIÓN INMEDIATA
 @app.route('/admin/editar-vendedor/<codigo_actual>', methods=['POST'])
 def editar_vendedor(codigo_actual):
-    """Edita un vendedor existente"""
+    """Edita un vendedor existente - CORREGIDA"""
     if not vendedor_autenticado() or not session.get('es_admin'):
         return jsonify({'error': 'No autorizado'}), 403
     
@@ -322,12 +343,21 @@ def editar_vendedor(codigo_actual):
     activo = request.form.get('activo') == 'on'
     es_admin = request.form.get('es_admin') == 'on'
     
+    # NUEVO: Si el usuario editado es el MISMO que está logeado
+    es_usuario_actual = (codigo_actual == session.get('vendedor_id'))
+    
     # Validar que el nuevo código no esté en uso
     if nuevo_codigo != codigo_actual and obtener_vendedor(nuevo_codigo):
         return jsonify({'error': 'El nuevo código ya está en uso'}), 400
     
     estado_anterior = vendedor_actual.get('activo', True)
     se_desactivo = estado_anterior and not activo
+    
+    # NUEVO: Detectar si se cambiaron credenciales críticas
+    credenciales_cambiadas = (
+        nuevo_codigo != codigo_actual or 
+        device_id != vendedor_actual.get('device_id', '')
+    )
     
     try:
         if nuevo_codigo != codigo_actual:
@@ -362,10 +392,18 @@ def editar_vendedor(codigo_actual):
         if se_desactivo:
             sesiones_cerradas = invalidar_sesiones_vendedor(codigo_final)
         
-        return jsonify({
+        # NUEVO: Si el usuario actual se editó a sí mismo Y cambió credenciales
+        respuesta = {
             'success': True,
             'mensaje': f'Vendedor {nombre} actualizado exitosamente'
-        })
+        }
+        
+        if es_usuario_actual and credenciales_cambiadas:
+            respuesta['recargar_pagina'] = True
+            respuesta['mensaje'] += ' Se recargará la página porque modificaste tus credenciales.'
+        
+        return jsonify(respuesta)
+        
     except Exception as e:
         return jsonify({'error': f'Error actualizando vendedor: {str(e)}'}), 500
 

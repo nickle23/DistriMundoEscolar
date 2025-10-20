@@ -13,6 +13,7 @@
         .stat-card:hover { transform: translateY(-2px); }
         .table-hover tbody tr:hover { background-color: rgba(0, 123, 255, 0.05); }
         .btn-action { padding: 0.25rem 0.5rem; font-size: 0.875rem; }
+        .admin-principal { background-color: #fff3cd !important; }
     </style>
 </head>
 <body>
@@ -345,6 +346,12 @@
             for (const [codigo, datos] of Object.entries(vendedores)) {
                 const fila = document.createElement('tr');
                 
+                // ✅ NUEVO: Resaltar admin principal
+                const esAdminPrincipal = (codigo === 'DARKEYES');
+                if (esAdminPrincipal) {
+                    fila.classList.add('admin-principal');
+                }
+                
                 // Formatear última fecha de acceso
                 let ultimoAcceso = 'Nunca';
                 if (datos.ultimo_acceso) {
@@ -367,7 +374,10 @@
                 const activo = datos.activo !== false; // Por defecto activo
                 
                 fila.innerHTML = `
-                    <td><strong>${codigo}</strong></td>
+                    <td>
+                        <strong>${codigo}</strong>
+                        ${esAdminPrincipal ? '<br><small class="text-warning">👑 Admin Principal</small>' : ''}
+                    </td>
                     <td>${escapeHtml(datos.nombre || '')}</td>
                     <td>
                         ${esAdmin ? 
@@ -394,11 +404,12 @@
                                 onclick="desloguearVendedor('${codigo}', '${nombreSeguro}')">
                             <i class="bi bi-box-arrow-right"></i>
                         </button>
-                        ${codigo !== 'DARKEYES' ? 
+                        ${!esAdminPrincipal ? 
                             `<button class="btn btn-sm btn-outline-danger btn-action ms-1" 
                                     onclick="eliminarVendedor('${codigo}', '${nombreSeguro}')">
                                 <i class="bi bi-trash"></i>
-                            </button>` : ''}
+                            </button>` : 
+                            '<button class="btn btn-sm btn-outline-secondary btn-action ms-1" disabled title="No se puede eliminar al administrador principal"><i class="bi bi-trash"></i></button>'}
                     </td>
                 `;
                 
@@ -519,6 +530,19 @@
             document.getElementById('editActivo').checked = activo;
             document.getElementById('editEsAdmin').checked = esAdmin;
             
+            // ✅ NUEVO: Deshabilitar edición de admin principal para evitar problemas
+            const esAdminPrincipal = (codigo === 'DARKEYES');
+            if (esAdminPrincipal) {
+                document.getElementById('editCodigoInput').readOnly = true;
+                document.getElementById('editActivo').disabled = true;
+                document.getElementById('editEsAdmin').disabled = true;
+                console.log('⚠️ Editando admin principal - campos críticos deshabilitados');
+            } else {
+                document.getElementById('editCodigoInput').readOnly = false;
+                document.getElementById('editActivo').disabled = false;
+                document.getElementById('editEsAdmin').disabled = false;
+            }
+            
             // Mostrar el modal
             const modal = new bootstrap.Modal(document.getElementById('modalEditar'));
             modal.show();
@@ -526,7 +550,7 @@
             console.log('✅ Modal de edición abierto');
         }
 
-        // ✅ FUNCIÓN CORREGIDA CON RECARGA AUTOMÁTICA
+        // ✅ FUNCIÓN MEJORADA CON DETECCIÓN DE RECARGA
         async function guardarEdicion(event) {
             event.preventDefault();
             const codigoActual = document.getElementById('editCodigo').value;
@@ -543,9 +567,10 @@
                 const data = await response.json();
                 
                 if (data.success) {
-                    // ✅ NUEVO: Manejar recarga de página si el usuario se editó a sí mismo
+                    // ✅ MEJORADO: Manejar recarga de página si el usuario se editó a sí mismo
                     if (data.recargar_pagina) {
                         alert('✅ ' + data.mensaje);
+                        console.log('🔄 Recargando página en 2 segundos...');
                         // Recargar después de 2 segundos
                         setTimeout(() => {
                             window.location.reload();
@@ -592,7 +617,14 @@
             }
         }
 
+        // ✅ FUNCIÓN MEJORADA: Protección del admin principal
         async function eliminarVendedor(codigo, nombre) {
+            // ✅ PROTECCIÓN EXTRA: No permitir eliminar al admin principal
+            if (codigo === 'DARKEYES') {
+                alert('❌ No se puede eliminar al administrador principal');
+                return;
+            }
+            
             const nombreSeguro = nombre.replace(/\\'/g, "'");
             if (confirm(`¿Estás seguro de eliminar al vendedor "${nombreSeguro}" (${codigo})?\n\nEsta acción no se puede deshacer.`)) {
                 console.log('🗑️ Eliminando vendedor:', codigo);

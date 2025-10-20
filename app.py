@@ -27,17 +27,27 @@ def obtener_vendedor(codigo):
         }
     return None
 
-# ✅ NUEVA FUNCIÓN PARA VERIFICAR CREDENCIALES
+# ✅ FUNCIÓN MEJORADA: Verifica credenciales en tiempo real
 def credenciales_coinciden(vendedor_id, dispositivo_actual):
     """Verifica si las credenciales actuales coinciden con la BD"""
     vendedor = obtener_vendedor(vendedor_id)
     if not vendedor:
+        print(f"❌ Vendedor {vendedor_id} no encontrado en BD")
+        return False
+    
+    # Verificar si el vendedor está activo
+    if not vendedor.get('activo', True):
+        print(f"❌ Vendedor {vendedor_id} está INACTIVO")
         return False
     
     # Verificar Device ID si está configurado
     if vendedor.get('device_id') and vendedor['device_id'].strip():
-        return vendedor['device_id'] == dispositivo_actual
+        coincide = vendedor['device_id'] == dispositivo_actual
+        if not coincide:
+            print(f"❌ Device ID no coincide: BD='{vendedor['device_id']}', Sesión='{dispositivo_actual}'")
+        return coincide
     
+    print(f"✅ Credenciales válidas para {vendedor_id}")
     return True
 
 def cargar_vendedores():
@@ -146,6 +156,7 @@ def invalidar_sesiones_vendedor(vendedor_id):
     sesiones_invalidadas = cursor.rowcount
     conn.commit()
     conn.close()
+    print(f"🚫 Invalidadas {sesiones_invalidadas} sesiones para {vendedor_id}")
     return sesiones_invalidadas
 
 def sesion_es_valida(vendedor_id, dispositivo_actual, vendedor_device_id):
@@ -162,35 +173,52 @@ def sesion_es_valida(vendedor_id, dispositivo_actual, vendedor_device_id):
     )
     sesion = cursor.fetchone()
     conn.close()
-    return sesion is not None
+    
+    valida = sesion is not None
+    print(f"🔍 Sesión válida para {vendedor_id}: {valida}")
+    return valida
 
-# ✅ FUNCIÓN CORREGIDA CON VERIFICACIÓN DE CREDENCIALES
+# ✅ FUNCIÓN COMPLETAMENTE REESCRITA - DETECCIÓN EN TIEMPO REAL
 def vendedor_autenticado():
-    """Verifica si el usuario está autenticado Y tiene sesión válida - CORREGIDA"""
+    """Verifica si el usuario está autenticado Y tiene sesión válida"""
     if 'vendedor_id' not in session:
+        print("❌ No hay vendedor_id en sesión")
         return False
     
     vendedor_id = session.get('vendedor_id')
     dispositivo_actual = session.get('dispositivo_actual', '')
     
-    # VERIFICACIÓN CRÍTICA: ¿Las credenciales aún coinciden?
+    print(f"🔐 Verificando autenticación para: {vendedor_id}, dispositivo: {dispositivo_actual}")
+    
+    # VERIFICACIÓN CRÍTICA MEJORADA: ¿Las credenciales aún coinciden?
     if not credenciales_coinciden(vendedor_id, dispositivo_actual):
         # Credenciales cambiadas - cerrar sesión inmediatamente
-        print(f"🚨 Sesión invalidada: credenciales cambiadas para {vendedor_id}")
+        print(f"🚨 SESIÓN INVALIDADA: Credenciales cambiadas para {vendedor_id}")
+        # Invalidar sesiones en BD también
+        invalidar_sesiones_vendedor(vendedor_id)
         session.clear()
         return False
     
     vendedor = obtener_vendedor(vendedor_id)
     if not vendedor:
+        print(f"❌ Vendedor {vendedor_id} no existe en BD")
+        session.clear()
         return False
     
-    # Si es administrador, bypass de seguridad de sesiones activas
+    # Si es administrador, bypass de seguridad de sesiones activas (pero NO de credenciales)
     if vendedor.get('es_admin', False):
+        print(f"✅ Admin {vendedor_id} autenticado (bypass sesiones activas)")
         return True
     
     # Verificar si la sesión sigue siendo válida para usuarios normales
     vendedor_device_id = vendedor.get('device_id', '')
-    return sesion_es_valida(vendedor_id, dispositivo_actual, vendedor_device_id)
+    sesion_valida = sesion_es_valida(vendedor_id, dispositivo_actual, vendedor_device_id)
+    
+    if not sesion_valida:
+        print(f"❌ Sesión NO válida para {vendedor_id}")
+        session.clear()
+    
+    return sesion_valida
 
 # ================= RUTAS PÚBLICAS =================
 @app.route('/')
@@ -326,7 +354,7 @@ def agregar_vendedor():
     except Exception as e:
         return jsonify({'error': f'Error guardando el vendedor: {str(e)}'}), 500
 
-# ✅ RUTA CORREGIDA CON INVALIDACIÓN INMEDIATA
+# ✅ RUTA COMPLETAMENTE REESCRITA - INVALIDACIÓN INMEDIATA GARANTIZADA
 @app.route('/admin/editar-vendedor/<codigo_actual>', methods=['POST'])
 def editar_vendedor(codigo_actual):
     """Edita un vendedor existente - CORREGIDA"""
@@ -343,8 +371,9 @@ def editar_vendedor(codigo_actual):
     activo = request.form.get('activo') == 'on'
     es_admin = request.form.get('es_admin') == 'on'
     
-    # NUEVO: Si el usuario editado es el MISMO que está logeado
+    # ✅ DETECCIÓN MEJORADA: Si el usuario editado es el MISMO que está logeado
     es_usuario_actual = (codigo_actual == session.get('vendedor_id'))
+    print(f"🔍 Editando usuario actual: {es_usuario_actual} (sesión: {session.get('vendedor_id')})")
     
     # Validar que el nuevo código no esté en uso
     if nuevo_codigo != codigo_actual and obtener_vendedor(nuevo_codigo):
@@ -353,14 +382,17 @@ def editar_vendedor(codigo_actual):
     estado_anterior = vendedor_actual.get('activo', True)
     se_desactivo = estado_anterior and not activo
     
-    # NUEVO: Detectar si se cambiaron credenciales críticas
+    # ✅ DETECCIÓN MEJORADA: Credenciales cambiadas
     credenciales_cambiadas = (
         nuevo_codigo != codigo_actual or 
         device_id != vendedor_actual.get('device_id', '')
     )
     
+    print(f"🔍 Credenciales cambiadas: {credenciales_cambiadas} (código: {nuevo_codigo != codigo_actual}, device_id: {device_id != vendedor_actual.get('device_id', '')})")
+    
     try:
         if nuevo_codigo != codigo_actual:
+            print(f"🔄 Cambiando código de {codigo_actual} a {nuevo_codigo}")
             # Crear nuevo vendedor con el nuevo código
             crear_vendedor(nuevo_codigo, {
                 'nombre': nombre,
@@ -375,10 +407,12 @@ def editar_vendedor(codigo_actual):
             eliminar_vendedor_db(codigo_actual)
             codigo_final = nuevo_codigo
             
-            # Invalidar sesiones del código viejo
+            # ✅ INVALIDACIÓN INMEDIATA del código viejo
             sesiones_invalidadas = invalidar_sesiones_vendedor(codigo_actual)
+            print(f"🚫 Sesiones invalidadas del código viejo: {sesiones_invalidadas}")
             
         else:
+            print(f"✏️ Actualizando datos de {codigo_actual}")
             # Solo actualizar datos
             actualizar_vendedor(codigo_actual, {
                 'nombre': nombre,
@@ -391,20 +425,28 @@ def editar_vendedor(codigo_actual):
         # Si se DESACTIVÓ al vendedor, invalidar sus sesiones
         if se_desactivo:
             sesiones_cerradas = invalidar_sesiones_vendedor(codigo_final)
+            print(f"🚫 Vendedor desactivado - sesiones cerradas: {sesiones_cerradas}")
         
-        # NUEVO: Si el usuario actual se editó a sí mismo Y cambió credenciales
+        # ✅ RESPUESTA MEJORADA: Forzar recarga si es el usuario actual
         respuesta = {
             'success': True,
             'mensaje': f'Vendedor {nombre} actualizado exitosamente'
         }
         
-        if es_usuario_actual and credenciales_cambiadas:
-            respuesta['recargar_pagina'] = True
-            respuesta['mensaje'] += ' Se recargará la página porque modificaste tus credenciales.'
+        if es_usuario_actual:
+            if credenciales_cambiadas:
+                print("🔄 Usuario actual cambió sus credenciales - forzando recarga")
+                respuesta['recargar_pagina'] = True
+                respuesta['mensaje'] += ' Se recargará la página porque modificaste tus credenciales.'
+                # Invalidar sesiones actuales inmediatamente
+                invalidar_sesiones_vendedor(codigo_final)
+            else:
+                print("ℹ️ Usuario actual editó sus datos (sin cambiar credenciales)")
         
         return jsonify(respuesta)
         
     except Exception as e:
+        print(f"❌ Error actualizando vendedor: {str(e)}")
         return jsonify({'error': f'Error actualizando vendedor: {str(e)}'}), 500
 
 @app.route('/admin/desloguear-vendedor/<codigo>', methods=['POST'])
@@ -428,11 +470,16 @@ def desloguear_vendedor(codigo):
         'sesiones_invalidadas': sesiones_invalidadas
     })
 
+# ✅ RUTA MEJORADA: Protección del admin principal
 @app.route('/admin/eliminar-vendedor/<codigo>', methods=['POST'])
 def eliminar_vendedor(codigo):
-    """Elimina un vendedor"""
+    """Elimina un vendedor - CON PROTECCIÓN DEL ADMIN PRINCIPAL"""
     if not vendedor_autenticado() or not session.get('es_admin'):
         return jsonify({'error': 'No autorizado'}), 403
+    
+    # ✅ PROTECCIÓN CRÍTICA: No permitir eliminar al admin principal
+    if codigo == 'DARKEYES':
+        return jsonify({'error': 'No se puede eliminar al administrador principal'}), 400
     
     vendedor = obtener_vendedor(codigo)
     if not vendedor:

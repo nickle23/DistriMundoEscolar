@@ -14,6 +14,18 @@
         .table-hover tbody tr:hover { background-color: rgba(0, 123, 255, 0.05); }
         .btn-action { padding: 0.25rem 0.5rem; font-size: 0.875rem; }
         .admin-principal { background-color: #fff3cd !important; }
+        .loading-spinner { 
+            display: inline-block; 
+            width: 1rem; 
+            height: 1rem; 
+            border: 2px solid transparent;
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -121,7 +133,12 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tabla-vendedores">
-                                    <!-- Los vendedores se cargarán con JavaScript -->
+                                    <tr>
+                                        <td colspan="7" class="text-center text-muted">
+                                            <div class="loading-spinner me-2"></div>
+                                            Cargando vendedores...
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -137,8 +154,8 @@
                     </div>
                     <div class="card-body">
                         <div class="list-group list-group-flush" id="lista-accesos">
-                            <!-- Los accesos se cargarán con JavaScript -->
                             <div class="list-group-item text-center text-muted">
+                                <div class="loading-spinner me-2"></div>
                                 Cargando accesos...
                             </div>
                         </div>
@@ -180,7 +197,9 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Agregar Vendedor</button>
+                        <button type="submit" class="btn btn-primary" id="btnAgregar">
+                            <i class="bi bi-person-plus me-1"></i>Agregar Vendedor
+                        </button>
                     </div>
                 </form>
             </div>
@@ -235,7 +254,9 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        <button type="submit" class="btn btn-primary" id="btnGuardar">
+                            <i class="bi bi-check-lg me-1"></i>Guardar Cambios
+                        </button>
                     </div>
                 </form>
             </div>
@@ -246,13 +267,20 @@
     <script>
         // Cargar todos los datos cuando la página se carga
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🔄 Cargando panel admin...');
+            console.log('🔄 Iniciando panel de administración...');
             
-            // ✅ NUEVO: Configurar limpieza automática del modal de agregar
+            // Configurar limpieza automática del modal de agregar
             const modalAgregar = document.getElementById('modalAgregar');
             modalAgregar.addEventListener('show.bs.modal', function () {
-                // Limpiar el formulario cuando se abre el modal
                 document.getElementById('formAgregar').reset();
+            });
+            
+            // Configurar reset de campos cuando se cierra el modal de edición
+            const modalEditar = document.getElementById('modalEditar');
+            modalEditar.addEventListener('hidden.bs.modal', function () {
+                document.getElementById('editCodigoInput').readOnly = false;
+                document.getElementById('editActivo').disabled = false;
+                document.getElementById('editEsAdmin').disabled = false;
             });
             
             cargarVendedores();
@@ -262,13 +290,13 @@
         // Cargar lista de vendedores
         async function cargarVendedores() {
             try {
-                console.log('📞 Llamando a /admin/vendedores...');
+                console.log('📞 Solicitando lista de vendedores...');
                 const response = await fetch('/admin/vendedores', {
-                    credentials: 'include'  // IMPORTANTE: incluir cookies de sesión
+                    credentials: 'include'
                 });
                 
                 if (!response.ok) {
-                    throw new Error(`Error HTTP: ${response.status} - ${response.statusText}`);
+                    throw new Error(`Error HTTP: ${response.status}`);
                 }
                 
                 const vendedores = await response.json();
@@ -280,30 +308,34 @@
             } catch (error) {
                 console.error('❌ Error cargando vendedores:', error);
                 document.getElementById('tabla-vendedores').innerHTML = 
-                    '<tr><td colspan="7" class="text-center text-danger">Error cargando vendedores: ' + error.message + '</td></tr>';
+                    '<tr><td colspan="7" class="text-center text-danger">' +
+                    '<i class="bi bi-exclamation-triangle me-2"></i>Error cargando vendedores: ' + error.message + 
+                    '</td></tr>';
             }
         }
 
         // Cargar historial de accesos
         async function cargarAccesos() {
             try {
-                console.log('📞 Llamando a /admin/historial-accesos...');
+                console.log('📞 Solicitando historial de accesos...');
                 const response = await fetch('/admin/historial-accesos', {
-                    credentials: 'include'  // IMPORTANTE: incluir cookies de sesión
+                    credentials: 'include'
                 });
                 
                 if (!response.ok) {
-                    throw new Error(`Error HTTP: ${response.status} - ${response.statusText}`);
+                    throw new Error(`Error HTTP: ${response.status}`);
                 }
                 
                 const accesos = await response.json();
-                console.log('✅ Accesos cargados:', accesos.length, 'registros');
+                console.log('✅ Accesos cargados:', accesos.length);
                 mostrarAccesosRecientes(accesos);
                 
             } catch (error) {
                 console.error('❌ Error cargando accesos:', error);
                 document.getElementById('lista-accesos').innerHTML = 
-                    '<div class="list-group-item text-center text-danger">Error cargando accesos: ' + error.message + '</div>';
+                    '<div class="list-group-item text-center text-danger">' +
+                    '<i class="bi bi-exclamation-triangle me-2"></i>Error cargando accesos: ' + error.message + 
+                    '</div>';
             }
         }
 
@@ -330,7 +362,8 @@
             document.getElementById('total-vendedores').textContent = total;
             document.getElementById('contador-activos').textContent = activos;
             document.getElementById('contador-device-id').textContent = conDeviceId;
-            console.log(`📊 Estadísticas: ${total} total, ${activos} activos, ${conDeviceId} con device ID, ${administradores} administradores`);
+            
+            console.log(`📊 Estadísticas: ${total} total, ${activos} activos, ${conDeviceId} con device ID`);
         }
 
         // Mostrar vendedores en la tabla
@@ -339,14 +372,17 @@
             tbody.innerHTML = '';
             
             if (Object.keys(vendedores).length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted">No hay vendedores registrados</td></tr>';
+                tbody.innerHTML = 
+                    '<tr><td colspan="7" class="text-center text-muted">' +
+                    '<i class="bi bi-info-circle me-2"></i>No hay vendedores registrados' +
+                    '</td></tr>';
                 return;
             }
             
             for (const [codigo, datos] of Object.entries(vendedores)) {
                 const fila = document.createElement('tr');
                 
-                // ✅ NUEVO: Resaltar admin principal
+                // Resaltar admin principal
                 const esAdminPrincipal = (codigo === 'DARKEYES');
                 if (esAdminPrincipal) {
                     fila.classList.add('admin-principal');
@@ -356,7 +392,7 @@
                 let ultimoAcceso = 'Nunca';
                 if (datos.ultimo_acceso) {
                     const fecha = new Date(datos.ultimo_acceso);
-                    // ✅ CORRECCIÓN HORA PERÚ para última conexión
+                    // Ajustar hora Perú (UTC-5)
                     fecha.setHours(fecha.getHours() - 5);
                     ultimoAcceso = fecha.toLocaleString('es-ES', {
                         day: '2-digit',
@@ -367,49 +403,54 @@
                     });
                 }
                 
-                // Preparar datos para el modal (escapar comillas simples)
+                // Preparar datos para el modal
                 const nombreSeguro = escapeHtml(datos.nombre || '').replace(/'/g, "\\'");
                 const deviceIdSeguro = (datos.device_id || '').replace(/'/g, "\\'");
                 const esAdmin = datos.es_admin || false;
-                const activo = datos.activo !== false; // Por defecto activo
+                const activo = datos.activo !== false;
                 
                 fila.innerHTML = `
                     <td>
                         <strong>${codigo}</strong>
-                        ${esAdminPrincipal ? '<br><small class="text-warning">👑 Admin Principal</small>' : ''}
+                        ${esAdminPrincipal ? '<br><small class="text-warning"><i class="bi bi-star-fill me-1"></i>Admin Principal</small>' : ''}
                     </td>
                     <td>${escapeHtml(datos.nombre || '')}</td>
                     <td>
                         ${esAdmin ? 
-                            '<span class="badge bg-danger">Administrador</span>' : 
-                            '<span class="badge bg-secondary">Vendedor</span>'}
+                            '<span class="badge bg-danger"><i class="bi bi-shield-check me-1"></i>Administrador</span>' : 
+                            '<span class="badge bg-secondary"><i class="bi bi-person me-1"></i>Vendedor</span>'}
                     </td>
                     <td>
                         ${deviceIdSeguro ? 
-                            '<span class="badge bg-success">Configurado</span>' : 
-                            '<span class="badge bg-warning">Pendiente</span>'}
+                            '<span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Configurado</span>' : 
+                            '<span class="badge bg-warning"><i class="bi bi-clock me-1"></i>Pendiente</span>'}
                     </td>
                     <td>
                         ${activo ? 
-                            '<span class="badge bg-success">Activo</span>' : 
-                            '<span class="badge bg-danger">Inactivo</span>'}
+                            '<span class="badge bg-success"><i class="bi bi-play-circle me-1"></i>Activo</span>' : 
+                            '<span class="badge bg-danger"><i class="bi bi-pause-circle me-1"></i>Inactivo</span>'}
                     </td>
-                    <td>${ultimoAcceso}</td>
+                    <td><small class="text-muted">${ultimoAcceso}</small></td>
                     <td>
-                        <button class="btn btn-sm btn-outline-primary btn-action" 
-                                onclick="editarVendedor('${codigo}', '${nombreSeguro}', '${deviceIdSeguro}', ${activo}, ${esAdmin})">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                        <button class="btn btn-sm btn-outline-warning btn-action ms-1" 
-                                onclick="desloguearVendedor('${codigo}', '${nombreSeguro}')">
-                            <i class="bi bi-box-arrow-right"></i>
-                        </button>
-                        ${!esAdminPrincipal ? 
-                            `<button class="btn btn-sm btn-outline-danger btn-action ms-1" 
-                                    onclick="eliminarVendedor('${codigo}', '${nombreSeguro}')">
-                                <i class="bi bi-trash"></i>
-                            </button>` : 
-                            '<button class="btn btn-sm btn-outline-secondary btn-action ms-1" disabled title="No se puede eliminar al administrador principal"><i class="bi bi-trash"></i></button>'}
+                        <div class="btn-group btn-group-sm" role="group">
+                            <button class="btn btn-outline-primary btn-action" 
+                                    onclick="editarVendedor('${codigo}', '${nombreSeguro}', '${deviceIdSeguro}', ${activo}, ${esAdmin})"
+                                    title="Editar vendedor">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="btn btn-outline-warning btn-action" 
+                                    onclick="desloguearVendedor('${codigo}', '${nombreSeguro}')"
+                                    title="Cerrar sesión">
+                                <i class="bi bi-box-arrow-right"></i>
+                            </button>
+                            ${!esAdminPrincipal ? 
+                                `<button class="btn btn-outline-danger btn-action" 
+                                        onclick="eliminarVendedor('${codigo}', '${nombreSeguro}')"
+                                        title="Eliminar vendedor">
+                                    <i class="bi bi-trash"></i>
+                                </button>` : 
+                                '<button class="btn btn-outline-secondary btn-action" disabled title="No se puede eliminar al administrador principal"><i class="bi bi-trash"></i></button>'}
+                        </div>
                     </td>
                 `;
                 
@@ -424,29 +465,32 @@
             const lista = document.getElementById('lista-accesos');
             lista.innerHTML = '';
             
-            // Ordenar accesos por fecha (más recientes primero) y tomar últimos 20
+            // Ordenar y tomar últimos 20
             const accesosRecientes = accesos
                 .sort((a, b) => new Date(b.fecha_hora) - new Date(a.fecha_hora))
                 .slice(0, 20);
             
             if (accesosRecientes.length === 0) {
-                lista.innerHTML = '<div class="list-group-item text-center text-muted">No hay accesos registrados</div>';
+                lista.innerHTML = 
+                    '<div class="list-group-item text-center text-muted">' +
+                    '<i class="bi bi-info-circle me-2"></i>No hay accesos registrados' +
+                    '</div>';
                 return;
             }
             
-            // Calcular accesos de hoy para estadísticas
+            // Calcular accesos de hoy
             const hoy = new Date().toISOString().split('T')[0];
             const accesosHoy = accesos.filter(a => a.fecha_hora && a.fecha_hora.startsWith(hoy)).length;
             document.getElementById('accesos-hoy').textContent = accesosHoy;
             
-            // Mostrar accesos en la lista
+            // Mostrar accesos
             accesosRecientes.forEach(acceso => {
                 const item = document.createElement('div');
                 item.className = 'list-group-item px-0';
                 
                 const fecha = acceso.fecha_hora ? new Date(acceso.fecha_hora) : null;
                 
-                // ✅ CORRECCIÓN HORA PERÚ: Restar 5 horas (UTC-5)
+                // Ajustar hora Perú (UTC-5)
                 if (fecha) {
                     fecha.setHours(fecha.getHours() - 5);
                 }
@@ -455,27 +499,28 @@
                 const fechaStr = fecha ? fecha.toLocaleDateString('es-ES') : '----';
                 
                 item.innerHTML = `
-                    <div class="d-flex w-100 justify-content-between">
-                        <h6 class="mb-1">
-                            ${acceso.exitoso ? 
-                                '<i class="bi bi-check-circle-fill text-success me-1"></i>' : 
-                                '<i class="bi bi-x-circle-fill text-danger me-1"></i>'}
-                            ${escapeHtml(acceso.vendedor_id || 'Desconocido')}
-                        </h6>
-                        <small>${hora}</small>
+                    <div class="d-flex w-100 justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1">
+                                ${acceso.exitoso ? 
+                                    '<i class="bi bi-check-circle-fill text-success me-1"></i>' : 
+                                    '<i class="bi bi-x-circle-fill text-danger me-1"></i>'}
+                                <strong>${escapeHtml(acceso.vendedor_id || 'Desconocido')}</strong>
+                            </h6>
+                            <p class="mb-1 small text-muted">
+                                <i class="bi bi-calendar me-1"></i>${fechaStr} • 
+                                <i class="bi bi-clock me-1"></i>${hora}
+                                ${acceso.dispositivo ? 
+                                    `<br><i class="bi bi-phone me-1"></i>ID: ${acceso.dispositivo.substring(0, 12)}...` : 
+                                    '<br><i class="bi bi-phone me-1"></i>Sin ID'}
+                            </p>
+                        </div>
+                        <small class="text-muted ms-2">${hora}</small>
                     </div>
-                    <p class="mb-1 small text-muted">
-                        ${fechaStr} • 
-                        ${acceso.dispositivo ? 
-                            `ID: ${acceso.dispositivo.substring(0, 8)}...` : 
-                            'Sin ID'}
-                    </p>
                 `;
                 
                 lista.appendChild(item);
             });
-            
-            console.log('✅ Lista de accesos actualizada con hora de Perú');
         }
 
         // Función para escapar HTML (seguridad)
@@ -489,7 +534,12 @@
         // Funciones para gestionar vendedores
         async function agregarVendedor(event) {
             event.preventDefault();
-            console.log('🔄 Intentando agregar vendedor...');
+            console.log('🔄 Procesando nuevo vendedor...');
+            
+            const btn = document.getElementById('btnAgregar');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<div class="loading-spinner me-2"></div>Procesando...';
+            btn.disabled = true;
             
             const formData = new FormData(event.target);
             
@@ -502,26 +552,25 @@
                 const data = await response.json();
                 
                 if (data.success) {
-                    alert('✅ ' + data.mensaje);
-                    
-                    // ✅ NUEVO: Limpiar el formulario después de agregar exitosamente
+                    mostrarMensaje('success', data.mensaje);
                     event.target.reset();
-                    
-                    // Cerrar modal y recargar datos
                     const modal = bootstrap.Modal.getInstance(document.getElementById('modalAgregar'));
                     modal.hide();
                     cargarVendedores();
                 } else {
-                    alert('❌ Error: ' + data.error);
+                    mostrarMensaje('error', data.error);
                 }
             } catch (error) {
                 console.error('Error al agregar vendedor:', error);
-                alert('❌ Error al agregar vendedor: ' + error.message);
+                mostrarMensaje('error', 'Error de conexión: ' + error.message);
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
             }
         }
 
         function editarVendedor(codigo, nombre, deviceId, activo, esAdmin = false) {
-            console.log('✏️ Editando vendedor:', { codigo, nombre, deviceId, activo, esAdmin });
+            console.log('✏️ Abriendo editor para:', codigo);
             
             document.getElementById('editCodigo').value = codigo;
             document.getElementById('editCodigoInput').value = codigo;
@@ -530,31 +579,29 @@
             document.getElementById('editActivo').checked = activo;
             document.getElementById('editEsAdmin').checked = esAdmin;
             
-            // ✅ NUEVO: Deshabilitar edición de admin principal para evitar problemas
+            // Proteger admin principal
             const esAdminPrincipal = (codigo === 'DARKEYES');
             if (esAdminPrincipal) {
                 document.getElementById('editCodigoInput').readOnly = true;
                 document.getElementById('editActivo').disabled = true;
                 document.getElementById('editEsAdmin').disabled = true;
-                console.log('⚠️ Editando admin principal - campos críticos deshabilitados');
-            } else {
-                document.getElementById('editCodigoInput').readOnly = false;
-                document.getElementById('editActivo').disabled = false;
-                document.getElementById('editEsAdmin').disabled = false;
+                console.log('⚠️ Editando admin principal - campos protegidos');
             }
             
-            // Mostrar el modal
             const modal = new bootstrap.Modal(document.getElementById('modalEditar'));
             modal.show();
-            
-            console.log('✅ Modal de edición abierto');
         }
 
-        // ✅ FUNCIÓN MEJORADA CON DETECCIÓN DE RECARGA
+        // ✅ FUNCIÓN CRÍTICA - LOGOUT INMEDIATO AL CAMBIAR CREDENCIALES
         async function guardarEdicion(event) {
             event.preventDefault();
             const codigoActual = document.getElementById('editCodigo').value;
             console.log('💾 Guardando cambios para:', codigoActual);
+            
+            const btn = document.getElementById('btnGuardar');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<div class="loading-spinner me-2"></div>Guardando...';
+            btn.disabled = true;
             
             const formData = new FormData(event.target);
             
@@ -567,34 +614,42 @@
                 const data = await response.json();
                 
                 if (data.success) {
-                    // ✅ MEJORADO: Manejar recarga de página si el usuario se editó a sí mismo
-                    if (data.recargar_pagina) {
-                        alert('✅ ' + data.mensaje);
-                        console.log('🔄 Recargando página en 2 segundos...');
-                        // Recargar después de 2 segundos
+                    // ✅ ACCIÓN RADICAL: Logout inmediato si el usuario se editó a sí mismo
+                    if (data.logout_inmediato) {
+                        console.log('🚨 LOGOUT INMEDIATO - Credenciales modificadas');
+                        mostrarMensaje('warning', data.mensaje);
+                        
+                        // Cerrar modal primero
+                        const modal = bootstrap.Modal.getInstance(document.getElementById('modalEditar'));
+                        modal.hide();
+                        
+                        // Redirigir al logout después de 2 segundos
                         setTimeout(() => {
-                            window.location.reload();
+                            window.location.href = '/logout';
                         }, 2000);
+                        
                     } else {
-                        alert('✅ ' + data.mensaje);
-                        // Cerrar modal y recargar datos
+                        mostrarMensaje('success', data.mensaje);
                         const modal = bootstrap.Modal.getInstance(document.getElementById('modalEditar'));
                         modal.hide();
                         cargarVendedores();
                     }
                 } else {
-                    alert('❌ Error: ' + data.error);
+                    mostrarMensaje('error', data.error);
                 }
             } catch (error) {
                 console.error('Error al editar vendedor:', error);
-                alert('❌ Error al editar vendedor: ' + error.message);
+                mostrarMensaje('error', 'Error de conexión: ' + error.message);
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
             }
         }
 
         async function desloguearVendedor(codigo, nombre) {
             const nombreSeguro = nombre.replace(/\\'/g, "'");
-            if (confirm(`¿Forzar cierre de sesión para "${nombreSeguro}" (${codigo})?\n\nSe le expulsará inmediatamente del sistema.`)) {
-                console.log('🚫 Forzando cierre de sesión para:', codigo);
+            if (confirm(`¿Forzar cierre de sesión para "${nombreSeguro}" (${codigo})?\n\nEl usuario será expulsado inmediatamente del sistema.`)) {
+                console.log('🚫 Solicitando cierre de sesión para:', codigo);
                 
                 try {
                     const response = await fetch(`/admin/desloguear-vendedor/${codigo}`, {
@@ -604,30 +659,27 @@
                     const data = await response.json();
                     
                     if (data.success) {
-                        alert('✅ ' + data.mensaje);
-                        // NO recargar la página - solo mostrar mensaje
-                        console.log('✅ Vendedor deslogueado exitosamente');
+                        mostrarMensaje('success', data.mensaje);
                     } else {
-                        alert('❌ Error: ' + data.error);
+                        mostrarMensaje('error', data.error);
                     }
                 } catch (error) {
                     console.error('Error al desloguear vendedor:', error);
-                    alert('❌ Error al desloguear vendedor: ' + error.message);
+                    mostrarMensaje('error', 'Error de conexión: ' + error.message);
                 }
             }
         }
 
-        // ✅ FUNCIÓN MEJORADA: Protección del admin principal
         async function eliminarVendedor(codigo, nombre) {
-            // ✅ PROTECCIÓN EXTRA: No permitir eliminar al admin principal
+            // Protección extra frontend
             if (codigo === 'DARKEYES') {
-                alert('❌ No se puede eliminar al administrador principal');
+                mostrarMensaje('error', 'No se puede eliminar al administrador principal');
                 return;
             }
             
             const nombreSeguro = nombre.replace(/\\'/g, "'");
-            if (confirm(`¿Estás seguro de eliminar al vendedor "${nombreSeguro}" (${codigo})?\n\nEsta acción no se puede deshacer.`)) {
-                console.log('🗑️ Eliminando vendedor:', codigo);
+            if (confirm(`¿ESTÁS SEGURO de eliminar al vendedor "${nombreSeguro}" (${codigo})?\n\n⚠️ Esta acción NO se puede deshacer.`)) {
+                console.log('🗑️ Solicitando eliminación de:', codigo);
                 
                 try {
                     const response = await fetch(`/admin/eliminar-vendedor/${codigo}`, {
@@ -638,7 +690,7 @@
                     const data = await response.json();
                     
                     if (data.success) {
-                        // ✅ CORREGIDO: Remover la fila de la tabla sin recargar toda la página
+                        // Eliminar fila de la tabla visualmente
                         const filas = document.querySelectorAll('#tabla-vendedores tr');
                         for (let fila of filas) {
                             const codigoFila = fila.querySelector('td:first-child strong')?.textContent;
@@ -648,19 +700,52 @@
                             }
                         }
                         
-                        // ✅ Actualizar estadísticas sin recargar
+                        // Actualizar estadísticas
                         cargarVendedores();
+                        mostrarMensaje('success', data.mensaje);
                         
-                        alert('✅ ' + data.mensaje);
-                        console.log('✅ Vendedor eliminado exitosamente');
                     } else {
-                        alert('❌ Error: ' + data.error);
+                        mostrarMensaje('error', data.error);
                     }
                 } catch (error) {
                     console.error('Error al eliminar vendedor:', error);
-                    alert('❌ Error al eliminar vendedor: ' + error.message);
+                    mostrarMensaje('error', 'Error de conexión: ' + error.message);
                 }
             }
+        }
+
+        // Sistema de mensajes toast
+        function mostrarMensaje(tipo, mensaje) {
+            // Crear toast dinámicamente
+            const toastContainer = document.getElementById('toastContainer') || crearToastContainer();
+            const toast = document.createElement('div');
+            toast.className = `toast align-items-center text-bg-${tipo} border-0`;
+            toast.innerHTML = `
+                <div class="d-flex">
+                    <div class="toast-body">
+                        ${mensaje}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
+            `;
+            
+            toastContainer.appendChild(toast);
+            const bsToast = new bootstrap.Toast(toast);
+            bsToast.show();
+            
+            // Remover del DOM después de cerrar
+            toast.addEventListener('hidden.bs.toast', () => {
+                toast.remove();
+            });
+        }
+
+        function crearToastContainer() {
+            const container = document.createElement('div');
+            container.id = 'toastContainer';
+            container.className = 'toast-container position-fixed top-0 end-0 p-3';
+            container.style.zIndex = '9999';
+            document.body.appendChild(container);
+            return container;
         }
     </script>
 </body>

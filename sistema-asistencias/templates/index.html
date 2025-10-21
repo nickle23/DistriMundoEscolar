@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sistema de Asistencias Híbrido</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 500px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background: #f5f5f5;
+        }
+        .container { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 10px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { 
+            text-align: center; 
+            color: #333; 
+            margin-bottom: 30px;
+        }
+        input, button { 
+            width: 100%; 
+            padding: 15px; 
+            margin: 10px 0; 
+            font-size: 16px; 
+            border: 1px solid #ddd; 
+            border-radius: 5px;
+        }
+        button { 
+            background: #007bff; 
+            color: white; 
+            border: none; 
+            cursor: pointer;
+        }
+        button:hover { background: #0056b3; }
+        .btn-entrada { background: #28a745; }
+        .btn-entrada:hover { background: #218838; }
+        .btn-salida { background: #dc3545; }
+        .btn-salida:hover { background: #c82333; }
+        .hora-actual { 
+            text-align: center; 
+            font-size: 18px; 
+            margin: 20px 0; 
+            color: #666;
+        }
+        .estado-conexion {
+            text-align: center;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .conexion-online { 
+            background: #d4edda; 
+            color: #155724; 
+            border: 1px solid #c3e6cb;
+        }
+        .conexion-offline { 
+            background: #f8d7da; 
+            color: #721c24; 
+            border: 1px solid #f5c6cb;
+        }
+        .info-pendientes {
+            background: #fff3cd;
+            color: #856404;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ffeaa7;
+            text-align: center;
+        }
+        .sincronizando {
+            background: #cce7ff;
+            color: #004085;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #b3d7ff;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏢 Sistema de Asistencias HÍBRIDO</h1>
+        
+        <!-- Estado de conexión -->
+        <div id="estado-conexion" class="estado-conexion conexion-online">
+            🔵 Conectado - Modo Online
+        </div>
+
+        <!-- Información de pendientes -->
+        <div id="info-pendientes" class="info-pendientes" style="display: none;">
+            ⚠️ <span id="contador-pendientes">0</span> registros pendientes de sincronizar
+        </div>
+
+        <div class="hora-actual">
+            ⏰ Hora actual: <span id="hora">--:--:--</span>
+        </div>
+
+        <input type="text" id="dni" placeholder="Ingresa tu DNI" maxlength="8">
+        
+        <button class="btn-entrada" onclick="marcarEntrada()">
+            🟢 MARCAR ENTRADA
+        </button>
+        
+        <button class="btn-salida" onclick="marcarSalida()">
+            🔴 MARCAR SALIDA
+        </button>
+
+        <div id="mensaje" style="margin-top: 20px; text-align: center;"></div>
+    </div>
+
+    <script>
+        // Variables globales
+        let estadoConexion = true;
+        let pendientesSincronizacion = 0;
+        let sincronizando = false;
+
+        // Actualizar hora cada segundo
+        function actualizarHora() {
+            const ahora = new Date();
+            document.getElementById('hora').textContent = 
+                ahora.toLocaleTimeString('es-PE');
+        }
+        setInterval(actualizarHora, 1000);
+        actualizarHora();
+
+        // Función para verificar estado de conexión
+        async function verificarConexion() {
+            try {
+                const response = await fetch('/estado-conexion', {
+                    method: 'GET',
+                    timeout: 5000
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    actualizarEstadoConexion(true);
+                    return true;
+                } else {
+                    actualizarEstadoConexion(false);
+                    return false;
+                }
+            } catch (error) {
+                console.log('🔴 Sin conexión al servidor');
+                actualizarEstadoConexion(false);
+                return false;
+            }
+        }
+
+        // Actualizar interfaz según estado de conexión
+        function actualizarEstadoConexion(conectado) {
+            const elemento = document.getElementById('estado-conexion');
+            estadoConexion = conectado;
+            
+            if (conectado) {
+                elemento.innerHTML = '🔵 Conectado - Modo Online';
+                elemento.className = 'estado-conexion conexion-online';
+            } else {
+                elemento.innerHTML = '🔴 Sin conexión - Modo Offline';
+                elemento.className = 'estado-conexion conexion-offline';
+            }
+        }
+
+        // Obtener información de registros pendientes
+        async function obtenerPendientes() {
+            try {
+                const response = await fetch('/info-pendientes');
+                if (response.ok) {
+                    const data = await response.json();
+                    pendientesSincronizacion = data.pendientes || 0;
+                    actualizarInfoPendientes();
+                }
+            } catch (error) {
+                console.log('Error obteniendo pendientes:', error);
+            }
+        }
+
+        // Actualizar información de pendientes en la interfaz
+        function actualizarInfoPendientes() {
+            const elemento = document.getElementById('info-pendientes');
+            const contador = document.getElementById('contador-pendientes');
+            
+            if (pendientesSincronizacion > 0) {
+                contador.textContent = pendientesSincronizacion;
+                elemento.style.display = 'block';
+                
+                // Si hay conexión y pendientes, sincronizar automáticamente
+                if (estadoConexion && !sincronizando) {
+                    sincronizarAutomatico();
+                }
+            } else {
+                elemento.style.display = 'none';
+            }
+        }
+
+        // Sincronización automática - MEJORADA
+        async function sincronizarAutomatico() {
+            if (sincronizando) return;
+            
+            sincronizando = true;
+            try {
+                const response = await fetch('/sincronizar', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                
+                const resultado = await response.json();
+                
+                if (resultado.success) {
+                    console.log(`✅ Sincronizados ${resultado.sincronizados} registros`);
+                    pendientesSincronizacion = resultado.pendientes || 0;
+                    actualizarInfoPendientes();
+                    
+                    // Mostrar mensaje temporal de éxito solo si se sincronizó algo
+                    if (resultado.sincronizados > 0) {
+                        mostrarMensajeTemporal(`✅ Sincronizados ${resultado.sincronizados} registros`, 'success');
+                    }
+                }
+            } catch (error) {
+                console.log('Error en sincronización automática:', error);
+            } finally {
+                sincronizando = false;
+            }
+        }
+
+        // Función para marcar entrada
+        async function marcarEntrada() {
+            await marcarAsistencia('entrada');
+        }
+
+        // Función para marcar salida
+        async function marcarSalida() {
+            await marcarAsistencia('salida');
+        }
+
+        // Función principal de marcación MEJORADA
+        async function marcarAsistencia(tipo) {
+            const dni = document.getElementById('dni').value.trim();
+            const mensaje = document.getElementById('mensaje');
+
+            if (!dni || dni.length !== 8) {
+                mensaje.innerHTML = '<span style="color: red;">❌ DNI debe tener 8 dígitos</span>';
+                return;
+            }
+
+            // Verificar conexión antes de intentar
+            const tieneConexion = await verificarConexion();
+            
+            try {
+                const response = await fetch('/marcar', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        dni: dni,
+                        tipo: tipo
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    if (data.offline) {
+                        // Modo offline
+                        mensaje.innerHTML = `<span style="color: orange;">⚠️ ${data.mensaje}</span>`;
+                        
+                        // Actualizar contador de pendientes
+                        pendientesSincronizacion++;
+                        actualizarInfoPendientes();
+                    } else {
+                        // Modo online
+                        mensaje.innerHTML = `<span style="color: green;">${data.mensaje}</span>`;
+                    }
+                    document.getElementById('dni').value = '';
+                    
+                    // Limpiar mensaje después de 5 segundos
+                    setTimeout(() => {
+                        if (mensaje.innerHTML.includes(data.mensaje)) {
+                            mensaje.innerHTML = '';
+                        }
+                    }, 5000);
+                    
+                } else {
+                    mensaje.innerHTML = `<span style="color: red;">❌ ${data.mensaje}</span>`;
+                }
+            } catch (error) {
+                // Fallback completo - Guardar en localStorage del navegador
+                console.log('💥 Error completo, usando localStorage:', error);
+                
+                const hora = new Date().toLocaleTimeString('es-PE');
+                const registro = {
+                    dni: dni,
+                    tipo: tipo,
+                    hora: hora,
+                    fecha: new Date().toLocaleDateString('es-PE'),
+                    timestamp: new Date().getTime(),
+                    backup: true
+                };
+                
+                // Guardar en localStorage como respaldo de emergencia
+                let pendientes = JSON.parse(localStorage.getItem('asistencias_pendientes') || '[]');
+                pendientes.push(registro);
+                localStorage.setItem('asistencias_pendientes', JSON.stringify(pendientes));
+                
+                mensaje.innerHTML = `<span style="color: orange;">⚠️ Sin conexión - Guardado en respaldo: ${tipo.toUpperCase()} ${hora}</span>`;
+                document.getElementById('dni').value = '';
+                
+                // Actualizar contador
+                pendientesSincronizacion++;
+                actualizarInfoPendientes();
+            }
+        }
+
+        // Mostrar mensaje temporal
+        function mostrarMensajeTemporal(texto, tipo) {
+            const mensajeDiv = document.getElementById('mensaje');
+            const color = tipo === 'success' ? 'green' : 'blue';
+            mensajeDiv.innerHTML = `<span style="color: ${color};">${texto}</span>`;
+            
+            setTimeout(() => {
+                if (mensajeDiv.innerHTML.includes(texto)) {
+                    mensajeDiv.innerHTML = '';
+                }
+            }, 3000);
+        }
+
+        // Sincronizar registros del localStorage si es necesario
+        async function sincronizarLocalStorage() {
+            const pendientes = JSON.parse(localStorage.getItem('asistencias_pendientes') || '[]');
+            
+            if (pendientes.length > 0 && estadoConexion) {
+                console.log(`📦 Sincronizando ${pendientes.length} registros de localStorage`);
+                
+                for (const registro of pendientes) {
+                    try {
+                        const response = await fetch('/marcar', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                dni: registro.dni,
+                                tipo: registro.tipo
+                            })
+                        });
+                        
+                        const data = await response.json();
+                        if (data.success && !data.offline) {
+                            // Eliminar del localStorage si se sincronizó correctamente
+                            const nuevosPendientes = pendientes.filter(p => p.timestamp !== registro.timestamp);
+                            localStorage.setItem('asistencias_pendientes', JSON.stringify(nuevosPendientes));
+                        }
+                    } catch (error) {
+                        console.log('Error sincronizando desde localStorage:', error);
+                    }
+                }
+            }
+        }
+
+        // Monitoreo continuo de conexión - MEJORADO
+        setInterval(async () => {
+            await verificarConexion();
+            await obtenerPendientes();
+            
+            // Si hay conexión y pendientes, intentar sincronizar automáticamente
+            if (estadoConexion && pendientesSincronizacion > 0 && !sincronizando) {
+                console.log('🔄 Sincronización automática iniciada');
+                sincronizarAutomatico();
+            }
+            
+            // Sincronizar localStorage si hay conexión
+            if (estadoConexion) {
+                sincronizarLocalStorage();
+            }
+        }, 30000); // Cada 30 segundos
+
+        // Inicialización al cargar la página
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log("🚀 Sistema Híbrido de Asistencias Iniciado - 100% Automático");
+            
+            // Verificar estado inicial
+            await verificarConexion();
+            await obtenerPendientes();
+            
+            // Intentar sincronizar inmediatamente si hay conexión y pendientes
+            if (estadoConexion && pendientesSincronizacion > 0) {
+                setTimeout(sincronizarAutomatico, 2000);
+            }
+        });
+
+        // Detectar cambios en la conexión del navegador
+        window.addEventListener('online', async () => {
+            console.log('🌐 Navegador detectó conexión - Sincronizando automáticamente');
+            await verificarConexion();
+            
+            if (estadoConexion) {
+                mostrarMensajeTemporal('🔵 Conexión restaurada - Sincronizando...', 'success');
+                setTimeout(sincronizarAutomatico, 1000);
+            }
+        });
+
+        window.addEventListener('offline', () => {
+            console.log('🔴 Navegador detectó falta de conexión');
+            actualizarEstadoConexion(false);
+            mostrarMensajeTemporal('🔴 Sin conexión a internet - Modo Offline', 'warning');
+        });
+    </script>
+</body>
+</html>

@@ -500,6 +500,15 @@ def serve_data(filename):
 def serve_img(filename):
     return send_from_directory('img', filename)
 
+# ================= INTEGRAR SISTEMA DE ASISTENCIAS =================
+try:
+    from sistema_asistencias.app_asistencias import app_asistencias
+    # Registrar el sistema de asistencias en la ruta /sistema-asistencias
+    app.register_blueprint(app_asistencias, url_prefix='/sistema-asistencias')
+    print("✅ Sistema de Asistencias integrado correctamente")
+except Exception as e:
+    print(f"⚠️ No se pudo integrar el sistema de asistencias: {e}")
+
 # ================= CONFIGURACIÓN =================
 if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0', port=5000)

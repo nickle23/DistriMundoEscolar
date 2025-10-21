@@ -1,3 +1,8 @@
 Flask==2.3.3
 gunicorn
 psycopg[binary]==3.2.11
+requests==2.31.0
+pandas==2.1.5
+openpyxl==3.1.2
+reportlab==4.0.4
+sqlite3

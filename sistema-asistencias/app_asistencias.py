@@ -12,10 +12,7 @@ template_folder = os.path.join(base_dir, 'templates')
 from flask import Blueprint
 
 # Crear Blueprint en lugar de app Flask
-app_asistencias = Blueprint('asistencias', __name__, 
-    template_folder=template_folder,
-    static_folder=os.path.join(base_dir, 'static')
-)
+app_asistencias = Blueprint('asistencias', __name__, template_folder=template_folder, static_folder=os.path.join(base_dir, 'static'))
 
 # Cambiar todas las @app.route por @app_asistencias.route
 app.secret_key = 'clave_secreta_asistencias_2024'

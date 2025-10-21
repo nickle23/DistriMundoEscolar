@@ -15,7 +15,7 @@ from flask import Blueprint
 app_asistencias = Blueprint('asistencias', __name__, template_folder=template_folder, static_folder=os.path.join(base_dir, 'static'))
 
 # Cambiar todas las @app.route por @app_asistencias.route
-app.secret_key = 'clave_secreta_asistencias_2024'
+app_asistencias.secret_key = 'clave_secreta_asistencias_2024'
 
 print(f"✅ Templates folder: {template_folder}")
 print("✅ Sistema de Asistencias HÍBRIDO 100% Automático iniciado")
@@ -1622,6 +1622,6 @@ def limpiar_archivos_offline_huérfanos():
         return 0
 
 # Inicializar base de datos al empezar
+# Esto ya no se ejecuta directamente, se ejecuta desde app.py
 if __name__ == '__main__':
-    init_db()
-    app.run(debug=True, port=5001, host='0.0.0.0')
+    print("⚠️ Este archivo ahora es un Blueprint, debe ejecutarse desde app.py principal")

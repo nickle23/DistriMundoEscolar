@@ -441,11 +441,11 @@ def obtener_resumen_mensual(dni, mes, anio):
 
 # ================= RUTAS PRINCIPALES MEJORADAS =================
 
-@app.route('/')
+@app_asistencias.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/estado-conexion')
+@app_asistencias.route('/estado-conexion')
 def estado_conexion():
     """Endpoint para verificar el estado de la conexión"""
     tiene_conexion = verificar_conexion()
@@ -455,7 +455,7 @@ def estado_conexion():
         'timestamp': datetime.now().isoformat()
     })
 
-@app.route('/sincronizar', methods=['POST'])
+@app_asistencias.route('/sincronizar', methods=['POST'])
 def sincronizar():
     """Sincroniza registros offline automáticamente"""
     try:
@@ -464,7 +464,7 @@ def sincronizar():
     except Exception as e:
         return jsonify({'success': False, 'error': f'Error sincronizando: {str(e)}'})
 
-@app.route('/info-pendientes')
+@app_asistencias.route('/info-pendientes')
 def info_pendientes():
     """Obtener información de registros pendientes de sincronización"""
     try:
@@ -495,7 +495,7 @@ def info_pendientes():
     except Exception as e:
         return jsonify({'error': str(e)})
     
-@app.route('/marcar', methods=['POST'])
+@app_asistencias.route('/marcar', methods=['POST'])
 def marcar_asistencia():
     """Marcar asistencia - SISTEMA HÍBRIDO 100% AUTOMÁTICO"""
     try:
@@ -642,12 +642,12 @@ def marcar_asistencia():
 
 # ================= RUTAS DEL PANEL ADMIN =================
 
-@app.route('/admin')
+@app_asistencias.route('/admin')
 def admin_panel():
     """Panel de control administrativo"""
     return render_template('admin.html')
 
-@app.route('/admin/estadisticas')
+@app_asistencias.route('/admin/estadisticas')
 def admin_estadisticas():
     """Obtener estadísticas para el dashboard"""
     conn = get_db_connection()
@@ -688,7 +688,7 @@ def admin_estadisticas():
         'conexion': verificar_conexion()
     })
 
-@app.route('/admin/asistencias-hoy')
+@app_asistencias.route('/admin/asistencias-hoy')
 def admin_asistencias_hoy():
     """Obtener asistencias del día actual"""
     conn = get_db_connection()
@@ -724,7 +724,7 @@ def admin_asistencias_hoy():
     conn.close()
     return jsonify(asistencias)
 
-@app.route('/admin/trabajadores')
+@app_asistencias.route('/admin/trabajadores')
 def admin_trabajadores():
     """Obtener lista de todos los trabajadores"""
     conn = get_db_connection()
@@ -743,7 +743,7 @@ def admin_trabajadores():
     conn.close()
     return jsonify(trabajadores)
 
-@app.route('/admin/agregar-trabajador', methods=['POST'])
+@app_asistencias.route('/admin/agregar-trabajador', methods=['POST'])
 def admin_agregar_trabajador():
     """Agregar nuevo trabajador"""
     try:
@@ -784,7 +784,7 @@ def admin_agregar_trabajador():
     except Exception as e:
         return jsonify({'success': False, 'mensaje': f'Error: {str(e)}'})
 
-@app.route('/admin/eliminar-trabajador', methods=['POST'])
+@app_asistencias.route('/admin/eliminar-trabajador', methods=['POST'])
 def admin_eliminar_trabajador():
     """Eliminar trabajador Y TODOS SUS REGISTROS automáticamente - VERSIÓN ROBUSTA"""
     try:
@@ -914,7 +914,7 @@ def eliminar_archivos_offline_trabajador(dni):
 
 # ================= RUTAS DE EDICIÓN MANUAL =================
 
-@app.route('/admin/asistencia-detalle')
+@app_asistencias.route('/admin/asistencia-detalle')
 def admin_asistencia_detalle():
     """Obtener detalle de una asistencia específica"""
     dni = request.args.get('dni')
@@ -939,7 +939,7 @@ def admin_asistencia_detalle():
     else:
         return jsonify({'entrada': None, 'salida': None, 'observaciones': None})
 
-@app.route('/admin/editar-asistencia', methods=['POST'])
+@app_asistencias.route('/admin/editar-asistencia', methods=['POST'])
 def admin_editar_asistencia():
     """Editar o crear una asistencia manualmente"""
     try:
@@ -1014,7 +1014,7 @@ def admin_editar_asistencia():
     except Exception as e:
         return jsonify({'success': False, 'mensaje': f'Error: {str(e)}'})
 
-@app.route('/admin/justificar-falta', methods=['POST'])
+@app_asistencias.route('/admin/justificar-falta', methods=['POST'])
 def admin_justificar_falta():
     """Justificar una falta o tardanza - CORREGIDO"""
     try:
@@ -1062,7 +1062,7 @@ def admin_justificar_falta():
     except Exception as e:
         return jsonify({'success': False, 'mensaje': f'Error: {str(e)}'})
 
-@app.route('/admin/eliminar-asistencia', methods=['POST'])
+@app_asistencias.route('/admin/eliminar-asistencia', methods=['POST'])
 def admin_eliminar_asistencia():
     """Eliminar una asistencia"""
     try:
@@ -1091,7 +1091,7 @@ def admin_eliminar_asistencia():
 
 # ================= RUTAS DE REPORTES CORREGIDAS =================
 
-@app.route('/admin/generar-reporte', methods=['POST'])
+@app_asistencias.route('/admin/generar-reporte', methods=['POST'])
 def admin_generar_reporte():
     """Generar reporte mensual para un trabajador - CORREGIDO"""
     try:
@@ -1135,7 +1135,7 @@ def admin_generar_reporte():
         print(f"❌ ERROR generando reporte: {str(e)}")
         return jsonify({'success': False, 'mensaje': f'Error generando reporte: {str(e)}'})
 
-@app.route('/admin/generar-reporte-completo', methods=['POST'])
+@app_asistencias.route('/admin/generar-reporte-completo', methods=['POST'])
 def admin_generar_reporte_completo():
     """Generar reporte mensual para TODOS los trabajadores - NUEVO"""
     try:
@@ -1199,7 +1199,7 @@ def admin_generar_reporte_completo():
         print(f"❌ ERROR generando reporte completo: {str(e)}")
         return jsonify({'success': False, 'mensaje': f'Error generando reporte completo: {str(e)}'})
 
-@app.route('/reporte-imprimir')
+@app_asistencias.route('/reporte-imprimir')
 def reporte_imprimir():
     """Página para imprimir el reporte - COMPLETAMENTE FUNCIONAL"""
     try:
@@ -1234,7 +1234,7 @@ def reporte_imprimir():
         print(f"❌ ERROR en reporte-imprimir: {str(e)}")
         return f"Error: {str(e)}", 500
 
-@app.route('/admin/descargar-excel')
+@app_asistencias.route('/admin/descargar-excel')
 def admin_descargar_excel():
     """Descargar reporte en Excel - CORREGIDO"""
     try:
@@ -1330,7 +1330,7 @@ def admin_descargar_excel():
     
 # ================= GESTIÓN HISTÓRICA =================
 
-@app.route('/admin/asistencias-historicas')
+@app_asistencias.route('/admin/asistencias-historicas')
 def admin_asistencias_historicas():
     """Obtener asistencias históricas con filtros - NUEVO"""
     try:
@@ -1426,7 +1426,7 @@ def admin_asistencias_historicas():
         print(f"❌ ERROR obteniendo asistencias históricas: {str(e)}")
         return jsonify({'success': False, 'mensaje': f'Error: {str(e)}'})
 
-@app.route('/admin/compensar-falta', methods=['POST'])
+@app_asistencias.route('/admin/compensar-falta', methods=['POST'])
 def admin_compensar_falta():
     """Compensar una falta trabajando otro día - NUEVO"""
     try:
@@ -1465,7 +1465,7 @@ def admin_compensar_falta():
     except Exception as e:
         return jsonify({'success': False, 'mensaje': f'Error: {str(e)}'})
 
-@app.route('/admin/exportar-historico-excel')
+@app_asistencias.route('/admin/exportar-historico-excel')
 def admin_exportar_historico_excel():
     """Exportar historico completo a Excel - NUEVO"""
     try:
@@ -1532,7 +1532,7 @@ def admin_exportar_historico_excel():
     except Exception as e:
         return jsonify({'success': False, 'mensaje': f'Error exportando: {str(e)}'})
     
-@app.route('/admin/limpiar-registros-huérfanos', methods=['POST'])
+@app_asistencias.route('/admin/limpiar-registros-huérfanos', methods=['POST'])
 def limpiar_registros_huérfanos():
     """Limpia TODOS los registros huérfanos del sistema - FUNCIÓN DE MANTENIMIENTO"""
     try:
